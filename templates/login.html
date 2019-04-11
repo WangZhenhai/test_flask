@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>登 录</h1>
+    <p>还没注册? <a href="{{ url_for('register') }}">去注册!</a></p>
     <form action="" method="post">
         <!-- #用来实现在配置中激活的csrf保护-->
         {{ form.hidden_tag() }}
