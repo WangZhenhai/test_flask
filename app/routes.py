@@ -62,3 +62,11 @@ def register():
 		flash ('恭喜你成为我们网站的新用户!')
 		return redirect (url_for ('login'))
 	return render_template ('register.html', title='注册', form=form)
+
+
+# 用户中心
+@app.route ('/user/<username>')
+def user(username):
+	user = User.query.filter_by (username=username).first_or_404 ()
+	posts = [{'author': user, 'body': 'Test Post #1号'}，{'author': user, 'body': 'Test Post #1号'}]
+	return render_template ('user.html', user=username, posts=posts)
