@@ -15,7 +15,7 @@ from app.models import User
 @app.route ('/index')
 @login_required
 def index():
-	user = {'username': 'duke'}
+	user = {'username': 'admin'}
 	posts = [{'author': {'username': '刘'}, 'body': '这是模板模块中的循环例子～1'},
 			 {'author': {'username': '忠强'}, 'body': '这是模板模块中的循环例子～2'}]
 	return render_template ('index.html', title='我的', user=user, posts=posts)
@@ -33,7 +33,8 @@ def login():
 		# 查询表用户
 		user = User.query.filter_by (username=form.username.data).first ()
 		if user is None or not user.check_password (form.password.data):
-			return "<script>alert('用户名或密码错误！')</script>" + redirect (url_for ('login'))
+			return "<script>alert('用户名或密码错误！')</script>"
+			return redirect (url_for ('login'))
 		login_user (user, remember=form.remember_me.data)
 		next_page = request.args.get ('next')
 		if not next_page or url_parse (next_page).netloc != '':
@@ -66,6 +67,7 @@ def register():
 
 
 # 用户中心
+@login_required
 @app.route ('/user/<username>')
 def user(username):
 	user = User.query.filter_by (username=username).first_or_404 ()
