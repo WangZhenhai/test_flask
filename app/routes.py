@@ -2,6 +2,7 @@ from datetime import datetime
 
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
+from sqlalchemy import and_
 from werkzeug.urls import url_parse
 from app.forms import RegisterationForm, EditProfileForm
 from app import app, db
@@ -32,8 +33,7 @@ def login():
 		# 查询表用户
 		user = User.query.filter_by (username=form.username.data).first ()
 		if user is None or not user.check_password (form.password.data):
-			flash ('用户名或密码错误！')
-			return redirect (url_for ('login'))
+			return "<script>alert('用户名或密码错误！')</script>" + redirect (url_for ('login'))
 		login_user (user, remember=form.remember_me.data)
 		next_page = request.args.get ('next')
 		if not next_page or url_parse (next_page).netloc != '':
@@ -61,8 +61,7 @@ def register():
 		user.set_password (form.password.data)
 		db.session.add (user)
 		db.session.commit ()
-		flash ('恭喜你成为我们网站的新用户!')
-		return redirect (url_for ('login'))
+		return "<script>alert('恭喜你成为我们网站的新用户!')</script>" + redirect (url_for ('login'))
 	return render_template ('register.html', title='注册', form=form)
 
 
@@ -71,7 +70,8 @@ def register():
 def user(username):
 	user = User.query.filter_by (username=username).first_or_404 ()
 	posts = [{'author': user, 'body': 'Test Post #1号'}, {'author': user, 'body': 'Test Post #2号'}]
-	return render_template ('user.html', user=user, posts=posts)
+	last_ip = request.remote_addr
+	return render_template ('user.html', user=user, posts=posts, last_ip=last_ip)
 
 
 # 显示最后登录
@@ -79,6 +79,7 @@ def user(username):
 def before_request():
 	if current_user.is_authenticated:
 		current_user.last_seen = datetime.utcnow ()
+		current_user.last_ip = request.remote_addr
 		db.session.commit ()
 
 
@@ -91,8 +92,8 @@ def edit_profile():
 		current_user.username = form.username.data
 		current_user.about_me = form.about_me.data
 		db.session.commit ()
-		flash ('你的提交已变更.')
-		return redirect (url_for ('edit_profile'))
+		# flash ('你的提交已变更.')
+		return "<script>alert(''你的提交已变更.')</script>" + redirect (url_for ('edit_profile'))
 	elif request.method == 'GET':
 		form.username.data = current_user.username
 		form.about_me.data = current_user.about_me
