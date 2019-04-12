@@ -7,17 +7,17 @@ from app.models import User
 
 class LoginForm (FlaskForm):
 	# DataRequired，当你在当前表格没有输入而直接到下一个表格时会提示你输入
-	username = StringField ('用户名', validators=[DataRequired (message='请输入名户名')])
+	username = StringField ('用户名', validators=[DataRequired (message='请输入用户名')])
 	password = PasswordField ('密码', validators=[DataRequired (message='请输入密码')])
 	remember_me = BooleanField ('记住我')
 	submit = SubmitField ('登录')
 
 
 class RegisterationForm (FlaskForm):
-	username = StringField ('用户名', validators=[DataRequired ()])
-	email = StringField ('邮箱', validators=[DataRequired (), Email ()])
-	password = PasswordField ('密码', validators=[DataRequired ()])
-	password2 = PasswordField ('重复密码', validators=[DataRequired (), EqualTo ('password')])
+	username = StringField ('用户名', validators=[DataRequired (message='请输入注册用户名')])
+	email = StringField ('邮箱', validators=[DataRequired (message='请输入注册邮箱地址'), Email ()])
+	password = PasswordField ('密码', validators=[DataRequired (message='请输入注册密码')])
+	password2 = PasswordField ('重复密码', validators=[DataRequired (message='请再次输入注册密码'), EqualTo ('password')])
 	submit = SubmitField ('注册')
 
 	# 校验用户名是否重复

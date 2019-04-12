@@ -48,7 +48,7 @@ def logout():
 
 
 # 注册
-@app.route ('/register')
+@app.route ('/register', methods=['GET', 'POST'])
 def register():
 	# 判断当前用户是否验证，如果通过的话返回首页
 	if current_user.is_authenticated:
