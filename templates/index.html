@@ -1,7 +1,95 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>你好呀, {{ user.username }} !</h1>
-    {% for post in posts %}
-        <div><p>{{ post.author.username }} 说:<b>{{ post.body }}</b></p></div>
-    {% endfor %}
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>测试数据服务平台</title>
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+    </head>
+    <body style="padding:30px;">
+    <p>{{ current_user.username }} 数据服务平台</p>
+    <div id="wrap">
+        <ul class="m_right">
+            <li>
+                <a href="http://xiangshang:xiangshang@{{ current_user.username }}.opm.xs.sit/opm/a/login" target="view_window">OPM平台</a>
+            </li>
+            <li>
+                <a href="http://{{ current_user.username }}.www.xs.sit/xweb/index" target="view_window">PC平台</a>
+            </li>
+            <li>
+                <a href="http://{{ current_user.username }}.m.xs.sit/html/newwap/login.html" target="view_window">M站平台</a>
+            </li>
+        </ul>
+        <ul class="m_left">
+            <li>
+                <a href="http://10.40.1.136:19200/las//jytest/api/node/netl01" target="view_window">借款人开户</a>
+            </li>
+            <li>
+                <a href="http://10.40.1.136:19200/las//jytest/api/node/netl17_1" target="view_window">借款信息授权</a>
+            </li>
+            <li>
+                <a href="/xweb/my/moneyRecord" target="view_window">借款信息导入</a>
+            </li>
+            <!--<li>
+                <a href="/agreement/userAgreementFileInfoGroups" target="view_window">合同管理查询</a>
+            </li> -->
+            </br>
+            <li class="active">
+                <a href="/xweb/my/myplan/notextplanBuyOrderForm/list" target="view_window">出借人开户</a>
+            </li>
+            <li>
+                <a href="/xweb/my/moneyRecord" target="view_window">出借人充值</a>
+            </li>
+            <li>
+                <a href="/xweb/rechargeInit?payChannelType=0" target="view_window">出借人购买订单</a>
+            </li>
+            </br>
+            <li>
+                <a href="http://10.40.1.150:50999/task/" target="view_window">向上定时任务</a>
+            </li>
+            <li>
+                <a href="http://10.40.1.150:19700/" target="view_window">资产定时任务</a>
+            </li>
+            <li>
+                <a href="http://10.40.1.150:12300/swagger-ui.html#!/start-loan-controller/startLoanTaskUsingPOST"
+                   target="view_window">放款微服务地址</a>
+            </li>
+            <li>
+                <a href="http://10.40.1.150:19910/fds/trans/list" target="view_window">银行交易接口查询</a>
+            </li>
+            </br>
+            <li>
+                <a href="http://{{ current_user.username }}.jenkins.xs.sit/login?from=%2F" target="view_window">Jenkins部署地址</a>
+            </li>
+            <li>
+                <a href="http://10.200.0.108:18090/swagger-ui.html#!/decrypt-data-controller/encryptListUsingPOST"
+                   target="view_window">手机号加密/解密</a>
+            </li>
+        </ul>
+    </div>
+    </body>
+    <style type="text/css">
+        p {
+            text-align: center;
+            font-size: 20px;
+            color: red
+        }
+
+        body {
+            text-align: center;
+            font-size: 15px
+        }
+
+        ul {
+            text-align: left
+        }
+
+        li {
+            text-align: left
+        }
+    </style>
+    </html>
 {% endblock %}

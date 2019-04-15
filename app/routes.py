@@ -33,7 +33,7 @@ def login():
 		# 查询表用户
 		user = User.query.filter_by (username=form.username.data).first ()
 		if user is None or not user.check_password (form.password.data):
-			return "<script>alert('用户名或密码错误！')</script>"
+			flash ("用户名或密码错误！")
 			return redirect (url_for ('login'))
 		login_user (user, remember=form.remember_me.data)
 		next_page = request.args.get ('next')
@@ -62,7 +62,8 @@ def register():
 		user.set_password (form.password.data)
 		db.session.add (user)
 		db.session.commit ()
-		return "<script>alert('恭喜你成为我们网站的新用户!')</script>" + redirect (url_for ('login'))
+		flash( "恭喜你成为我们网站的新用户!")
+		return redirect (url_for ('login'))
 	return render_template ('register.html', title='注册', form=form)
 
 
@@ -94,8 +95,8 @@ def edit_profile():
 		current_user.username = form.username.data
 		current_user.about_me = form.about_me.data
 		db.session.commit ()
-		# flash ('你的提交已变更.')
-		return "<script>alert(''你的提交已变更.')</script>" + redirect (url_for ('edit_profile'))
+		flash ('你的提交已变更.')
+		return redirect (url_for ('edit_profile'))
 	elif request.method == 'GET':
 		form.username.data = current_user.username
 		form.about_me.data = current_user.about_me
