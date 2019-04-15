@@ -98,3 +98,9 @@ def edit_profile():
 		form.backend_ip.data = current_user.backend_ip
 		form.front_ip.data = current_user.front_ip
 	return render_template ('edit_profile.html', title='编辑用户IP配置', form=form)
+
+
+# test文件
+@app.route ('/test')
+def test():
+	return render_template ("test.html")
