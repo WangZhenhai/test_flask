@@ -15,10 +15,7 @@ from app.models import User
 @app.route ('/index')
 @login_required
 def index():
-	user = {'username': 'admin'}
-	posts = [{'author': {'username': '刘'}, 'body': '这是模板模块中的循环例子～1'},
-			 {'author': {'username': '忠强'}, 'body': '这是模板模块中的循环例子～2'}]
-	return render_template ('index.html', title='我的', user=user, posts=posts)
+	return render_template ('index.html')
 
 
 # 登录
@@ -40,7 +37,7 @@ def login():
 		if not next_page or url_parse (next_page).netloc != '':
 			next_page = url_for ('index')
 		return redirect (next_page)
-	return render_template ('login.html', title='登录', form=form)
+	return render_template ('login.html', form=form)
 
 
 # 注销
@@ -62,9 +59,9 @@ def register():
 		user.set_password (form.password.data)
 		db.session.add (user)
 		db.session.commit ()
-		flash( "恭喜你成为我们网站的新用户!")
+		flash ("恭喜你成为我们网站的新用户!")
 		return redirect (url_for ('login'))
-	return render_template ('register.html', title='注册', form=form)
+	return render_template ('register.html', form=form)
 
 
 # 用户中心
@@ -92,12 +89,12 @@ def before_request():
 def edit_profile():
 	form = EditProfileForm ()
 	if form.validate_on_submit ():
-		current_user.username = form.username.data
-		current_user.about_me = form.about_me.data
+		current_user.backend_ip = form.backend_ip.data
+		current_user.front_ip = form.front_ip.data
 		db.session.commit ()
 		flash ('你的提交已变更.')
 		return redirect (url_for ('edit_profile'))
 	elif request.method == 'GET':
-		form.username.data = current_user.username
-		form.about_me.data = current_user.about_me
-	return render_template ('edit_profile.html', title='个人资料编辑', form=form)
+		form.backend_ip.data = current_user.backend_ip
+		form.front_ip.data = current_user.front_ip
+	return render_template ('edit_profile.html', title='编辑用户IP配置', form=form)

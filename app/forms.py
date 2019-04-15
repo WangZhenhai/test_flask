@@ -34,6 +34,6 @@ class RegisterationForm (FlaskForm):
 
 
 class EditProfileForm (FlaskForm):
-	username = StringField ('用户名', validators=[DataRequired (message='请输入用户名!')])
-	about_me = TextAreaField ('关于我', validators=[Length (min=0, max=140)])
+	backend_ip = StringField ('后端IP地址', validators=[DataRequired (message='请输入后端IP地址!')])
+	front_ip = StringField ('前端IP地址', validators=[DataRequired (message='请输入后端IP地址!')])
 	submit = SubmitField ('提交')

@@ -12,6 +12,8 @@ class User (UserMixin, db.Model):
 	username = db.Column (db.String (64), index=True, unique=True)
 	email = db.Column (db.String (128), index=True, unique=True)
 	password_hash = db.Column (db.String (128))
+	backend_ip = db.Column (db.String (64), default='0.0.0.0')
+	front_ip = db.Column (db.String (64), default='0.0.0.0')
 	about_me = db.Column (db.String (128))
 	last_seen = db.Column (db.DateTime, default=datetime.utcnow)
 	last_ip = db.Column(db.String(64),default='0.0.0.0')
