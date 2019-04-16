@@ -1,6 +1,7 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, Form
+from flask_wtf.file import FileRequired, FileAllowed, FileField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Length
+from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Length, InputRequired
 
 from app.models import User
 
@@ -38,3 +39,10 @@ class EditProfileForm (FlaskForm):
 	front_ip = StringField ('前端IP地址', validators=[DataRequired (message='请输入后端IP地址!')])
 	db_ip = StringField ('数据库连接地址', validators=[DataRequired (message='请输入后端IP地址!')])
 	submit = SubmitField ('提交')
+
+
+class UploadForm (Form):
+	avatar = FileField (validators=[FileRequired (),  # FileRequired必须上传
+									FileAllowed (['jpg', 'png', 'gif'])  # FileAllowed:必须为指定的格式的文件
+									])
+	desc = StringField (validators=[InputRequired ()])
