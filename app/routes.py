@@ -100,9 +100,3 @@ def edit_profile():
 		form.front_ip.data = current_user.front_ip
 		form.db_ip.data = current_user.db_ip
 	return render_template ('edit_profile.html', title='编辑用户IP配置', form=form)
-
-
-# test文件
-@app.route ('/test')
-def test():
-	return render_template ("test.html")
