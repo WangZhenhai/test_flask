@@ -91,12 +91,14 @@ def edit_profile():
 	if form.validate_on_submit ():
 		current_user.backend_ip = form.backend_ip.data
 		current_user.front_ip = form.front_ip.data
+		current_user.db_ip = form.db_ip.data
 		db.session.commit ()
 		flash ('你的提交已变更.')
 		return redirect (url_for ('edit_profile'))
 	elif request.method == 'GET':
 		form.backend_ip.data = current_user.backend_ip
 		form.front_ip.data = current_user.front_ip
+		form.db_ip.data = current_user.db_ip
 	return render_template ('edit_profile.html', title='编辑用户IP配置', form=form)
 
 

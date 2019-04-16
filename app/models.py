@@ -14,7 +14,7 @@ class User (UserMixin, db.Model):
 	password_hash = db.Column (db.String (128))
 	backend_ip = db.Column (db.String (64), default='0.0.0.0')
 	front_ip = db.Column (db.String (64), default='0.0.0.0')
-	about_me = db.Column (db.String (128))
+	db_ip = db.Column (db.String (64))
 	last_seen = db.Column (db.DateTime, default=datetime.utcnow)
 	last_ip = db.Column(db.String(64),default='0.0.0.0')
 	# back是反向引用,User和Post是一对多的关系，backref是表示在Post中新建一个属性author，关联的是Post中的user_id外键关联的User对象。

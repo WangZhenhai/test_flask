@@ -20,9 +20,16 @@
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>
+            {{ form.db_ip.label }}<br>
+            {{ form.db_ip(size=32) }}<br>
+            {% for error in form.db_ip.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
         <p>{{ form.submit() }}</p>
     </form>
-	<p><input type="button" name="Submit" onclick="javascript:history.back(-1);" value="返回上一页"></p>
+    <p><input type="button" name="Submit" onclick="javascript:history.back(-1);" value="返回上一页"></p>
 {% endblock %}
 </body>
 </html>
