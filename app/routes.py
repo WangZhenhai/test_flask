@@ -104,6 +104,6 @@ def edit_profile():
 
 # 上传文件
 @login_required
-@app.route ('/upload')
+@app.route ('/upload', methods=['GET'], strict_slashes=False)
 def upload():
 	return render_template ('upload.html')

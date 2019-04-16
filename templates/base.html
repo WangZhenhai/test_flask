@@ -7,7 +7,7 @@
     {#    <link rel="shortcut icon" href="{{ url_for('static', filename='images/wd_favicon.ico') }}"/>#}
 </head>
 <body>
-<div>
+<div align="center">
     <a href="{{ url_for('index') }}">首页</a>
     {% if current_user.is_anonymous %}
         <a href="{{ url_for('login') }}">登录</a>
@@ -30,4 +30,11 @@
 {% block content %}
 {% endblock %}
 </body>
+<style type="text/css">
+    a {
+        text-align: center;
+        font-size: 16px;
+        {#color: dodgerblue;#}
+    }
+</style>
 </html>

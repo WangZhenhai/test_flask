@@ -11,21 +11,23 @@
     <div id="wrap">
         <ul class="m_right">
             <li>
-                <a href="http://xiangshang:xiangshang@{{ current_user.username }}.opm.xs.sit/opm/a/login" target="view_window">OPM平台</a>
+                <a href="http://xiangshang:xiangshang@{{ current_user.username }}.opm.xs.sit/opm/a/login"
+                   target="view_window">OPM平台</a>
             </li>
             <li>
                 <a href="http://{{ current_user.username }}.www.xs.sit/xweb/index" target="view_window">PC平台</a>
             </li>
             <li>
-                <a href="http://{{ current_user.username }}.m.xs.sit/html/newwap/login.html" target="view_window">M站平台</a>
+                <a href="http://{{ current_user.username }}.m.xs.sit/html/newwap/login.html"
+                   target="view_window">M站平台</a>
             </li>
         </ul>
         <ul class="m_left">
             <li>
-                <a href="http://{{current_user.front_ip}}:19200/las//jytest/api/node/netl01" target="view_window">借款人开户</a>
+                <a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/node/netl01" target="view_window">借款人开户</a>
             </li>
             <li>
-                <a href="http://{{current_user.front_ip}}:19200/las//jytest/api/node/netl17_1" target="view_window">借款信息授权</a>
+                <a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/node/netl17_1" target="view_window">借款信息授权</a>
             </li>
             <li>
                 <a href="/xweb/my/moneyRecord" target="view_window">借款信息导入</a>
@@ -45,21 +47,22 @@
             </li>
             </br>
             <li>
-                <a href="http://{{current_user.backend_ip}}:50999/task/" target="view_window">向上定时任务</a>
+                <a href="http://{{ current_user.backend_ip }}:50999/task/" target="view_window">向上定时任务</a>
             </li>
             <li>
-                <a href="http://{{current_user.backend_ip}}:19700/" target="view_window">资产定时任务</a>
+                <a href="http://{{ current_user.backend_ip }}:19700/" target="view_window">资产定时任务</a>
             </li>
             <li>
-                <a href="http://{{current_user.backend_ip}}:12300/swagger-ui.html#!/start-loan-controller/startLoanTaskUsingPOST"
+                <a href="http://{{ current_user.backend_ip }}:12300/swagger-ui.html#!/start-loan-controller/startLoanTaskUsingPOST"
                    target="view_window">放款微服务地址</a>
             </li>
-            <li>
-                <a href="http://10.40.1.150:19910/fds/trans/list" target="view_window">银行交易接口查询</a>
-            </li>
+
             </br>
             <li>
                 <a href="http://{{ current_user.username }}.jenkins.xs.sit/login?from=%2F" target="view_window">Jenkins部署地址</a>
+            </li>
+            <li>
+                <a href="http://10.40.1.150:19910/fds/trans/list" target="view_window">银行交易接口查询</a>
             </li>
             <li>
                 <a href="http://10.200.0.108:18090/swagger-ui.html#!/decrypt-data-controller/encryptListUsingPOST"
