@@ -125,7 +125,7 @@ def allowed_file(filename):
 
 
 # 上传文件
-UPLOAD_PATH = os.path.join (os.path.dirname (__file__), '../static/images')
+UPLOAD_PATH = os.path.join (os.path.dirname (__file__), 'static/images')
 
 
 @app.route ('/upload/', methods=['GET', 'POST'])

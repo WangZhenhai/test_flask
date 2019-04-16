@@ -43,6 +43,6 @@ class EditProfileForm (FlaskForm):
 
 class UploadForm (Form):
 	avatar = FileField (validators=[FileRequired (),  # FileRequired必须上传
-									FileAllowed (['jpg', 'png', 'gif'])  # FileAllowed:必须为指定的格式的文件
+									FileAllowed (['txt', 'png', 'gif'])  # FileAllowed:必须为指定的格式的文件
 									])
 	desc = StringField (validators=[InputRequired ()])
