@@ -62,7 +62,7 @@
                 <a href="http://{{ current_user.username }}.jenkins.xs.sit/login?from=%2F" target="view_window">Jenkins部署地址</a>
             </li>
             <li>
-                <a href="http://10.40.1.150:19910/fds/trans/list" target="view_window">银行交易接口查询</a>
+                <a href="http://{{ current_user.backend_ip }}:19910/fds/trans/list" target="view_window">银行交易接口查询</a>
             </li>
             <li>
                 <a href="http://10.200.0.108:18090/swagger-ui.html#!/decrypt-data-controller/encryptListUsingPOST"
