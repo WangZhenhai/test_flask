@@ -118,3 +118,10 @@ def add():
 	a = request.args.get ('a', 0, type=float)
 	b = request.args.get ('b', 0, type=float)
 	return jsonify (result=a + b)
+
+
+# 404错误页面
+@login_required
+@app.errorhandler (404)
+def page_not_found(error):
+	return render_template ('404.html'), 404
