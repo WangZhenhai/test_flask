@@ -8,7 +8,7 @@
 </head>
 <body>
 <div align="center">
-    <a href="{{ url_for('index') }}">首页</a>
+    <a href="{{ url_for('index') }}">主页</a>
     {% if current_user.is_anonymous %}
         <a href="{{ url_for('login') }}">登录</a>
     {% else %}
