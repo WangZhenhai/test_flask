@@ -105,3 +105,16 @@ def edit_profile():
 	return render_template ('edit_profile.html', title='编辑用户IP配置', form=form)
 
 
+# testAjax
+@login_required
+@app.route ('/test')
+def test():
+	return render_template ('test.html')
+
+
+@login_required
+@app.route ('/addnumber')
+def add():
+	a = request.args.get ('a', 0, type=float)
+	b = request.args.get ('b', 0, type=float)
+	return jsonify (result=a + b)
