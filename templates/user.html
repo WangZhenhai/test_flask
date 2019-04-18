@@ -10,7 +10,7 @@
                     <p><a href="{{ url_for('test') }}">test文件</a></p>
                 {% endif %}
                 {% if user.last_seen %}<p>最近登录: {{ user.last_seen }}</p>{% endif %}
-                <p>上次登录IP：<strong>{{ user.last_ip }}</strong></p>
+                <p>当前登录IP：<strong>{{ user.last_ip }}</strong></p>
             </td>
         </tr>
     </table>
