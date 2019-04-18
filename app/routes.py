@@ -1,13 +1,9 @@
-import time
 from datetime import datetime
-import os
 from flask import render_template, flash, redirect, url_for, request, jsonify, send_from_directory
 from flask_login import current_user, login_user, logout_user, login_required
-from werkzeug.datastructures import CombinedMultiDict
 from werkzeug.urls import url_parse
-from werkzeug.utils import secure_filename
 
-from app.forms import RegisterationForm, EditProfileForm, UploadForm
+from app.forms import RegisterationForm, EditProfileForm
 from app import app, db
 # 导入表单处理方法
 from app.forms import LoginForm
