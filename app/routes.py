@@ -1,3 +1,4 @@
+import subprocess
 from datetime import datetime
 from flask import render_template, flash, redirect, url_for, request, jsonify, send_from_directory
 from flask_login import current_user, login_user, logout_user, login_required
@@ -68,9 +69,8 @@ def register():
 @app.route ('/user/<username>')
 def user(username):
 	user = User.query.filter_by (username=username).first_or_404 ()
-	posts = [{'author': user, 'body': 'Test Post #1号'}, {'author': user, 'body': 'Test Post #2号'}]
 	last_ip = request.remote_addr
-	return render_template ('user.html', user=user, posts=posts, last_ip=last_ip)
+	return render_template ('user.html', user=user, last_ip=last_ip)
 
 
 # 显示最后登录
@@ -111,9 +111,24 @@ def test():
 @login_required
 @app.route ('/addnumber')
 def add():
+	if current_user.is_authenticated:
+		return redirect (url_for ('index'))
 	a = request.args.get ('a', 0, type=float)
 	b = request.args.get ('b', 0, type=float)
 	return jsonify (result=a + b)
+
+
+# testBAT
+@login_required
+@app.route ('/test2')
+def test2():
+	return render_template ('test2.html')
+
+
+@login_required
+@app.route ('/runtemp')
+def runtemp():
+	return subprocess.run ('python D:\\我的工作空间\\Flask_blog\\test\\test.py')
 
 
 # 404错误页面

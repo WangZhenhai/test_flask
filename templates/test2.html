@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    {#    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>#}
+    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+{#<div class="container">#}
+{#    <div class="header">#}
+{#        <h3 class="text-muted">run python</h3>#}
+{#    </div>#}
+{#    <hr/>#}
+{#    <div>#}
+{#        <p>执行python test.py文件</p>#}
+{#        <input id="runtemp" type="button" value="执行脚本" onclick="{{ url_for('runtemp') }}"/>#}
+{#    </div>#}
+{#</div>#}
+<script language="javascript">
+    function test1() {
+        var wsh = new ActiveXObject('WSCript.shell');
+        {#wsh.run('python D:\\我的工作空间\\Flask_blog\\test\\test.py');#}
+        wsh.run('D:\\我的工作空间\\Flask_blog\\templates\\bat\\test2.bat')
+		alert("执行完成")
+        console.log('脚本执行完成')
+		location.href("index")
+    }
+</script>
+<input type=button value=按钮1 onclick=test1()>
+</body>
+</html>
