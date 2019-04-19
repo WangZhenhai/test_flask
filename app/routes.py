@@ -100,6 +100,8 @@ def edit_profile():
 		form.backend_ip.data = current_user.backend_ip
 		form.front_ip.data = current_user.front_ip
 		form.db_ip.data = current_user.db_ip
+		form.xs.data = current_user.xs
+		form.xs_legal.data = current_user.xs_legal
 	return render_template ('edit_profile.html', title='编辑用户IP配置', form=form)
 
 

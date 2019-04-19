@@ -27,6 +27,20 @@
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>
+            {{ form.xs.label }}<br>
+            {{ form.xs(size=32) }}<br>
+            {% for error in form.xs.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.xs_legal.label }}<br>
+            {{ form.xs_legal(size=32) }}<br>
+            {% for error in form.xs_legal.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
         <p>{{ form.submit() }}</p>
     </form>
     <p><input type="button" name="Submit" onclick="javascript:history.back(-1);" value="返回上一页"></p>
