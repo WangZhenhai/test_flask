@@ -2,7 +2,9 @@ import subprocess
 from datetime import datetime
 from flask import render_template, flash, redirect, url_for, request, jsonify, send_from_directory
 from flask_login import current_user, login_user, logout_user, login_required
+import os
 from werkzeug.urls import url_parse
+from werkzeug.utils import secure_filename
 
 from app.forms import RegisterationForm, EditProfileForm
 from app import app, db
@@ -111,8 +113,6 @@ def test():
 @login_required
 @app.route ('/addnumber')
 def add():
-	if current_user.is_authenticated:
-		return redirect (url_for ('index'))
 	a = request.args.get ('a', 0, type=float)
 	b = request.args.get ('b', 0, type=float)
 	return jsonify (result=a + b)
@@ -125,10 +125,17 @@ def test2():
 	return render_template ('test2.html')
 
 
+# uploads File
 @login_required
-@app.route ('/runtemp')
-def runtemp():
-	return subprocess.run ('python D:\\我的工作空间\\Flask_blog\\test\\test.py')
+@app.route ('/upload', methods=['GET', 'POST'])
+def upload():
+	if request.method == 'POST':
+		f = request.files['file']
+		basepath = os.path.dirname (__file__)
+		upload_path = os.path.join (basepath, '..\\uploads', secure_filename (f.filename))
+		f.save (upload_path)
+		return redirect ('upload')
+	return render_template ('upload.html')
 
 
 # 404错误页面
