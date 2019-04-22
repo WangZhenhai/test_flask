@@ -7,27 +7,18 @@
     <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
 </head>
-<body>
-{#<div class="container">#}
-{#    <div class="header">#}
-{#        <h3 class="text-muted">run python</h3>#}
-{#    </div>#}
-{#    <hr/>#}
-{#    <div>#}
-{#        <p>执行python test.py文件</p>#}
-{#        <input id="runtemp" type="button" value="执行脚本" onclick="{{ url_for('runtemp') }}"/>#}
-{#    </div>#}
-{#</div>#}
-<script language="javascript">
+<script language="text/javascript">
     function test1() {
         var wsh = new ActiveXObject('WSCript.shell');
-        {#wsh.run('python D:\\我的工作空间\\Flask_blog\\test\\test.py');#}
-        wsh.run('D:\\我的工作空间\\Flask_blog\\templates\\bat\\test2.bat')
-		alert("执行完成")
+        wsh.run('pythonw D:\\我的工作空间\\Flask_blog\\test\\test.py');
+        {#wsh.run('D:\\我的工作空间\\Flask_blog\\templates\\bat\\test2.bat')#}
+        alert("执行完成")
         console.log('脚本执行完成')
-		location.href("index")
+        location.href("index")
     }
 </script>
-<input type=button value=按钮1 onclick=test1()>
+<body>
+<input type=button value=按钮1 onclick=test1()><br>
+<form method="post" action="/run"><textarea name="code" style="width:90%;height: 300px"></textarea><p><button type="submit">Run</button></p></form>
 </body>
 </html>

@@ -1,8 +1,9 @@
-import subprocess
+import sys
 from datetime import datetime
-from flask import render_template, flash, redirect, url_for, request, jsonify, send_from_directory
+
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
-import os
+import os, io, json, subprocess, tempfile
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
 
@@ -125,6 +126,21 @@ def add():
 @app.route ('/test2')
 def test2():
 	return render_template ('test2.html')
+
+
+def decode(s):
+	try:
+		return s.decode ('utf-8')
+	except UnicodeDecodeError:
+		return s.decode ('gbk')
+
+
+@login_required
+@app.route ('/run', methods=['POST'])
+def run():
+	exec = sys.executable
+	file = "test/test.py"
+	return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=5))
 
 
 # uploads File

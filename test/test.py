@@ -1,3 +1,8 @@
-#encoding = utf-8
+# encoding = utf-8
+from os import popen
 
-print("执行脚本成功")
+# f = open ("1.txt", "w+")
+# f.write ("1+1=2")
+# f.close ()
+
+print ("run test script for python")
