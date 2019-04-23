@@ -1,9 +1,11 @@
 # encoding = utf-8
 import subprocess
 import sys
+import os
 
 print ("run test script for python")
-
-exec = sys.executable
-file = "test/test.py"
-subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=5)
+# getcwd = os.getcwd ()
+# exec = sys.executable
+# file = getcwd + "/shell_cmd.py"
+# print (getcwd)
+# subprocess.run ([exec, file])

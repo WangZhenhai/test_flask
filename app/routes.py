@@ -3,7 +3,7 @@ from datetime import datetime
 
 from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
-import os, io, json, subprocess, tempfile
+import os, subprocess
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
 
@@ -12,6 +12,8 @@ from app import app, db
 # 导入表单处理方法
 from app.forms import LoginForm
 from app.models import User
+
+getcwd = os.getcwd ()
 
 
 @app.route ('/')
@@ -155,9 +157,8 @@ def lender_info():
 @app.route ('/lender_msg', methods=['GET', 'POST'])
 def lender_msg():
 	exec = sys.executable
-	file = "pyfile/generate_lenders_info.py"
-	obj = subprocess.Popen ([exec, file], stdout=subprocess.PIPE, shell=True)
-	return obj.communicate()
+	file = getcwd + "\\pyfile\\generate_lenders_info.py"
+	return str(subprocess.run ([exec, file], stdout=subprocess.PIPE, shell=True))
 
 
 # uploads File
