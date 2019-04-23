@@ -7,9 +7,9 @@
             <td><h1>用户: {{ user.username }}</h1>
                 {% if user == current_user %}
                     <p><a href="{{ url_for('edit_profile') }}">编辑用户配置</a></p>
-                    <p><a href="{{ url_for('test') }}">test文件</a></p>
-                    <p><a href="{{ url_for('test2') }}">执行文件</a></p>
-                    <p><a href="{{ url_for('upload') }}">上传文件</a></p>
+                    {#                    <p><a href="{{ url_for('test') }}">test文件</a></p>#}
+                    {#                    <p><a href="{{ url_for('test2') }}">执行文件</a></p>#}
+                    <p><a href="{{ url_for('lender_info') }}">理财人信息</a></p>
                 {% endif %}
                 {% if user.last_seen %}<p>最近登录: {{ user.last_seen }}</p>{% endif %}
                 <p>当前登录IP：<strong>{{ user.last_ip }}</strong></p>

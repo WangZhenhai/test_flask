@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head lang="en">
     <meta charset="UTF-8">
     <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
@@ -8,8 +8,8 @@
 <body>
 {% block content %}
     <form action="" enctype="multipart/form-data" method="post">
-        <input type="file" name="file"/></br>
-        <input id="upload" type="submit" value="上传文件">
+        <p><input type="file" name="file"/><br></p>
+        <p><input id="upload" type="submit" value="确认上传"></p>
     </form>
     {#<button id="uploads">上传文件</button>#}
 {% endblock %}

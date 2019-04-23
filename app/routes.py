@@ -135,12 +135,28 @@ def decode(s):
 		return s.decode ('gbk')
 
 
+# 默认执行程序
 @login_required
 @app.route ('/run', methods=['POST'])
 def run():
 	exec = sys.executable
 	file = "test/test.py"
 	return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=5))
+
+
+# 理财用户信息
+@login_required
+@app.route ('/lender_info')
+def lender_info():
+	return render_template ("leader_info.html")
+
+
+@login_required
+@app.route ('/lender_msg', methods=['POST'])
+def lender_msg():
+	exec = sys.executable
+	file = "pyfile/generate_lenders_info.py"
+	return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=15))
 
 
 # uploads File
