@@ -9,8 +9,7 @@ def generate_lenders_info():
 	url = "http://10.200.0.72:11987/generateData/generateRandomPeopleInfo"
 	headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:66.0) Gecko/20100101 Firefox/66.0"}
 	r = requests.get (url, headers=headers)
-	print (r.text)
-
+	print(r.text)
 	return r.text
 
 
@@ -28,6 +27,6 @@ def html_parser(r_text):
 	lines = f.readlines ()
 	for line in lines:
 		print (line)
-
+	f.close()
 
 html_parser (generate_lenders_info ())

@@ -152,11 +152,12 @@ def lender_info():
 
 
 @login_required
-@app.route ('/lender_msg', methods=['POST'])
+@app.route ('/lender_msg', methods=['GET', 'POST'])
 def lender_msg():
 	exec = sys.executable
 	file = "pyfile/generate_lenders_info.py"
-	return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=15))
+	obj = subprocess.Popen ([exec, file], stdout=subprocess.PIPE, shell=True)
+	return obj.communicate()
 
 
 # uploads File
