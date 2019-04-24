@@ -1,5 +1,5 @@
 # encoding=utf-8
-from identity import *
+from pyfiles.identity import *
 import random as r
 import sys
 # 需要生成的数量

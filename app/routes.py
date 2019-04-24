@@ -160,7 +160,7 @@ def lender_info():
 def lender_msg():
 	# exec = sys.executable
 	exec = "python"
-	file = getcwd + "\\pyfiles\\lenders_info.py"
+	file = getcwd + "\\pyfiles\\lenders_msg.py"
 	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT))
 	return str (subprocess.Popen (exec + " " + file))
 

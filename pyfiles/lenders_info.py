@@ -17,13 +17,13 @@ def html_parser(r_text):
 	html_doc = r_text
 	soup = BeautifulSoup (html_doc, 'html.parser')
 	td_list = soup.find_all ('td')
-	f = open (getcwd + '\\uploads\\lender_msg.txt', 'w', encoding='utf8')
+	f = open (getcwd + '\\uploads\\lender_info.txt', 'w', encoding='utf8')
 	for i in range (len (td_list)):
 		if str (i)[-1] == '1' or str (i)[-1] == '5' or str (i)[-1] == '6':
 			f.write (td_list[i].get_text () + ',')
 		elif str (i)[-1] == '7':
 			f.write (td_list[i].get_text () + '\n')
-	f = open ('../uploads/lender_msg.txt', 'r', encoding='utf8')
+	f = open ('../uploads/lender_info.txt', 'r', encoding='utf8')
 	lines = f.readlines ()
 	for line in lines:
 		print (line)
