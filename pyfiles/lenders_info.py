@@ -5,11 +5,13 @@ import requests
 from bs4 import BeautifulSoup
 
 getcwd = os.getcwd()
+
+getabspath = os.path.abspath(os.path.join(os.getcwd(), ".."))
+
 def generate_lenders_info():
 	url = "http://10.200.0.72:11987/generateData/generateRandomPeopleInfo"
 	headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:66.0) Gecko/20100101 Firefox/66.0"}
 	r = requests.get (url, headers=headers)
-	print(r.text)
 	return r.text
 
 
@@ -23,10 +25,10 @@ def html_parser(r_text):
 			f.write (td_list[i].get_text () + ',')
 		elif str (i)[-1] == '7':
 			f.write (td_list[i].get_text () + '\n')
-	f = open ('../uploads/lender_info.txt', 'r', encoding='utf8')
-	lines = f.readlines ()
-	for line in lines:
-		print (line)
+	# f = open ('../uploads/lender_info.txt', 'r', encoding='utf8')
+	# lines = f.readlines ()
+	# for line in lines:
+	# 	print (line)
 	f.close()
 
 html_parser (generate_lenders_info ())

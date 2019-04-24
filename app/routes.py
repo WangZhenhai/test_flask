@@ -1,8 +1,9 @@
+import platform
 import sys
 from datetime import datetime
 
 import pysnooper
-from flask import render_template, flash, redirect, url_for, request, jsonify
+from flask import render_template, flash, redirect, url_for, request, jsonify, make_response
 from flask_login import current_user, login_user, logout_user, login_required
 import os, subprocess
 from werkzeug.urls import url_parse
@@ -15,6 +16,7 @@ from app.forms import LoginForm
 from app.models import User
 
 getcwd = os.getcwd ()
+getabspath = os.path.abspath (os.path.join (os.getcwd (), ".."))
 
 
 @app.route ('/')
@@ -89,7 +91,7 @@ def before_request():
 
 
 # 编辑个人资料
-@app.route ('/edit_profile', methods=['GET', 'POST'])
+@app.route ('/user/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
 	form = EditProfileForm ()
@@ -149,20 +151,37 @@ def run():
 
 # 理财用户信息
 @login_required
-@app.route ('/lender_info')
+@app.route ('/user/lender_info')
 def lender_info():
 	return render_template ("leader_info.html")
 
 
+# 生成理财人注册信息
 @login_required
 @pysnooper.snoop ()
-@app.route ('/lender_msg', methods=['POST'])
+@app.route ('/user/lender_info', methods=['POST'])
 def lender_msg():
 	# exec = sys.executable
 	exec = "python"
-	file = getcwd + "\\pyfiles\\lenders_msg.py"
+	file = getcwd + "\\pyfiles\\lenders_info.py"
 	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT))
-	return str (subprocess.Popen (exec + " " + file))
+	recode = str (subprocess.Popen (exec + " " + file))
+	if recode == "":
+		return "执行失败"
+	else:
+
+		return "<html><body><p>执行完成</p><p><input type='button' name='Submit' onclick='javascript:history.back(-1);' value='返回上一页'></p></body></html>"
+
+
+# 查看理财人注册信息
+@login_required
+@pysnooper.snoop ()
+@app.route ('/user/see_lender_msg', methods=['GET', 'POST'])
+def see_lender_msg():
+	APP_ROOT = os.path.dirname (__file__)
+	TXT = os.path.join (APP_ROOT, '..\\uploads')
+	with open (os.path.join (TXT, 'lender_info.txt'), encoding='utf8') as rf:
+		return rf.read()
 
 
 # uploads File
