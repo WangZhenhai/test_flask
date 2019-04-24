@@ -1,6 +1,7 @@
 import sys
 from datetime import datetime
 
+import pysnooper
 from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 import os, subprocess
@@ -154,11 +155,14 @@ def lender_info():
 
 
 @login_required
-@app.route ('/lender_msg', methods=['GET', 'POST'])
+@pysnooper.snoop ()
+@app.route ('/lender_msg', methods=['POST'])
 def lender_msg():
-	exec = sys.executable
-	file = getcwd + "\\pyfile\\generate_lenders_info.py"
-	return str(subprocess.run ([exec, file], stdout=subprocess.PIPE, shell=True))
+	# exec = sys.executable
+	exec = "python"
+	file = getcwd + "\\pyfiles\\lenders_info.py"
+	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT))
+	return str (subprocess.Popen (exec + " " + file))
 
 
 # uploads File
