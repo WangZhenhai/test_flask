@@ -179,9 +179,9 @@ def lender_msg():
 @app.route ('/user/see_lender_msg', methods=['GET', 'POST'])
 def see_lender_msg():
 	APP_ROOT = os.path.dirname (__file__)
-	TXT = os.path.join (APP_ROOT, '..\\uploads')
+	TXT = os.path.join (APP_ROOT, '..\\uploads\\' + current_user.username)
 	with open (os.path.join (TXT, 'lender_info.txt'), encoding='utf8') as rf:
-		return rf.read()
+		return rf.read ()
 
 
 # uploads File
