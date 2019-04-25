@@ -186,10 +186,13 @@ def lender_msg():
 @pysnooper.snoop ()
 @app.route ('/user/see_lender_msg', methods=['GET', 'POST'])
 def see_lender_msg():
-	APP_ROOT = os.path.dirname (__file__)
-	TXT = os.path.join (APP_ROOT, '..\\uploads\\' + current_user.username)
-	with open (os.path.join (TXT, 'test5.txt'), encoding='utf8') as rf:
-		return rf.read ()
+	filename = request.values.get ("filename")
+	if filename == "":
+		flash ("文件名称为必填项，不能为空！")
+		return redirect (url_for ('lender_info'))
+	else:
+		with open (getcwd + '\\uploads\\' + current_user.username + "\\" + filename, encoding='utf8') as rf:
+			return rf.read ()
 
 
 # 借款人信息
