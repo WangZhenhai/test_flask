@@ -184,6 +184,13 @@ def see_lender_msg():
 		return rf.read ()
 
 
+# 借款人信息
+@login_required
+@app.route ('/user/borrowers_info')
+def borrowers_info():
+	return render_template ("borrowers_info.html")
+
+
 # uploads File
 @login_required
 @app.route ('/upload', methods=['GET', 'POST'])
