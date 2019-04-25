@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9da09351-b3d9-4113-8142-4e133d932117" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/leader_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/leader_info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/lender_info.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/lender_info.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/test5/test5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/test5/test5.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -55,8 +51,8 @@
       <file leaf-file-name="routes.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/routes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="172" column="24" selection-start-line="172" selection-start-column="24" selection-end-line="172" selection-end-column="24" />
+            <state relative-caret-position="405">
+              <caret line="190" column="46" selection-start-line="190" selection-start-column="33" selection-end-line="190" selection-end-column="46" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -425,9 +421,9 @@
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.3265925" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2618807" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2618807" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.36703742" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12874252" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12874252" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.17087968" />
@@ -781,8 +777,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/routes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="172" column="24" selection-start-line="172" selection-start-column="24" selection-end-line="172" selection-end-column="24" />
+        <state relative-caret-position="405">
+          <caret line="190" column="46" selection-start-line="190" selection-start-column="33" selection-end-line="190" selection-end-column="46" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
