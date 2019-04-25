@@ -1,17 +1,27 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
 {% block content %}
+    <!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <script>
+            function checkform() {
+                var text = document.getElementsByName("filename");
+                if (text == "") {
+                    alert("必填项不能为空！");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </head>
+    <body>
+
     <div id="wrap">
         <ul class="m_right">
             <li>
-                <form method="post" action="/user/lender_info">
-                    <p>
-                        <button type="submit">生成理财人信息</button>
-                    </p>
+                <form method="post" action="/user/lender_info" name="frm" onsubmit="return checkform()">
+                    <input type="text" name="filename" placeholder="请输入文件名称 *.txt格式">
+                    <input value="生成理财人信息" type="submit"/>
                 </form>
             </li>
             <li>
@@ -49,8 +59,9 @@
                     </p>
                 </form>
             </li>
+        </ul>
     </div>
 
+    </body>
+    </html>
 {% endblock %}
-</body>
-</html>

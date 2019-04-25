@@ -1,8 +1,8 @@
-import platform
 import sys
 from datetime import datetime
-
+from bs4 import BeautifulSoup
 import pysnooper
+import requests
 from flask import render_template, flash, redirect, url_for, request, jsonify, make_response
 from flask_login import current_user, login_user, logout_user, login_required
 import os, subprocess
@@ -162,15 +162,23 @@ def lender_info():
 @app.route ('/user/lender_info', methods=['POST'])
 def lender_msg():
 	# exec = sys.executable
-	exec = "python"
-	file = getcwd + "\\pyfiles\\lenders_info.py"
-	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT))
-	recode = str (subprocess.Popen (exec + " " + file))
-	if recode == "":
-		return "执行失败"
+	filename = request.values.get ("filename")
+	if filename == "":
+		flash ("文件名称为必填项，不能为空！")
+		return redirect (url_for ('lender_info'))
 	else:
-
-		return "<html><body><p>执行完成</p><p><input type='button' name='Submit' onclick='javascript:history.back(-1);' value='返回上一页'></p></body></html>"
+		url = "http://10.200.0.72:11987/generateData/generateRandomPeopleInfo"
+		soup = BeautifulSoup (requests.get (url).text, 'html.parser')
+		td_list = soup.find_all ('td')
+		f = open (getcwd + '\\uploads\\' + current_user.username + "\\" + filename, 'w', encoding='utf8')
+		for i in range (len (td_list)):
+			if str (i)[-1] == '1' or str (i)[-1] == '5' or str (i)[-1] == '6':
+				f.write (td_list[i].get_text () + ',')
+			elif str (i)[-1] == '7':
+				f.write (td_list[i].get_text () + '\n')
+		f.close ()
+		flash ("生成数据完成！")
+		return redirect (url_for ('lender_info'))  # return requests.get (url).text
 
 
 # 查看理财人注册信息
@@ -180,7 +188,7 @@ def lender_msg():
 def see_lender_msg():
 	APP_ROOT = os.path.dirname (__file__)
 	TXT = os.path.join (APP_ROOT, '..\\uploads\\' + current_user.username)
-	with open (os.path.join (TXT, 'lender_info.txt'), encoding='utf8') as rf:
+	with open (os.path.join (TXT, 'test5.txt'), encoding='utf8') as rf:
 		return rf.read ()
 
 
