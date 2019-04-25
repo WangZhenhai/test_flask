@@ -9,6 +9,7 @@
                     <p><a href="{{ url_for('edit_profile') }}">编辑用户配置</a></p>
                     {#                    <p><a href="{{ url_for('test') }}">test文件</a></p>#}
                     {#                    <p><a href="{{ url_for('test2') }}">执行文件</a></p>#}
+                    {#                    <p><a href="{{ url_for('upload') }}">文件上传</a></p>#}
                     <p><a href="{{ url_for('lender_info') }}">理财人信息</a></p>
                 {% endif %}
                 {% if user.last_seen %}<p>最近登录: {{ user.last_seen }}</p>{% endif %}

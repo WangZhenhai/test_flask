@@ -191,7 +191,7 @@ def upload():
 	if request.method == 'POST':
 		f = request.files['file']
 		basepath = os.path.dirname (__file__)
-		upload_path = os.path.join (basepath, '..\\uploads', secure_filename (f.filename))
+		upload_path = os.path.join (basepath, '..\\uploads\\' + current_user.username, secure_filename (f.filename))
 		f.save (upload_path)
 		return redirect ('upload')
 	return render_template ('upload.html')
