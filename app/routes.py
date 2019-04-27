@@ -194,6 +194,19 @@ def see_lender_msg():
 		with open (getcwd + '\\uploads\\' + current_user.username + "\\" + filename, encoding='utf8') as rf:
 			return rf.read ()
 
+#获取文件列表
+#@app.route('/user/get_fileList',,methods=['GET','POST'])
+#def get_fileList():
+#    if request.method =='GET':
+#		select_fn = request.args.get('select_fn')
+#		flist = getfile()
+#		print()
+		#if isHavefile)(select_fn)
+		#	return send_from_directory('leader_info',select_fn,as_attachment=True)
+		#else:
+		#	abort(404)
+	
+	
 
 # 借款人信息
 @login_required

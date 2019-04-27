@@ -4,6 +4,53 @@
     <head>
         <meta charset="UTF-8">
     </head>
+    <script>
+        $(function () {
+            $.ajax({
+                type: "get",
+                url: "/user/get_fileList",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data.statusCode == 100) {
+                        var options = "<option>--请选择公司--</option>";
+                        for (var i = 0; i < data.data.length; i++) {
+                            options += "<option>" + data.data[i].companyName + "</option>";
+                        }
+                        $(".customerIds").html(options);
+                        //活动名称下拉选改变事件：
+                        $(".customerIds").change(function () {
+                            $(this).removeClass("redFrame");
+                            console.log("活动名称下拉选改变事件：" + $(this).children('option:selected').val());
+                            console.log("选择的具体是哪一个：" + $(this).get(0).selectedIndex);
+                            var selectedIndex = $(this).get(0).selectedIndex;
+                            if (selectedIndex == 0) {
+                                console.log("没有进行选择");
+                                $("#customerName").val("");
+                                $("#customerMobile").val("");
+                                $("#customerAddress").val("");
+                                $("#customerWeb").val("");
+                            }
+                            else {
+                                $("#customerName").val(data.data[selectedIndex - 1].customer.customerName);
+                                $("#customerMobile").val(data.data[selectedIndex - 1].customer.customerMobile);
+                                $("#customerAddress").val(data.data[selectedIndex - 1].customer.customerAddress);
+                                $("#customerWeb").val(data.data[selectedIndex - 1].customer.customerWeb);
+                            }
+                        });
+                    }
+                    else {
+                        console.log("获取数据失败");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                }
+            });
+        });
+    </script>
     <body>
 
     <div id="wrap">
@@ -15,10 +62,9 @@
                 </form>
             </li>
             <li>
-                <form method="post" action="/run">
-                    <p>
-                        <button type="submit">理财人注册</button>
-                    </p>
+                <form method="post" action="/run" id="customerForm">
+                    <select class="filter">选择文件</select>
+                    <input value="理财人注册" type="submit" onclick="saveOrUpdate"/>
                 </form>
             </li>
             <li>
