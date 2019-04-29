@@ -36,5 +36,15 @@
         <option value="">请选择主类</option>
     </select>
 </div>
+<select id="select1"></select>
+<script>
+    var objSelectNow = document.getElementById("select1");
+    var inner = "<option value='1'>1</option>";
+    objSelectNow.innerHTML = inner;
+    var objOption = document.createElement("OPTION");
+    objOption.text = 2;
+    objOption.value = 2;
+    objSelectNow.options.add(objOption);
+</script>
 </body>
 </html>
