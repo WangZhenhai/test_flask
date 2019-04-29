@@ -8,17 +8,33 @@
 
 </head>
 <script language="text/javascript">
-    function test1() {
-        var wsh = new ActiveXObject('WSCript.shell');
-        wsh.run('pythonw D:\\我的工作空间\\Flask_blog\\test\\test.py');
-        {#wsh.run('D:\\我的工作空间\\Flask_blog\\templates\\bat\\test2.bat')#}
-        alert("执行完成")
-        console.log('脚本执行完成')
-        location.href("index")
-    }
+    $(function () {
+        $.ajax({
+            type: 'post',
+            url: "/test2/flist",
+            dataType: "json",
+            data: {pid: 0},
+            success: function (data) {
+                // console.log(data);
+                $("#main_id").empty();
+                $("#main_id").append("<option value=''>请选择文件</option>");
+                for (var i = 0; i < data.length; i++) {
+                    $("#main_id").append('<option value=' + data[i].id + '>' + data[i].class_name + '</option>');
+                }
+            }
+        });
+    });
 </script>
 <body>
-<input type=button value=按钮1 onclick=test1()><br>
-<form method="post" action="/run"><textarea name="code" style="width:90%;height: 300px"></textarea><p><button type="submit">Run</button></p></form>
+<form method="post" action="/run"><textarea name="code" style="width:90%;height: 300px"></textarea>
+    <p>
+        <button type="submit">Run</button>
+    </p>
+</form>
+<div class="col-sm-2">
+    <select name="main_id" id="main_id" class="text input-large form-control">
+        <option value="">请选择主类</option>
+    </select>
+</div>
 </body>
 </html>

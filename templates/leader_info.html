@@ -5,15 +5,6 @@
         <meta charset="UTF-8">
     </head>
     <body>
-    <script type="text/javascript">
-        var objSelectNow = document.getElementById("select1")
-        var inner = "<option value='1'>1</option>"
-        objSelectNow.innerHTML = inner;
-        var objOption = document.createElement("OPTION")
-        objOption.text = 2;
-        objOption.value = 2;
-        objSelectNow.options.add(objOption);
-    </script>
     <div id="wrap">
         <ul class="m_right">
             <li>
@@ -22,33 +13,51 @@
                     <input value="生成理财人信息" type="submit"/>
                 </form>
             </li>
-            <li>
-                <form method="post" action="/run" id="customerForm">
-                    <select id="select1"></select>
-                    <input value="理财人注册" type="submit"/>
-                </form>
-            </li>
+            <br>
             <li>
                 <form method="post" action="/run">
-                    <p>
-                        <button type="submit">理财人开户</button>
-                    </p>
+                    <div class="col-sm-3">
+                        <select name="main_id" id="main_id">
+                            <option value="">请选择文件</option>
+                        </select>
+                        <input value="理财人注册" type="submit"/>
+                    </div>
                 </form>
             </li>
+            <br>
             <li>
                 <form method="post" action="/run">
-                    <p>
-                        <button type="submit">理财人充值</button>
-                    </p>
+                    <div class="col-sm-3">
+                        <select name="main_id" id="main_id">
+                            <option value="">请选择文件</option>
+                        </select>
+                        <input value="理财人开户" type="submit"/>
+                    </div>
                 </form>
             </li>
+            <br>
             <li>
                 <form method="post" action="/run">
-                    <p>
-                        <button type="submit">理财人购买</button>
-                    </p>
+                    <div class="col-sm-3">
+                        <select name="main_id" id="main_id">
+                            <option value="">请选择文件</option>
+                        </select>
+                        <input value="理财人充值" type="submit"/>
+                    </div>
                 </form>
             </li>
+            <br>
+            <li>
+                <form method="post" action="/run">
+                    <div class="col-sm-3">
+                        <select name="main_id" id="main_id">
+                            <option value="">请选择文件</option>
+                        </select>
+                        <input value="理财人购买" type="submit"/>
+                    </div>
+                </form>
+            </li>
+            <br>
             <li>
                 <form method="post" action="/user/see_lender_msg">
                     <input type="text" name="filename" placeholder="请输入文件名称 *.txt格式">
@@ -57,7 +66,6 @@
             </li>
         </ul>
     </div>
-
     </body>
     </html>
 {% endblock %}
