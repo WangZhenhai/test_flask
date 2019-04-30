@@ -191,7 +191,11 @@ def see_lender_msg():
 		return redirect (url_for ('lender_info'))
 	else:
 		with open (getcwd + '\\uploads\\' + current_user.username + "\\" + filename, encoding='utf8') as rf:
-			return rf.read ()
+			L = []
+			for line in rf.readlines ():
+				L.append (line.strip ('\n'))
+
+			return str (L)
 
 
 # 借款人信息
