@@ -4,10 +4,10 @@
     <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>测试数据服务平台</title>
+        <title>测试服务平台</title>
     </head>
     <body style="padding:30px;">
-    <p>{{ current_user.username }}测试数据服务平台</p>
+    <p>{{ current_user.username }}测试服务平台</p>
     <div id="wrap">
         <ul class="m_right">
             <li>
@@ -41,7 +41,7 @@
                 <a href="http://admin:admin@{{ current_user.backend_ip }}:50999/task/" target="_blank">向上定时任务</a>
             </li>
             <li>
-                <a href="http://admin:admin@{{ current_user.backend_ip }}:19700/" target="_blank">资产定时任务</a>
+                <a href="http://admin:admin@{{ current_user.backend_ip }}:19700/" target="_blank">资产端定时任务</a>
             </li>
             <li>
                 <a href="http://{{ current_user.backend_ip }}:12300/swagger-ui.html#!/start-loan-controller/startLoanTaskUsingPOST"
