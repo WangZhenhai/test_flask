@@ -180,7 +180,6 @@ def lender_msg():
 		flash ("生成数据完成！")
 		return redirect (url_for ('lender_info'))  # return requests.get (url).text
 
-
 @login_required
 @pysnooper.snoop ()
 @app.route ('/user/see_lender_msg', methods=['GET', 'POST'])
