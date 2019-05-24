@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html style="overflow-x: auto;overflow-y: auto">
 <head>
     <meta charset="UTF-8">
     <title>测试环境服务平台</title>
-{#    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">#}
-{#    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>#}
-{#    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div align="center">
+<div style="text-align: center">
     <a href="{{ url_for('index') }}">主页</a>
     {% if current_user.is_anonymous %}
         <a href="{{ url_for('login') }}">登录</a>
@@ -21,7 +21,7 @@
 <hr>
 {% with messages = get_flashed_messages() %}
     {% if messages %}
-        <ur>
+        <ur style="color: red">
             {% for message in messages %}
                 <li>{{ message }}</li>
             {% endfor %}
@@ -31,11 +31,4 @@
 {% block content %}
 {% endblock %}
 </body>
-<style type="text/css">
-    a {
-        text-align: center;
-        font-size: 16px;
-    {#color: dodgerblue;#}
-    }
-</style>
 </html>
