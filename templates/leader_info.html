@@ -5,54 +5,56 @@
         <meta charset="UTF-8">
     </head>
     <body>
-    <div id="wrap">
-        <ul class="m_right">
+    <div style="text-align: center">
+        <ul class="left">
             <li>
-                <form method="post" action="/user/lender_info" name="frm">
+                <form method="post" action="/user/lender_info">
                     文件名称：<input type="text" name="filename" placeholder="输入文件名称 txt格式">(必填)<br>
                     信息个数：<input type="text" name="count" placeholder="输入生成信息条数"><br>
                     卡号数量：<input type="text" name="b_count" placeholder="输入生成卡数量(x<=5)">
                     <input class="btn btn-large btn-primary" value="一键生成" type="submit"/>
                 </form>
             </li>
+        </ul>
+        <ul class="left">
             <li>
                 <form method="post" action="/run">
-                    <div class="col-sm-3">
-                        <input type="text" name="filename" placeholder="请输入与生成文件一致的文件名称 *.txt格式">
-                        <input class="btn btn-large btn-primary" value="理财人注册" type="submit"/>
-                    </div>
+                    <input type="text" name="filename" placeholder="请输入与生成文件一致的文件名称 *.txt格式">
+                    <input class="btn btn-large btn-primary" value="理财人注册" type="submit"/>
                 </form>
             </li>
+        </ul>
+        <ul class="left">
             <li>
                 <form method="post" action="/run">
-                    <div class="col-sm-3">
-                        <select name="main_id" id="main_id">
-                            <option value="">请选择文件</option>
-                        </select>
-                        <input class="btn btn-large btn-primary" value="理财人开户" type="submit"/>
-                    </div>
+                    <select name="main_id" id="main_id">
+                        <option value="">请选择文件</option>
+                    </select>
+                    <input class="btn btn-large btn-primary" value="理财人开户" type="submit"/>
                 </form>
             </li>
+        </ul>
+        <ul class="left">
             <li>
                 <form method="post" action="/run">
-                    <div class="col-sm-3">
-                        <select name="main_id" id="main_id">
-                            <option value="">请选择文件</option>
-                        </select>
-                        <input class="btn btn-large btn-primary" value="理财人充值" type="submit"/>
-                    </div>
+                    <select name="main_id" id="main_id">
+                        <option value="">请选择文件</option>
+                    </select>
+                    <input class="btn btn-large btn-primary" value="理财人充值" type="submit"/>
                 </form>
             </li>
+        </ul>
+        <ul class="left">
             <li>
                 <form method="post" action="/run">
-                    <div class="col-sm-3">
-                        <select name="main_id" id="main_id">
-                            <option value="">请选择文件</option>
-                        </select>
-                        <input class="btn btn-large btn-primary" value="理财人购买" type="submit"/>
-                    </div>
+                    <select name="main_id" id="main_id">
+                        <option value="">请选择文件</option>
+                    </select>
+                    <input class="btn btn-large btn-primary" value="理财人购买" type="submit"/>
                 </form>
             </li>
+        </ul>
+        <ul class="left">
             <li>
                 <form method="post" action="/user/see_lender_msg">
                     <input type="text" name="filename" placeholder="请输入文件名称 *.txt格式">
@@ -65,6 +67,10 @@
     <style type="text/css">
         body {
             font-size: 16px;
+        }
+
+        ul {
+            text-align: left;
         }
     </style>
     </html>

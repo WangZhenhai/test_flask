@@ -7,7 +7,7 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="padding: 30px;">
 <div style="text-align: center">
     <a href="{{ url_for('index') }}">主页</a>
     {% if current_user.is_anonymous %}
@@ -31,4 +31,18 @@
 {% block content %}
 {% endblock %}
 </body>
+<style type="text/css">
+    body {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 20px;
+        color: #FF5722;
+    }
+
+    ur {
+        text-align: center;
+    }
+</style>
 </html>

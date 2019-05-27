@@ -1,49 +1,63 @@
 {% extends "base.html" %}
 <html>
-<head></head>
-<body>
+<head>
+    <link type="text/css" href="/static/css/styles.css" rel="stylesheet">
+</head>
+<body style="padding: 30px;">
 {% block content %}
     <h1>编辑用户配置</h1>
-    <form action="" method="post">
+    <form action="" method="post" class="form-signin">
         {{ form.hidden_tag() }}
         <p>
             {{ form.backend_ip.label }}<br>
-            {{ form.backend_ip(size=32) }}<br>
+            {{ form.backend_ip(size=20) }}<br>
             {% for error in form.backend_ip.errors %}
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form.front_ip.label }}<br>
-            {{ form.front_ip(size=32) }}<br>
+            {{ form.front_ip(size=20) }}<br>
             {% for error in form.front_ip.errors %}
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form.db_ip.label }}<br>
-            {{ form.db_ip(size=32) }}<br>
+            {{ form.db_ip(size=20) }}<br>
             {% for error in form.db_ip.errors %}
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form.xs.label }}<br>
-            {{ form.xs(size=32) }}<br>
+            {{ form.xs(size=20) }}<br>
             {% for error in form.xs.errors %}
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form.xs_legal.label }}<br>
-            {{ form.xs_legal(size=32) }}<br>
+            {{ form.xs_legal(size=20) }}<br>
             {% for error in form.xs_legal.errors %}
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-{#        <p>{{ form.submit() }}</p>#}
+        {#        <p>{{ form.submit() }}</p>#}
     </form>
-    <p><input type="button" name="Submit" onclick="javascript:history.back(-1);" value="返回上一页"></p>
+    <p><input class="btn btn-primary btn-large" type="button" name="Submit" onclick="javascript:history.back(-1);"
+              value="返回上一页"></p>
+    </body>
+    <style type="text/css">
+        h1 {
+            font-size: 20px;
+            color: #FF5722;
+            margin-left: 20px;
+        }
+
+        body {
+            font-size: 16px;
+        }
+    </style>
+    </html>
 {% endblock %}
-</body>
-</html>

@@ -4,11 +4,12 @@
     <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="text/css" href="/static/scc/styles.css" rel="stylesheet">
     </head>
     <body style="padding:30px;">
-    <p>{{ current_user.username }} 测试环境服务平台</p>
-    <div id="wrap">
-        <ul class="m_right">
+    <h1>{{ current_user.username }} 测试环境服务平台</h1>
+    <div class="left">
+        <ul class="main_grid">
             <li>
                 <a href="http://xiangshang:xiangshang@{{ current_user.username }}.opm.xs.sit/opm/a/login"
                    target="_blank">OPM地址</a>
@@ -21,7 +22,7 @@
                    target="_blank">M站(H5)地址</a>
             </li>
         </ul>
-        <ul class="m_left">
+        <ul class="main_grid">
             <li>
                 <a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/node/netl01" target="_blank">借款人开户</a>
             </li>
@@ -35,9 +36,11 @@
             <!--<li>
                 <a href="/agreement/userAgreementFileInfoGroups" target="_blank">合同管理查询</a>
             </li> -->
-            </br>
+        </ul>
+        <ul class="main_grid">
             <li>
-                <a href="http://admin:admin@{{ current_user.backend_ip }}:50999/task/" target="_blank">向上task定时任务</a>
+                <a href="http://admin:admin@{{ current_user.backend_ip }}:50999/task/"
+                   target="_blank">向上task定时任务</a>
             </li>
             <li>
                 <a href="http://admin:admin@{{ current_user.backend_ip }}:19700/" target="_blank">资产端-定时任务</a>
@@ -50,7 +53,8 @@
                 <a href="http://{{ current_user.backend_ip }}:13050/swagger-ui.html"
                    target="_blank">还款(资产)微服务地址</a>
             </li>
-            </br>
+        </ul>
+        <ul class="main_grid">
             <li>
                 <a href="http://{{ current_user.username }}.jenkins.xs.sit/login?from=%2F"
                    target="_blank">Jenkins部署地址</a>
@@ -67,7 +71,7 @@
                    target="_blank">手机号加密/解密</a>
             </li>
         </ul>
-        <ul>
+        <ul class="main_grid">
             <li>
                 <a href="http://10.200.0.72:11987/generateData/generateRandomPeopleInfo" target="_blank">生成四要素地址</a>
             </li>
@@ -75,7 +79,7 @@
     </div>
     </body>
     <style type="text/css">
-        p {
+        h1 {
             text-align: center;
             font-size: 20px;
             color: #FF5722;
@@ -93,7 +97,8 @@
         li {
             text-align: left
         }
-        a{
+
+        a {
             color: #393D49;
             font-size: 16px;
         }
