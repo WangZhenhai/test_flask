@@ -1,31 +1,45 @@
 {% extends 'base.html' %}
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8">
+    <link type="text/css" href="/static/css/styles.css" rel="stylesheet">
+</head>
+<body style="padding: 30px;">
+
+
 <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#000000">
     <h1>测试数据管理平台</h1>
 </div>
 
 {% block content %}
-    {#    <p>还没注册? <a href="{{ url_for('register') }}">马上去注册!</a></p>#}
-    <div style="width: 100%;text-align: left">
-        <h1>登录</h1>
-        <form action="" method="post">
+    <div style="text-align: center">
+        {#    <p>还没注册? <a href="{{ url_for('register') }}">马上去注册!</a></p>#}
+        <form class="form-signin" action="/login" method="post" novalidate="novalidate">
+            <h1 class="form-signin-heading">登录</h1>
             <!-- #用来实现在配置中激活的csrf保护-->
             {{ form.hidden_tag() }}
-            <p>
-                {{ form.username.label }}<br>
-                {{ form.username(size=32) }}
-                {% for error in form.username.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.password.label }}<br>
-                {{ form.password(size=32) }}
-                {% for error in form.password.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-{#            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>#}
-            <p>{{ form.submit() }}</p>
+            <label class="input-label" for="username">登录名</label>
+            <input type="text" id="username" name="username" class="input-block-level required error" value><br>
+            {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <br>
+            <label class="input-label" for="password">密码</label>
+            <input type="password" id="password" name="password" class="input-block-level required error"><br>
+            {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <br>
+            {#            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>#}
+            <input class="btn btn-large btn-primary" type="submit" value="登 录">
         </form>
     </div>
 {% endblock %}
+</body>
+<style type="text/css">
+    body {
+        font-size: 16px;
+    }
+</style>
+</html>
