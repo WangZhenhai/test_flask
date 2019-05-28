@@ -7,14 +7,14 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body style="padding: 30px;">
+<body style="padding: 30px;background-color: #fff9ec;background-image: url('/static/images/bj-image.jpg');">
 <div style="text-align: center">
     <a href="{{ url_for('index') }}">主页</a>
     {% if current_user.is_anonymous %}
         <a href="{{ url_for('login') }}">登录</a>
     {% else %}
         <a href="{{ url_for('user', username=current_user.username) }}">用户中心</a>
-        <a>当前用户: {{ current_user.username }}</a>
+        <ur>当前用户: {{ current_user.username }}</ur>
         <a href="{{ url_for('logout') }}">退出</a>
     {% endif %}
 </div>
@@ -34,6 +34,10 @@
 <style type="text/css">
     body {
         font-size: 16px;
+        color: black;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
     }
 
     h1 {
@@ -42,7 +46,13 @@
     }
 
     ur {
-        text-align: center;
+        text-align: left;
+        font-size: 16px;
+    }
+
+    a {
+        color: black;
+        font-size: 16px;
     }
 </style>
 </html>
