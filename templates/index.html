@@ -4,85 +4,121 @@
     <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link type="text/css" href="/static/scc/styles.css" rel="stylesheet">
+        <link type="text/css" href="/static/css/styles.css" rel="stylesheet">
     </head>
     <body style="padding:30px;">
-    <h1>{{ current_user.username }} 测试环境服务平台</h1>
-    <div class="left">
-        <ul class="main_grid">
-            <li>
-                <a href="http://xiangshang:xiangshang@{{ current_user.username }}.opm.xs.sit/opm/a/login"
-                   target="_blank">OPM地址</a>
-            </li>
-            <li>
-                <a href="http://{{ current_user.username }}.www.xs.sit/xweb/index" target="_blank">PC端网址</a>
-            </li>
-            <li>
-                <a href="http://{{ current_user.username }}.m.xs.sit/html/newwap/login.html"
-                   target="_blank">M站(H5)地址</a>
-            </li>
-        </ul>
-        <ul class="main_grid">
-            <li>
-                <a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/node/netl01" target="_blank">借款人开户</a>
-            </li>
-            <li>
-                <a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/node/netl17_1"
-                   target="_blank">借款信息授权</a>
-            </li>
-            <li>
-                <a href="/xweb/my/moneyRecord" target="_blank">借款信息导入</a>
-            </li>
+
+{#    <h1>{{ current_user.username }} 测试环境服务平台</h1>#}
+    <table border="0" width="45%">
+        <tbody>
+        <tr>
+            <td colspan="3">
+                <h4>平台访问地址</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <li><a href="http://xiangshang:xiangshang@{{ current_user.username }}.opm.xs.sit/opm/a/login"
+                       target="_blank">OPM地址</a></li>
+            </td>
+            <td>
+                <li><a href="http://{{ current_user.username }}.www.xs.sit/xweb/index" target="_blank">PC端网址</a></li>
+            </td>
+            <td>
+                <li><a href="http://{{ current_user.username }}.m.xs.sit/html/newwap/login.html"
+                       target="_blank">M站(H5)地址</a></li>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <h4>借款信息类</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <li><a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/node/netl01"
+                       target="_blank">借款人开户</a></li>
+            </td>
+            <td>
+                <li><a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/node/netl17_1"
+                       target="_blank">借款信息授权</a></li>
+            </td>
+            <td>
+                <li><a href="/xweb/my/moneyRecord" target="_blank">借款信息导入</a></li>
+            </td>
             <!--<li>
                 <a href="/agreement/userAgreementFileInfoGroups" target="_blank">合同管理查询</a>
             </li> -->
-        </ul>
-        <ul class="main_grid">
-            <li>
-                <a href="http://admin:admin@{{ current_user.backend_ip }}:50999/task/"
-                   target="_blank">向上task定时任务</a>
-            </li>
-            <li>
-                <a href="http://admin:admin@{{ current_user.backend_ip }}:19700/" target="_blank">资产端-定时任务</a>
-            </li>
-            <li>
-                <a href="http://{{ current_user.backend_ip }}:12300/swagger-ui.html#!/start-loan-controller/startLoanTaskUsingPOST"
-                   target="_blank">放款微服务地址</a>
-            </li>
-            <li>
-                <a href="http://{{ current_user.backend_ip }}:13050/swagger-ui.html"
-                   target="_blank">还款(资产)微服务地址</a>
-            </li>
-        </ul>
-        <ul class="main_grid">
-            <li>
-                <a href="http://{{ current_user.username }}.jenkins.xs.sit/login?from=%2F"
-                   target="_blank">Jenkins部署地址</a>
-            </li>
-            <li>
-                <a href="http://admin:admin@{{ current_user.backend_ip }}:19910/fds/trans/list"
-                   target="_blank">银行交易接口查询</a>
-            </li>
-            <li>
-                <a href="https://my-st1.orangebank.com.cn/corporbank/otp.jsp" target="_blank">平安银行短信验证码</a>
-            </li>
-            <li>
-                <a href="http://10.200.0.108:18090/swagger-ui.html#!/decrypt-data-controller/encryptListUsingPOST"
-                   target="_blank">手机号加密/解密</a>
-            </li>
-        </ul>
-        <ul class="main_grid">
-            <li>
-                <a href="http://10.200.0.72:11987/generateData/generateRandomPeopleInfo" target="_blank">生成四要素地址</a>
-            </li>
-        </ul>
-    </div>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <h4>定时任务类</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <li><a href="http://admin:admin@{{ current_user.backend_ip }}:50999/task/"
+                       target="_blank">向上task定时任务</a></li>
+            </td>
+            <td>
+                <li><a href="http://admin:admin@{{ current_user.backend_ip }}:19700/" target="_blank">资产端-定时任务</a></li>
+            </td>
+            <td>
+                <li>
+                    <a href="http://{{ current_user.backend_ip }}:12300/swagger-ui.html#!/start-loan-controller/startLoanTaskUsingPOST"
+                       target="_blank">放款微服务地址</a></li>
+            </td>
+            <td>
+                <li><a href="http://{{ current_user.backend_ip }}:13050/swagger-ui.html"
+                       target="_blank">还款(资产)微服务地址</a></li>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <h4>环境查询类</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <li><a href="http://{{ current_user.username }}.jenkins.xs.sit/login?from=%2F"
+                       target="_blank">Jenkins部署地址</a></li>
+            </td>
+            <td>
+                <li><a href="http://admin:admin@{{ current_user.backend_ip }}:19910/fds/trans/list"
+                       target="_blank">银行交易接口查询</a></li>
+            </td>
+            <td>
+                <li><a href="https://my-st1.orangebank.com.cn/corporbank/otp.jsp" target="_blank">平安银行短信验证码</a>
+            </td>
+            <td>
+                <li><a href="http://10.200.0.108:18090/swagger-ui.html#!/decrypt-data-controller/encryptListUsingPOST"
+                       target="_blank">手机号加密/解密</a></li>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <h4>其他分类</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <li><a href="http://10.200.0.72:11987/generateData/generateRandomPeopleInfo" target="_blank">生成四要素地址</a>
+                </li>
+            </td>
+        </tr>
+        </tbody>
+    </table>
     </body>
     <style type="text/css">
         h1 {
             text-align: center;
             font-size: 20px;
-            color: #FF5722;
+            color: #FD482C;
+        }
+
+        h4 {
+            color: blueviolet;
+            font-weight: bold;
         }
 
         body {
@@ -90,17 +126,22 @@
             font-size: 15px
         }
 
-        ul {
+        tr {
             text-align: left;
         }
 
-        li {
-            text-align: left
+        td {
+            text-align: left;
         }
 
         a {
-            color: #393D49;
+            color: blue;
             font-size: 16px;
+            font-weight: bold;
+        }
+
+        li {
+            color: mediumvioletred;
         }
     </style>
     </html>
