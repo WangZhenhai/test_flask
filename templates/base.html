@@ -20,11 +20,12 @@
         <a href="{{ url_for('logout') }}">退出</a>
     {% endif %}
 </div>
+
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         <ur style="color: red;text-align: center">
             {% for message in messages %}
-                <li>{{ message }}</li>
+                <li style="text-align: left">{{ message }}</li>
             {% endfor %}
         </ur>
     {% endif %}
