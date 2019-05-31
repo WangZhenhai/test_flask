@@ -8,8 +8,8 @@
     </head>
     <body style="padding:30px;">
 
-{#    <h1>{{ current_user.username }} 测试环境服务平台</h1>#}
-    <table border="0" width="45%">
+    {#    <h1>{{ current_user.username }} 测试环境服务平台</h1>#}
+    <table border="0" width="50%">
         <tbody>
         <tr>
             <td colspan="3">
@@ -58,7 +58,7 @@
         <tr>
             <td>
                 <li><a href="http://admin:admin@{{ current_user.backend_ip }}:50999/task/"
-                       target="_blank">向上task定时任务</a></li>
+                       target="_blank">向上task定时</a></li>
             </td>
             <td>
                 <li><a href="http://admin:admin@{{ current_user.backend_ip }}:19700/" target="_blank">资产端-定时任务</a></li>
@@ -66,11 +66,17 @@
             <td>
                 <li>
                     <a href="http://{{ current_user.backend_ip }}:12300/swagger-ui.html#!/start-loan-controller/startLoanTaskUsingPOST"
-                       target="_blank">放款微服务地址</a></li>
+                       target="_blank">放款微服务</a></li>
             </td>
             <td>
                 <li><a href="http://{{ current_user.backend_ip }}:13050/swagger-ui.html"
-                       target="_blank">还款(资产)微服务地址</a></li>
+                       target="_blank">还款(资产)微服务</a></li>
+            </td>
+            <td>
+                <li>
+                    <a href="http://{{ current_user.username }}.micro.agreement.xs.sit/swagger-ui.html#/agreement-task-controller"
+                       target="_blank">合同管理定时</a>
+                </li>
             </td>
         </tr>
         <tr>
@@ -81,14 +87,14 @@
         <tr>
             <td>
                 <li><a href="http://{{ current_user.username }}.jenkins.xs.sit/login?from=%2F"
-                       target="_blank">Jenkins部署地址</a></li>
+                       target="_blank">Jenkins地址</a></li>
             </td>
             <td>
                 <li><a href="http://admin:admin@{{ current_user.backend_ip }}:19910/fds/trans/list"
-                       target="_blank">银行交易接口查询</a></li>
+                       target="_blank">银行接口查询</a></li>
             </td>
             <td>
-                <li><a href="https://my-st1.orangebank.com.cn/corporbank/otp.jsp" target="_blank">平安银行短信验证码</a>
+                <li><a href="https://my-st1.orangebank.com.cn/corporbank/otp.jsp" target="_blank">平安短信验证码</a>
             </td>
             <td>
                 <li><a href="http://10.200.0.108:18090/swagger-ui.html#!/decrypt-data-controller/encryptListUsingPOST"
