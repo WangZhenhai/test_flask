@@ -19,14 +19,19 @@ ur {
     font-size: 15px;
 }
 
+h4 {
+    color: #1E9FFF;
+    font-weight: bold;
+}
+
 i {
     color: #FF5722;
     font-weight: bold;
 }
 
 li {
-    color: #2D93CA;
-    font-weight: normal;
+    color: #23262E;
+    font-weight: bold;
 }
 
 body {
@@ -107,6 +112,7 @@ form {
     padding: 20px 0;
     position: relative;
     z-index: 2;
+    text-align: left;
 }
 
 form input {
