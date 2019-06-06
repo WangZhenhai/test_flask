@@ -11,7 +11,9 @@
 </head>
 <body style="padding: 30px">
 {% block content %}
-        <form class="form-horizontal col-md-offset-3" action="/login" method="post" role="form" style="margin-top: 100px;">
+    <div class="container">
+        <form class="form-horizontal col-md-offset-3" action="/login" method="post" role="form"
+              style="margin-top: 100px;">
             <!-- #用来实现在配置中激活的csrf保护-->
             {{ form.hidden_tag() }}
             <div class="form-group">
@@ -49,6 +51,7 @@
                 </div>
             </div>
         </form>
+    </div>
 {% endblock %}
 </body>
 </html>
