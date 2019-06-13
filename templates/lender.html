@@ -6,12 +6,19 @@
 </head>
 <body>
 {% block content %}
-    <div id="wrap">
-        <ul class="main_grid">
-            <li class="col-sm-offset-1">
+    <div class="col">
+        <ul class="main-container">
+            <li class="col-sm-offset-0">
                 <form method="post" action="/user_register" target="_blank">
                     <p>
                         <button class="btn btn-large btn-primary" type="submit">一键注册</button>
+                    </p>
+                </form>
+            </li>
+            <li class="col-sm-offset-0">
+                <form method="post" action="/user_certification" target="_blank">
+                    <p>
+                        <button class="btn btn-large btn-primary" type="submit">实名+开户</button>
                     </p>
                 </form>
             </li>
