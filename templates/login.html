@@ -52,18 +52,4 @@
     </div>
 {% endblock %}
 </body>
-<script type="text/javascript">
-    $(document).ready(function checkForm() {
-        if (document.getElementById("username").value.length === 0) {
-            alert("请输入用户名");
-            return false;
-        } else if (document.getElementById("password").value.length === 0) {
-            alert("请输入密码");
-            return false;
-        } else {
-            alert("登录成功");
-            return true;
-        }
-    });
-</script>
 </html>
