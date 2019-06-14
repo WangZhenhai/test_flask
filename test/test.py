@@ -2,7 +2,7 @@
 import os
 import platform
 
-print ("run test script for python")
+# print ("run test script for python")
 getcwd = os.getcwd ()
 
 if platform.system () == "Windows":
