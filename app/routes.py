@@ -1,11 +1,14 @@
 import sys
 from datetime import datetime
+
 from bs4 import BeautifulSoup
 import pysnooper
 import requests
-from flask import render_template, flash, redirect, url_for, request, jsonify, make_response
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 import os, subprocess
+
+from flask_restful import Api
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
 
@@ -14,6 +17,7 @@ from app import app, db
 # 导入表单处理方法
 from app.forms import LoginForm
 from app.models import User
+from resource.users import TodoList
 
 getcwd = os.getcwd ()
 getabspath = os.path.abspath (os.path.join (os.getcwd (), ".."))
@@ -63,7 +67,7 @@ def register():
 		return redirect (url_for ('index'))
 	form = RegisterationForm ()
 	if form.validate_on_submit ():
-		user = User (username=form.username.data, email=form.email.data)
+		user = User (username=form.username.data)
 		user.set_password (form.password.data)
 		db.session.add (user)
 		db.session.commit ()
@@ -205,6 +209,21 @@ def borrowers_info():
 	return render_template ("borrowers_info.html")
 
 
+# 新的理财人信息页面
+@login_required
+@app.route ('/user/lender')
+def lender():
+	return render_template ("lender.html")
+
+#用户一键注册
+@login_required
+@app.route ('/user_register', methods=['POST'])
+def user_register():
+	exec = sys.executable
+	file = "src/user_register.py"
+	return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
+
+
 # uploads File
 @login_required
 @app.route ('/upload', methods=['GET', 'POST'])
@@ -230,3 +249,7 @@ def page_not_found(error):
 @app.errorhandler (500)
 def page_not_found(error):
 	return render_template ('500.html'), 500
+
+
+api = Api (app)
+api.add_resource (TodoList, "/users")
