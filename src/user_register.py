@@ -14,9 +14,7 @@ f = Faker (locale='zh_CN')
 host_mysql = '10.40.0.106'
 user_mysql = 'test_rw9'
 passwd_mysql = 'test_rw9'
-# db_mysql = 'xiangshang_test' + env
 
-# url = "http://test" + env + ".app.xs.sit/app"
 auth = ('xiangshang', 'dx3vf~yDt6s57Dbfoo')
 headers = {'Content-Type': 'application/json', 'AppVersionCode': '73', 'deviceBrand': 'Xiaomi',
 		   'device': '02093A41-181E-40A3-A006-9E2D1AFD5664', 'appchannel': '1', 'platform_type': '2'}

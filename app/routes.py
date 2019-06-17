@@ -223,7 +223,7 @@ def user_register():
 	# file = "src/user_register.py"
 	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
 	from src.user_register import mobile, send_message, sub_reg_info, mysql_randomchar, insert_mobile, certification, \
-		realName, idCard, user_id, bankCard, user_login
+		realName, idCard, user_id, user_login
 	url = "http://" + str (current_user.username) + ".app.xs.sit/app"
 	db = current_user.xs
 	m = mobile ()
@@ -235,12 +235,25 @@ def user_register():
 	# print (bankCard ())  # 打印银行卡号
 	user_login (url=url, mobile=m, password='96e79218965eb72c92a549dd5a330112')  # 登录
 	certification (url=url, name=realName (), id_card=idCard ())  # 实名
-	info_list=[]  #输出用户信息
-	info_list.append(m)
-	info_list.append(user_id(mobile=m,db=db))
-	return  str(info_list)
-	# return str (mobile ())
+	info_list = []  # 输出用户信息
+	info_list.append (user_id (mobile=m, db=db))
+	info_list.append (m)
+	return str (info_list)
 
+
+# 生成实名信息
+@login_required
+@app.route ('/user/bankcard', methods=['post'])
+def bankcard():
+	from src.user_register import bankCard
+	bankcard = bankCard ()
+	return "招商银行：" + str (bankcard)
+
+#一键转账
+@login_required
+@app.route('/user/transter_account', methods=['POST'])
+def traster_account():
+    return "转账成功！"
 
 # 用户查询（最新注册的10个用户）
 @login_required
