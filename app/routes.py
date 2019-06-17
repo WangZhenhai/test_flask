@@ -215,13 +215,26 @@ def borrowers_info():
 def lender():
 	return render_template ("lender.html")
 
-#用户一键注册
+
+# 用户一键注册
 @login_required
-@app.route ('/user_register', methods=['POST'])
+@app.route ('/user/user_register', methods=['POST'])
 def user_register():
 	exec = sys.executable
 	file = "src/user_register.py"
 	return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
+
+
+# 用户查询（最新注册的10个用户）
+@login_required
+@app.route ('/user/select_users', methods=['POST'])
+def select_users():
+	from src.select_users import select_users
+	# exec = sys.executable
+	# file = "src/select_users.py"
+	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
+	su = select_users ()
+	return str (su)
 
 
 # uploads File
@@ -249,7 +262,3 @@ def page_not_found(error):
 @app.errorhandler (500)
 def page_not_found(error):
 	return render_template ('500.html'), 500
-
-
-api = Api (app)
-api.add_resource (TodoList, "/users")
