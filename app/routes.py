@@ -8,7 +8,6 @@ from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 import os, subprocess
 
-from flask_restful import Api
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
 
@@ -17,10 +16,10 @@ from app import app, db
 # 导入表单处理方法
 from app.forms import LoginForm
 from app.models import User
-from resource.users import TodoList
 
 getcwd = os.getcwd ()
 getabspath = os.path.abspath (os.path.join (os.getcwd (), ".."))
+session = requests.Session ()
 
 
 @app.route ('/')
@@ -220,9 +219,27 @@ def lender():
 @login_required
 @app.route ('/user/user_register', methods=['POST'])
 def user_register():
-	exec = sys.executable
-	file = "src/user_register.py"
-	return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
+	# exec = sys.executable
+	# file = "src/user_register.py"
+	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
+	from src.user_register import mobile, send_message, sub_reg_info, mysql_randomchar, insert_mobile, certification, \
+		realName, idCard, user_id, bankCard, user_login
+	url = "http://" + str (current_user.username) + ".app.xs.sit/app"
+	db = current_user.xs
+	m = mobile ()
+	# print (m)  # 输出生成手机号
+	send_message (url=url, mobile=m)  # 获取注册验证码
+	sub_reg_info (url=url, vilidata=mysql_randomchar (m, db=db), mobile=m)  # 注册
+	insert_mobile (mobile=m, db=db)  # 更新user表mobile字段
+	# print (user_id (mobile=m, db=db))  # 打印user_id
+	# print (bankCard ())  # 打印银行卡号
+	user_login (url=url, mobile=m, password='96e79218965eb72c92a549dd5a330112')  # 登录
+	certification (url=url, name=realName (), id_card=idCard ())  # 实名
+	info_list=[]  #输出用户信息
+	info_list.append(m)
+	info_list.append(user_id(mobile=m,db=db))
+	return  str(info_list)
+	# return str (mobile ())
 
 
 # 用户查询（最新注册的10个用户）
@@ -233,7 +250,8 @@ def select_users():
 	# exec = sys.executable
 	# file = "src/select_users.py"
 	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
-	su = select_users ()
+	db = current_user.xs
+	su = select_users (db=db)
 	return str (su)
 
 

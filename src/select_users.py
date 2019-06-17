@@ -2,11 +2,10 @@
 # Note:查询最新注册的10个用户
 import MySQLdb
 
-from src.user_register import host_mysql, user_mysql, passwd_mysql, db_mysql
+from src.user_register import host_mysql, user_mysql, passwd_mysql
 
-
-def select_users():
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db_mysql)
+def select_users(db):
+	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "select * from user order by id desc limit 10"
 	s = cur.execute (sql)

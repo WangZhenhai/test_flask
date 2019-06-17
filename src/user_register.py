@@ -9,21 +9,21 @@ import random as r
 
 f = Faker (locale='zh_CN')
 
-env = '3'
+# env = '4'
 
 host_mysql = '10.40.0.106'
 user_mysql = 'test_rw9'
 passwd_mysql = 'test_rw9'
-db_mysql = 'xiangshang_test' + env
+# db_mysql = 'xiangshang_test' + env
 
-url = "http://test" + env + ".app.xs.sit/app"
+# url = "http://test" + env + ".app.xs.sit/app"
 auth = ('xiangshang', 'dx3vf~yDt6s57Dbfoo')
 headers = {'Content-Type': 'application/json', 'AppVersionCode': '73', 'deviceBrand': 'Xiaomi',
 		   'device': '02093A41-181E-40A3-A006-9E2D1AFD5664', 'appchannel': '1', 'platform_type': '2'}
 
 
 # 发送短信验证码接口
-def send_message(mobile):
+def send_message(url,mobile):
 	# print mobile_number
 	url_reg = url + "/user/register/sendCode/" + mobile
 	r = requests.get (url_reg, auth=auth)
@@ -33,9 +33,9 @@ def send_message(mobile):
 # print (r.text)
 
 # 查询验证码
-def mysql_randomchar(mobile):
+def mysql_randomchar(mobile,db):
 	# conn= MySQLdb.connect('10.40.1.25','zhangmeijia','Q84mFosl5P','xiangshang_test7')
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db_mysql)
+	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "select * from mobile_validate where mobile='" + mobile + "' order by create_time desc limit 1"
 	s = cur.execute (sql)
@@ -49,8 +49,8 @@ def mysql_randomchar(mobile):
 
 
 # 把生成的手机号更新到user表
-def insert_mobile(mobile):
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db_mysql)
+def insert_mobile(mobile,db):
+	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "update user set mobile='" + mobile + "' order by id desc limit 1"
 	s = cur.execute (sql)
@@ -59,8 +59,8 @@ def insert_mobile(mobile):
 	conn.close ()
 
 
-def user_id(mobile):
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db_mysql)
+def user_id(mobile,db):
+	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "select * from user where mobile='" + mobile + "'"
 	s = cur.execute (sql)
@@ -74,7 +74,7 @@ def user_id(mobile):
 
 
 # 提交注册信息接口
-def sub_reg_info(mobile, vilidata):
+def sub_reg_info(url,mobile, vilidata):
 	url_r = url + "/user/register/submit"
 	params = {'mobile': mobile, 'mcode': vilidata, 'password': '96e79218965eb72c92a549dd5a330112',
 			  'utmSource': 'XIANGSHANG_ANDROID_REGISTER_USER'}
@@ -116,7 +116,7 @@ def bankCard():
 session = requests.Session ()
 
 
-def login(mobile, password):
+def user_login(url,mobile, password):
 	url_login = url + '/user/login'
 	params = {'userName': mobile, 'password': password}
 
@@ -132,7 +132,7 @@ def login(mobile, password):
 
 
 # 实名认证
-def certification(name, id_card):
+def certification(url,name, id_card):
 	# print real_name
 	# print id_card
 	url_cert = url + '/user/setting//authIdCard'
@@ -157,15 +157,15 @@ def openBankDepositorySubmit(serialNo, mobile, card_num, real_name, id_card):
 	print (r.text)
 
 
-if __name__ == '__main__':
-	m = mobile ()
-	print (m)  # 输出生成手机号
-	send_message (mobile=m)  # 获取注册验证码
-	sub_reg_info (vilidata=mysql_randomchar (m), mobile=m)  # 注册
-	insert_mobile (mobile=m)  # 更新user表mobile字段
-	print (user_id (mobile=m)) # 打印user_id
-	print(bankCard())   #打印银行卡号
-	login (mobile=m, password='96e79218965eb72c92a549dd5a330112')  # 登录
-	certification (name=realName (), id_card=idCard ())  # 实名
-	#openBankDepositorySendSMS (mobile=mobile (), card=bankCard (), real_name=realName (),id_card=idCard ())  # 获取银行开户验证码
-	#openBankDepositorySubmit(serialNo='111111',mobile=m,card_num=bankCard(),real_name=realName(),id_card=idCard())  #提交开户信息
+# if __name__ == '__main__':
+# 	m = mobile ()
+# 	print (m)  # 输出生成手机号
+# 	send_message (mobile=m)  # 获取注册验证码
+# 	sub_reg_info (vilidata=mysql_randomchar (m), mobile=m)  # 注册
+# 	insert_mobile (mobile=m)  # 更新user表mobile字段
+# 	print (user_id (mobile=m)) # 打印user_id
+# 	print(bankCard())   #打印银行卡号
+# 	login (mobile=m, password='96e79218965eb72c92a549dd5a330112')  # 登录
+# 	certification (name=realName (), id_card=idCard ())  # 实名
+# 	#openBankDepositorySendSMS (mobile=mobile (), card=bankCard (), real_name=realName (),id_card=idCard ())  # 获取银行开户验证码
+# 	#openBankDepositorySubmit(serialNo='111111',mobile=m,card_num=bankCard(),real_name=realName(),id_card=idCard())  #提交开户信息
