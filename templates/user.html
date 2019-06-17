@@ -11,15 +11,19 @@
             {#            <td><img src="{{ user.avatar(128) }}"></td>#}
             <td>
                 {% if user == current_user %}
-                    <li><a href="{{ url_for('edit_profile') }}">用户配置信息</a></li>
+                    <li class="col-sm-10"><a href="{{ url_for('edit_profile') }}" style="font-size: 15px;">用户配置信息</a>
+                    </li>
                     {#                    <p><a href="{{ url_for('test') }}">test文件</a></p>#}
                     {#                    <p><a href="{{ url_for('test2') }}">执行文件</a></p>#}
                     {#                    <p><a href="{{ url_for('upload') }}">文件上传</a></p>#}
-                    <li><a href="{{ url_for('lender_info') }}">理财人信息</a></li>
-                    <li><a href="{{ url_for('borrowers_info') }}">借款人信息</a></li>
+                    <li class="col-sm-10"><a href="{{ url_for('lender_info') }}" style="font-size: 15px;">理财人信息</a></li>
+                    <li class="col-sm-10"><a href="{{ url_for('borrowers_info') }}" style="font-size: 15px;">借款人信息</a>
+                    </li>
+                    <li class="col-sm-10"><a href="{{ url_for('lender') }}"
+                                             style="font-size: 15px;"><strong>理财人信息(新)</strong></a></li>
+                    {% if user.last_seen %}<p class="col-sm-10">最近登录: {{ user.last_seen }}</p>{% endif %}
+                    <p class="col-sm-10">当前登录IP：<strong>{{ user.last_ip }}</strong></p>
                 {% endif %}
-                {% if user.last_seen %}<p>最近登录: {{ user.last_seen }}</p>{% endif %}
-                <p>当前登录IP：<strong>{{ user.last_ip }}</strong></p>
             </td>
         </tr>
     </table>

@@ -466,10 +466,6 @@
                     <i class="my-icon nav-more"></i>
                 </a>
                 <ul>
-                    <li>
-                        <a href="http://{{ current_user.username }}.jenkins.xs.sit/login?from=%2F"
-                           target="_blank"><span>Jenkins地址</span></a>
-                    </li>
                     <li><a href="http://admin:admin@{{ current_user.backend_ip }}:19910/fds/trans/list"
                            target="_blank"><span>银行接口查询</span></a></li>
                     <li><a href="https://my-st1.orangebank.com.cn/corporbank/otp.jsp"
@@ -485,6 +481,10 @@
                     <i class="my-icon nav-more"></i>
                 </a>
                 <ul>
+                    <li>
+                        <a href="http://{{ current_user.username }}.jenkins.xs.sit/login?from=%2F"
+                           target="_blank"><span>Jenkins地址</span></a>
+                    </li>
                     <li>
                         <a href="http://10.200.0.72:11987/generateData/generateRandomPeopleInfo" target="_blank"><span>生成四要素</span></a>
                     </li>

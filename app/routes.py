@@ -1,11 +1,13 @@
 import sys
 from datetime import datetime
+
 from bs4 import BeautifulSoup
 import pysnooper
 import requests
-from flask import render_template, flash, redirect, url_for, request, jsonify, make_response
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 import os, subprocess
+
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
 
@@ -17,6 +19,7 @@ from app.models import User
 
 getcwd = os.getcwd ()
 getabspath = os.path.abspath (os.path.join (os.getcwd (), ".."))
+session = requests.Session ()
 
 
 @app.route ('/')
@@ -63,7 +66,7 @@ def register():
 		return redirect (url_for ('index'))
 	form = RegisterationForm ()
 	if form.validate_on_submit ():
-		user = User (username=form.username.data, email=form.email.data)
+		user = User (username=form.username.data)
 		user.set_password (form.password.data)
 		db.session.add (user)
 		db.session.commit ()
@@ -203,6 +206,66 @@ def see_lender_msg():
 @app.route ('/user/borrowers_info')
 def borrowers_info():
 	return render_template ("borrowers_info.html")
+
+
+# 新的理财人信息页面
+@login_required
+@app.route ('/user/lender')
+def lender():
+	return render_template ("lender.html")
+
+
+# 用户一键注册
+@login_required
+@app.route ('/user/user_register', methods=['POST'])
+def user_register():
+	# exec = sys.executable
+	# file = "src/user_register.py"
+	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
+	from src.user_register import mobile, send_message, sub_reg_info, mysql_randomchar, insert_mobile, certification, \
+		realName, idCard, user_id, user_login
+	url = "http://" + str (current_user.username) + ".app.xs.sit/app"
+	db = current_user.xs
+	m = mobile ()
+	# print (m)  # 输出生成手机号
+	send_message (url=url, mobile=m)  # 获取注册验证码
+	sub_reg_info (url=url, vilidata=mysql_randomchar (m, db=db), mobile=m)  # 注册
+	insert_mobile (mobile=m, db=db)  # 更新user表mobile字段
+	# print (user_id (mobile=m, db=db))  # 打印user_id
+	# print (bankCard ())  # 打印银行卡号
+	user_login (url=url, mobile=m, password='96e79218965eb72c92a549dd5a330112')  # 登录
+	certification (url=url, name=realName (), id_card=idCard ())  # 实名
+	info_list = []  # 输出用户信息
+	info_list.append (user_id (mobile=m, db=db))
+	info_list.append (m)
+	return str (info_list)
+
+
+# 生成实名信息
+@login_required
+@app.route ('/user/bankcard', methods=['post'])
+def bankcard():
+	from src.user_register import bankCard
+	bankcard = bankCard ()
+	return "招商银行：" + str (bankcard)
+
+#一键转账
+@login_required
+@app.route('/user/transter_account', methods=['POST'])
+def traster_account():
+    return "转账成功！"
+
+# 用户查询（最新注册的10个用户）
+@login_required
+@app.route ('/user/select_users', methods=['POST'])
+def select_users():
+	from src.select_users import select_users
+	# exec = sys.executable
+	# file = "src/select_users.py"
+	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
+	db = current_user.xs
+	su = select_users (db=db)
+	return str (su)
 
 
 # uploads File
