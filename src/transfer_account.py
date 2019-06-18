@@ -10,20 +10,46 @@ from src import host_mysql, user_mysql, passwd_mysql
 def update_user_point(user_id, db):
 	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
-	sql = "select * from user_point where user_id='" + str(user_id)+"'"
+	sql = "select * from user_point where user_id='" + str (user_id) + "'"
 	s = cur.execute (sql)
 	results = cur.fetchall ()
-	for row in results:
-		available_points = row[1]
-	new_avaliable_points = available_points + 10000
-	sql = "update user_point set available_points='" + str(new_avaliable_points) + "' where user_id='" + str(user_id)+"'"
-	print(sql)
-	s = cur.execute (sql)
+	if results==():
+		print ("user_point中user_id不存在")
+	else:
+		for row in results:
+			available_points = row[1]
+		new_avaliable_points = available_points + 10000
+		sql = "update user_point set available_points='" + str (new_avaliable_points) + "' where user_id='" + str (
+			user_id) + "'"
+		s = cur.execute (sql)
+		return "转账完成"
 	cur.close ()
 	conn.commit ()
 	conn.close ()
-	return available_points
+
+
+# 更新合规库
+def update_user_account(user_id, legal_db):
+	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, legal_db)
+	cur = conn.cursor ()
+	sql = "select * from user_account where user_id='" + str (user_id) + "'"
+	s = cur.execute (sql)
+	results = cur.fetchall ()
+	if results==():
+		print ("user_account中user_id不存在")
+	else:
+		for row in results:
+			arrive_amount = row[7]
+		new_arrive_amount = arrive_amount + 10000
+		sql = "update user_account set arrive_amount='" + str (new_arrive_amount) + "' where user_id='" + str (
+			user_id) + "'"
+		s = cur.execute (sql)
+		return "转账完成"
+	cur.close ()
+	conn.commit ()
+	conn.close ()
 
 
 if __name__ == '__main__':
-	update_user_point (user_id='6525745', db='xiangshang_test5')
+	update_user_point (user_id='6525670', db='xiangshang_test5')
+	update_user_account (user_id='6525670', legal_db='xiangshang_legal_test5')

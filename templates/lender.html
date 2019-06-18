@@ -15,13 +15,20 @@
                     </p>
                 </form>
             </li>
-            <!-- <li class="col-sm-offset-0">
-                <form method="post" action="/user/real_info" target="_blank">
-                    <p>
-                        <button class="btn btn-large btn-primary" type="submit">实名信息</button>
-                    </p>
-                </form>
-            </li> -->
+{#            <li class="col-sm-offset-0">#}
+{#                <form method="post" action="/user/user_mobile" target="_blank">#}
+{#                    <p>#}
+{#                        <button class="btn btn-large btn-primary" type="submit">生成手机号</button>#}
+{#                    </p>#}
+{#                </form>#}
+{#            </li>#}
+{#            <li class="col-sm-offset-0">#}
+{#                <form method="post" action="/user/real_info" target="_blank">#}
+{#                    <p>#}
+{#                        <button class="btn btn-large btn-primary" type="submit">生成实名信息</button>#}
+{#                    </p>#}
+{#                </form>#}
+{#            </li>#}
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/bankcard" target="_blank">
                     <p>
@@ -32,6 +39,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/transter_account" target="_blank">
                     <p>
+                        <input type="text" name="user_id">
                         <button class="btn btn-large btn-primary" type="submit">一键转账</button>
                     </p>
                 </form>

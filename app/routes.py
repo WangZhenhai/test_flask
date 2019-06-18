@@ -241,7 +241,7 @@ def user_register():
 	return str (info_list)
 
 
-# 生成实名信息
+# 生成银行卡
 @login_required
 @app.route ('/user/bankcard', methods=['post'])
 def bankcard():
@@ -249,20 +249,34 @@ def bankcard():
 	bankcard = bankCard ()
 	return "招商银行：" + str (bankcard)
 
-#一键转账
+
+# 一键转账
 @login_required
-@app.route('/user/transter_account', methods=['POST'])
+@app.route ('/user/transter_account', methods=['POST'])
 def traster_account():
-    return "转账成功！"
+	from src.transfer_account import update_user_account
+	from src.transfer_account import update_user_point
+	db = current_user.xs
+	legal_db = current_user.xs_legal
+	user_id = request.values.get ('user_id')
+	if user_id == "":
+		flash ("用户user_id不能为空")
+		return redirect(url_for('lender'))
+	else:
+		user_id = str(user_id)
+		if update_user_point (user_id=user_id, db=db) !="转账完成":
+			return "user_point中user_id不存在"
+		elif update_user_account(user_id=user_id, legal_db=legal_db) !="转账完成":
+			return "user_account中user_id不存在或该用户未开通银行存管"
+		else:
+			return "转账完成"
+
 
 # 用户查询（最新注册的10个用户）
 @login_required
 @app.route ('/user/select_users', methods=['POST'])
 def select_users():
 	from src.select_users import select_users
-	# exec = sys.executable
-	# file = "src/select_users.py"
-	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
 	db = current_user.xs
 	su = select_users (db=db)
 	return str (su)
