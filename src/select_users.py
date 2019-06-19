@@ -4,6 +4,7 @@ import MySQLdb
 
 from src.user_register import host_mysql, user_mysql, passwd_mysql
 
+
 def select_users(db):
 	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
@@ -13,9 +14,16 @@ def select_users(db):
 	list = []
 	# list.clear ()
 	for row in results:
+		user_id = row[0]
 		mobile = row[4]
+		list.append (user_id)
 		list.append (mobile)
+	return list
 	cur.close ()
 	conn.commit ()
 	conn.close ()
-	return list
+#
+#
+# if __name__ == '__main__':
+# 	su = select_users ("xiangshang_test5")
+# 	print (str (su))
