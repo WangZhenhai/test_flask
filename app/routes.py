@@ -264,13 +264,12 @@ def traster_account():
 		return redirect(url_for('lender'))
 	else:
 		user_id = str(user_id)
-		if update_user_point (user_id=user_id, db=db) !="转账完成":
-			return "user_point中user_id不存在"
-		elif update_user_account(user_id=user_id, legal_db=legal_db) !="转账完成":
+		if update_user_account (user_id=user_id, legal_db=legal_db) != "转账完成":
 			return "user_account中user_id不存在或该用户未开通银行存管"
+		elif update_user_point (user_id=user_id, db=db) !="转账完成":
+			return "user_point中user_id不存在"
 		else:
 			return "转账完成"
-
 
 # 用户查询（最新注册的10个用户）
 @login_required

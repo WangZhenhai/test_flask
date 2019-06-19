@@ -13,7 +13,7 @@ def update_user_point(user_id, db):
 	sql = "select * from user_point where user_id='" + str (user_id) + "'"
 	s = cur.execute (sql)
 	results = cur.fetchall ()
-	if results==():
+	if results == ():
 		print ("user_point中user_id不存在")
 	else:
 		for row in results:
@@ -35,7 +35,7 @@ def update_user_account(user_id, legal_db):
 	sql = "select * from user_account where user_id='" + str (user_id) + "'"
 	s = cur.execute (sql)
 	results = cur.fetchall ()
-	if results==():
+	if results == ():
 		print ("user_account中user_id不存在")
 	else:
 		for row in results:
@@ -48,8 +48,3 @@ def update_user_account(user_id, legal_db):
 	cur.close ()
 	conn.commit ()
 	conn.close ()
-
-
-if __name__ == '__main__':
-	update_user_point (user_id='6525670', db='xiangshang_test5')
-	update_user_account (user_id='6525670', legal_db='xiangshang_legal_test5')
