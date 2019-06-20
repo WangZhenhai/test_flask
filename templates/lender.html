@@ -9,17 +9,18 @@
     <div class="col">
         <ul class="main-container">
             <li class="col-sm-offset-0">
-                <form method="post" action="/user/user_register" target="_blank">
+                <form method="post" action="/user/user_register">
                     <p>
-                        <input type="text" name="register">
+                        <input type="text" name="register" placeholder="此项选填">
                         <button class="btn btn-large btn-primary" type="submit">一键注册</button>
+                        <strong>{{ register_info }}</strong>
                     </p>
                 </form>
             </li>
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/bankcard">
                     <p>
-                        <input type="text" name="bankcard">
+                        <input type="text" name="bankcard" value="{{ bankcard }}" placeholder="默认招商银行">
                         <button class="btn btn-large btn-primary" type="submit">生成银行卡号</button>
                     </p>
                 </form>
@@ -27,7 +28,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/transter_account">
                     <p>
-                        <input type="text" name="user_id">
+                        <input type="text" name="user_id" placeholder="此项必填">
                         <button class="btn btn-large btn-primary" type="submit">一键转账</button>
                     </p>
                 </form>
@@ -35,8 +36,8 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/select_users">
                     <p>
-                        <button class="btn btn-large btn-primary" type="submit">一键查询用户信息</button>
-                    <p>只查询最新注册的10个用户</p>
+                        <input type="text" name="count" placeholder="此项必填">
+                        <button class="btn btn-large btn-primary" type="submit">一键查询用户信息</button>（默认只查询最新注册的10个用户）
                     </p>
                 </form>
             </li>

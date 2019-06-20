@@ -5,10 +5,10 @@ import MySQLdb
 from src.user_register import host_mysql, user_mysql, passwd_mysql
 
 
-def select_users(db):
+def select_users(db, count):
 	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
-	sql = "select * from user order by id desc limit 10"
+	sql = "select * from user order by id desc limit %d" % count
 	s = cur.execute (sql)
 	results = cur.fetchall ()
 	list = []
@@ -23,7 +23,6 @@ def select_users(db):
 	conn.commit ()
 	conn.close ()
 
-
 # if __name__ == '__main__':
-# 	su = select_users ("xiangshang_test5")
+# 	su = select_users ("xiangshang_test5",1)
 # 	print (str (su))

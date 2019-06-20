@@ -238,7 +238,7 @@ def user_register():
 	info_list = []  # 输出用户信息
 	info_list.append (user_id (mobile=m, db=db))
 	info_list.append (m)
-	return str (info_list)
+	return render_template ("lender.html", register_info=str (info_list))
 
 
 # 生成银行卡
@@ -247,7 +247,7 @@ def user_register():
 def bankcard():
 	from src.user_register import bankCard
 	bankcard = bankCard ()
-	return "招商银行：" + str (bankcard)
+	return render_template ("lender.html", bankcard=bankcard)
 
 
 # 一键转账
@@ -265,11 +265,14 @@ def traster_account():
 	else:
 		user_id = str (user_id)
 		if update_user_account (user_id=user_id, legal_db=legal_db) != "转账完成":
-			return "user_account中user_id不存在或该用户未开通银行存管"
+			flash ("user_id在user_account中不存在或该用户未开通银行存管")
+			return redirect (url_for ('lender'))
 		elif update_user_point (user_id=user_id, db=db) != "转账完成":
-			return "user_point中user_id不存在"
+			flash ("user_id在user_point中不存在")
+			return redirect (url_for ('lender'))
 		else:
-			return "转账完成"
+			flash ("转账完成！")
+			return redirect (url_for ('lender'))
 
 
 # 用户查询（最新注册的10个用户）
@@ -278,7 +281,12 @@ def traster_account():
 def select_users():
 	from src.select_users import select_users
 	db = current_user.xs
-	su = select_users (db=db)
+	count = request.values.get("count")
+	if count =="":
+		count=10
+	else:
+		count=count
+	su = select_users (db=db,count=int(count))
 	return render_template ("select_users.html", su=su)
 
 
