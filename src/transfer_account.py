@@ -48,3 +48,10 @@ def update_user_account(user_id, legal_db):
 	cur.close ()
 	conn.commit ()
 	conn.close ()
+#
+#
+# if __name__ == '__main__':
+# 	uup = update_user_point ('6525758', 'xiangshang_test5')
+# 	uua = update_user_account ('6525758', 'xiangshang_legal_test5')
+# 	print (uup)
+# 	print (uua)

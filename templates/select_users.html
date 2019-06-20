@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+{% block content %}
+    <p style="text-align: right"><input class="btn btn-primary btn-large" type="button" name="Submit"
+                                        onclick="javascript:history.back(-1);"
+                                        value="返回上一页"></p>
+    <table class="table table-bordered">
+        <tr>
+            <th>用户ID</th>
+            <th>手机号</th>
+            <th>银行存管ID</th>
+            <th>加密手机号</th>
+        </tr>
+        {% for i in su %}
+            <tr>
+                <th>{{ i[0] }}</th>
+                <th>{{ i[4] }}</th>
+                <th>{{ i[-3] }}</th>
+                <th>{{ i[5] }}</th>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+</body>
+</html>

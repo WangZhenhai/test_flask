@@ -261,15 +261,16 @@ def traster_account():
 	user_id = request.values.get ('user_id')
 	if user_id == "":
 		flash ("用户user_id不能为空")
-		return redirect(url_for('lender'))
+		return redirect (url_for ('lender'))
 	else:
-		user_id = str(user_id)
+		user_id = str (user_id)
 		if update_user_account (user_id=user_id, legal_db=legal_db) != "转账完成":
 			return "user_account中user_id不存在或该用户未开通银行存管"
-		elif update_user_point (user_id=user_id, db=db) !="转账完成":
+		elif update_user_point (user_id=user_id, db=db) != "转账完成":
 			return "user_point中user_id不存在"
 		else:
 			return "转账完成"
+
 
 # 用户查询（最新注册的10个用户）
 @login_required
@@ -278,7 +279,7 @@ def select_users():
 	from src.select_users import select_users
 	db = current_user.xs
 	su = select_users (db=db)
-	return str (su)
+	return render_template ("select_users.html", su=su)
 
 
 # uploads File

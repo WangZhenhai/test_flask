@@ -18,12 +18,12 @@ def select_users(db):
 		mobile = row[4]
 		list.append (user_id)
 		list.append (mobile)
-	return list
+	return results
 	cur.close ()
 	conn.commit ()
 	conn.close ()
-#
-#
+
+
 # if __name__ == '__main__':
 # 	su = select_users ("xiangshang_test5")
 # 	print (str (su))

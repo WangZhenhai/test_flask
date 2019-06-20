@@ -11,33 +11,21 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/user_register" target="_blank">
                     <p>
+                        <input type="text" name="register">
                         <button class="btn btn-large btn-primary" type="submit">一键注册</button>
                     </p>
                 </form>
             </li>
-{#            <li class="col-sm-offset-0">#}
-{#                <form method="post" action="/user/user_mobile" target="_blank">#}
-{#                    <p>#}
-{#                        <button class="btn btn-large btn-primary" type="submit">生成手机号</button>#}
-{#                    </p>#}
-{#                </form>#}
-{#            </li>#}
-{#            <li class="col-sm-offset-0">#}
-{#                <form method="post" action="/user/real_info" target="_blank">#}
-{#                    <p>#}
-{#                        <button class="btn btn-large btn-primary" type="submit">生成实名信息</button>#}
-{#                    </p>#}
-{#                </form>#}
-{#            </li>#}
             <li class="col-sm-offset-0">
-                <form method="post" action="/user/bankcard" target="_blank">
+                <form method="post" action="/user/bankcard">
                     <p>
-                        <button class="btn btn-large btn-primary" type="submit">银行卡号</button>
+                        <input type="text" name="bankcard">
+                        <button class="btn btn-large btn-primary" type="submit">生成银行卡号</button>
                     </p>
                 </form>
             </li>
             <li class="col-sm-offset-0">
-                <form method="post" action="/user/transter_account" target="_blank">
+                <form method="post" action="/user/transter_account">
                     <p>
                         <input type="text" name="user_id">
                         <button class="btn btn-large btn-primary" type="submit">一键转账</button>
@@ -45,9 +33,10 @@
                 </form>
             </li>
             <li class="col-sm-offset-0">
-                <form method="post" action="/user/select_users" target="_blank">
+                <form method="post" action="/user/select_users">
                     <p>
-                        <button class="btn btn-large btn-primary" type="submit">一键查询</button><p>只查询最新注册的10个用户</p>
+                        <button class="btn btn-large btn-primary" type="submit">一键查询用户信息</button>
+                    <p>只查询最新注册的10个用户</p>
                     </p>
                 </form>
             </li>
