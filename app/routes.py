@@ -259,8 +259,8 @@ def traster_account():
 	db = current_user.xs
 	legal_db = current_user.xs_legal
 	user_id = request.values.get ('user_id')
-	if user_id == "":
-		flash ("用户user_id不能为空")
+	if user_id == "" or user_id.isdigit() is False:
+		flash ("用户user_id输入有误！")
 		return redirect (url_for ('lender'))
 	else:
 		user_id = str (user_id)
@@ -282,7 +282,7 @@ def select_users():
 	from src.select_users import select_users
 	db = current_user.xs
 	count = request.values.get("count")
-	if count =="":
+	if count =="" or count.isdigit() is False:
 		count=10
 	else:
 		count=count
