@@ -12,7 +12,7 @@ from src import host_mysql, user_mysql, passwd_mysql
 f = Faker (locale='zh_CN')
 
 auth = ('xiangshang', 'dx3vf~yDt6s57Dbfoo')
-headers = {'Content-Type': 'application/json', 'AppVersionCode': '73', 'deviceBrand': 'Xiaomi',
+headers = {'Content-Type': 'application/json', 'AppVersionCode': '105', 'deviceBrand': 'Xiaomi',
 		   'device': '02093A41-181E-40A3-A006-9E2D1AFD5664', 'appchannel': '1', 'platform_type': '2'}
 
 
@@ -132,3 +132,20 @@ def certification(url, name, id_card):
 	url_cert = url + '/user/setting//authIdCard'
 	params = {'realName': name, 'idCard': id_card}
 	r = session.post (url_cert, data=json.dumps (params), auth=auth, headers=headers)
+
+
+# 查询用户bank_user_id
+
+def bank_user_id(db, mobile):
+	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
+	cur = conn.cursor ()
+	sql = "select * from user where mobile =%d" % mobile
+	s = cur.execute (sql)
+	results = cur.fetchall ()
+	# return results
+	for i in results:
+		bank_user_id = i[-3]
+	cur.close ()
+	conn.commit ()
+	conn.close ()
+	return bank_user_id

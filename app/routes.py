@@ -190,8 +190,8 @@ def lender_msg():
 def see_lender_msg():
 	filename = request.values.get ("filename")
 	if filename == "":
-		flash ("文件名称为必填项，不能为空！")
-		return redirect (url_for ('lender_info'))
+		errmsg = "文件名称为必填项，不能为空！"
+		return render_template ("leader_info.html", errmsg=errmsg)
 	else:
 		with open (getcwd + '\\uploads\\' + current_user.username + "\\" + filename, encoding='utf8') as rf:
 			L = []
@@ -223,22 +223,57 @@ def user_register():
 	# file = "src/user_register.py"
 	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
 	from src.user_register import mobile, send_message, sub_reg_info, mysql_randomchar, insert_mobile, certification, \
-		realName, idCard, user_id, user_login
+		realName, idCard, user_id, user_login, bankCard
+
 	url = "http://" + str (current_user.username) + ".app.xs.sit/app"
+
 	db = current_user.xs
 	m = mobile ()
+	name = realName ()
+	idcard = idCard ()
+
 	# print (m)  # 输出生成手机号
 	send_message (url=url, mobile=m)  # 获取注册验证码
 	sub_reg_info (url=url, vilidata=mysql_randomchar (m, db=db), mobile=m)  # 注册
 	insert_mobile (mobile=m, db=db)  # 更新user表mobile字段
 	# print (user_id (mobile=m, db=db))  # 打印user_id
-	# print (bankCard ())  # 打印银行卡号
+	bankcard = bankCard ()  # 打印银行卡号
 	user_login (url=url, mobile=m, password='96e79218965eb72c92a549dd5a330112')  # 登录
-	certification (url=url, name=realName (), id_card=idCard ())  # 实名
+	certification (url=url, name=name, id_card=idcard)  # 实名
+	# login_web (mobile_number=m, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
+	# open_bank_depository (web_url)
+	# bank_account (card_num=bankcard, mobile_number=m)
+	# bank_user_id = bank_user_id (db=db, mobile=m)
 	info_list = []  # 输出用户信息
 	info_list.append (user_id (mobile=m, db=db))
 	info_list.append (m)
+	info_list.append (name)
+	info_list.append (idcard)
+	# info_list.append (bank_user_id)
 	return render_template ("lender.html", register_info=str (info_list))
+
+
+@login_required
+@app.route ('/user/openbank',methods=['POST'])
+def openbank():
+	from src.openbank_v2 import login_web, open_bank_depository, bank_account
+	from src.user_register import bank_user_id, bankCard
+	db = current_user.xs
+	web_url = "http://" + str (current_user.username) + ".www.xs.sit/xweb"
+	openbank_mobile = request.values.get ("openbank")
+	if openbank_mobile == "":
+		msg = "手机号码必填"
+		return render_template ("lender.html", msg=msg)
+	elif openbank_mobile.isdigit () is False:
+		msg = "手机号格式错误"
+		return render_template ("lender.html", msg=msg)
+	else:
+		login_web (mobile_number=openbank_mobile, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
+		open_bank_depository (web_url)
+		bankcard = bankCard ()
+		bank_account (card_num=bankcard, mobile_number=openbank_mobile)
+		msg = bank_user_id (db=db, mobile=openbank_mobile)
+		return render_template ("lender.html", msg=msg)
 
 
 # 生成银行卡
@@ -259,20 +294,20 @@ def traster_account():
 	db = current_user.xs
 	legal_db = current_user.xs_legal
 	user_id = request.values.get ('user_id')
-	if user_id == "" or user_id.isdigit() is False:
-		flash ("用户user_id输入有误！")
-		return redirect (url_for ('lender'))
+	if user_id == "" or user_id.isdigit () is False:
+		errmsg = "用户user_id输入有误！"
+		return render_template ("lender.html", errmsg=errmsg)
 	else:
 		user_id = str (user_id)
 		if update_user_account (user_id=user_id, legal_db=legal_db) != "转账完成":
-			flash ("user_id在user_account中不存在或该用户未开通银行存管")
-			return redirect (url_for ('lender'))
+			errmsg = "user_id在user_account中不存在或该用户未开通银行存管"
+			return render_template ("lender.html", errmsg=errmsg)
 		elif update_user_point (user_id=user_id, db=db) != "转账完成":
-			flash ("user_id在user_point中不存在")
-			return redirect (url_for ('lender'))
+			errmsg = "user_id在user_point中不存在"
+			return render_template ("lender.html", errmsg=errmsg)
 		else:
-			flash ("转账完成！")
-			return redirect (url_for ('lender'))
+			msg = ("转账完成！")
+			return render_template ("lender.html", errmsg=msg)
 
 
 # 用户查询（最新注册的10个用户）
@@ -281,12 +316,12 @@ def traster_account():
 def select_users():
 	from src.select_users import select_users
 	db = current_user.xs
-	count = request.values.get("count")
-	if count =="" or count.isdigit() is False:
-		count=10
+	count = request.values.get ("count")
+	if count == "" or count.isdigit () is False:
+		count = 10
 	else:
-		count=count
-	su = select_users (db=db,count=int(count))
+		count = count
+	su = select_users (db=db, count=int (count))
 	return render_template ("select_users.html", su=su)
 
 

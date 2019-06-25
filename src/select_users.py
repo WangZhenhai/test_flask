@@ -11,13 +11,6 @@ def select_users(db, count):
 	sql = "select * from user order by id desc limit %d" % count
 	s = cur.execute (sql)
 	results = cur.fetchall ()
-	list = []
-	# list.clear ()
-	for row in results:
-		user_id = row[0]
-		mobile = row[4]
-		list.append (user_id)
-		list.append (mobile)
 	return results
 	cur.close ()
 	conn.commit ()

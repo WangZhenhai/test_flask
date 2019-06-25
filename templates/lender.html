@@ -13,14 +13,23 @@
                     <p>
                         <input type="text" name="register" placeholder="此项选填">
                         <button class="btn btn-large btn-primary" type="submit">一键注册</button>
-                        <strong>{{ register_info }}</strong>
+                        <strong style="color:red;">{{ register_info }}</strong>
+                    </p>
+                </form>
+            </li>
+            <li class="col-sm-offset-0">
+                <form method="post" action="/user/openbank">
+                    <p>
+                        <input type="text" name="openbank" placeholder="此项必填">
+                        <button class="btn btn-large btn-primary" type="submit">一键开户</button>
+                        <strong style="color: red">{{ msg }}</strong>
                     </p>
                 </form>
             </li>
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/bankcard">
                     <p>
-                        <input type="text" name="bankcard" value="{{ bankcard }}" placeholder="默认招商银行">
+                        <input type="text" name="bankcard" value="{{ bankcard }}" placeholder="默认招商银行" style="color: red">
                         <button class="btn btn-large btn-primary" type="submit">生成银行卡号</button>
                     </p>
                 </form>
@@ -30,6 +39,7 @@
                     <p>
                         <input type="text" name="user_id" placeholder="此项必填">
                         <button class="btn btn-large btn-primary" type="submit">一键转账</button>
+                        <strong style="color: red">{{ errmsg }}</strong>
                     </p>
                 </form>
             </li>
@@ -37,7 +47,17 @@
                 <form method="post" action="/user/select_users">
                     <p>
                         <input type="text" name="count" placeholder="此项选填">
-                        <button class="btn btn-large btn-primary" type="submit">一键查询用户信息</button>（默认只查询最新注册的10个用户）
+                        <button class="btn btn-large btn-primary" type="submit">一键查询用户信息</button>
+                        （默认只查询最新注册的10个用户）
+                    </p>
+                </form>
+            </li>
+            <li class="col-sm-offset-0">
+                <form method="post" action="/user/del_order">
+                    <p>
+                        <input type="text" name="del_user_id" placeholder="此项必填">
+                        <button class="btn btn-large btn-primary" type="submit">一键清空用户订单</button>
+                        （该功能会删除该用户的所有订单）
                     </p>
                 </form>
             </li>

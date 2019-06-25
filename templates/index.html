@@ -240,7 +240,6 @@
             }
         </style>
         <link rel="stylesheet" type="text/css" href="/static/bootstrap-3.3.7/css/bootstrap.min.css">
-
         <script type="text/javascript" src="/static/jquery-3.2.1.min.js"></script>
         <script>
             $(function () {
@@ -280,11 +279,8 @@
                 });
             });
         </script>
-
     </head>
-
     <body>
-
     <div class="nav">
         <div class="nav-top">
             <div id="mini" class="nav-toptxt">≡</div>
@@ -369,47 +365,17 @@
                            target="_blank"><span>Jenkins地址</span></a>
                     </li>
                     <li>
+                        <a href="http://172.25.1.5:30880/" target="_blank">
+                            <span>KubeSphere部署地址</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="http://10.200.0.72:11987/generateData/generateRandomPeopleInfo" target="_blank"><span>生成四要素</span></a>
                     </li>
                 </ul>
             </li>
         </ul>
     </div>
-    {#    <script>#}
-    {#        $(function () {#}
-    {#            var navList = [#}
-    {#                {#}
-    {#                    "p": "平台访问地址",#}
-    {#                    "c": ["兴庆区", "金凤区"]#}
-    {#                },#}
-    {#                {#}
-    {#                    "p": "借款信息类",#}
-    {#                    "c": ["大武口区", "惠农区"]#}
-    {#                },#}
-    {#                {#}
-    {#                    "p": "定时任务类",#}
-    {#                    "c": []#}
-    {#                }, {#}
-    {#                    "p": "环境查询类",#}
-    {#                    "c": []#}
-    {#                }#}
-    {#                , {#}
-    {#                    "p": "其他分类",#}
-    {#                    "c": []#}
-    {#                }#}
-    {#            ]#}
-    {#            var navData = '';#}
-    {#            for (let i = 0; i < navList.length; i++) {#}
-    {#                navData += "<li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>" + navList[i].p + "</span><i class='my-icon nav-more'></i></a><ul>"#}
-    {#                for (let w = 0; w < navList[i].c.length; w++) {#}
-    {#                    navData += "<li><a href='javascript:;'><span>" + navList[i].c[w] + "</span></a></li>"#}
-    {#                }#}
-    {#                navData += "</ul></li>"#}
-    {#            }#}
-    {#            console.log(navData)#}
-    {#            $('#aat').html(navData)#}
-    {#        })#}
-    {#    </script>#}
 {% endblock %}
 </body>
 </html>

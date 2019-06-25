@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+        .errstyle {
+            border: 1px solid red;
+        }
+
+        .bor {
+            border: 1px solid #C0C0C0;
+        }
+    </style>
+    <script type="text/javascript">
+        //检查select
+        function checkSelect(obj) {
+            var val = obj.value;
+            if (val == "0") {
+                obj.className = "errstyle";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        //检查input
+        function checkInput(obj) {
+            var val = obj.value;
+            //这个地方需要处理一下空格
+            if (val == "") {
+                obj.className = "errstyle";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        //获取焦点时清除错误
+        function clearerr(obj) {
+            if (obj.className = "errstyle") {
+                obj.className = "bor";
+            }
+        }
+
+        //提交校验
+        function dosubmit() {
+            var select1 = checkSelect(document.getElementById('select1'));
+            var select2 = checkSelect(document.getElementById('select2'));
+            var input1 = checkInput(document.getElementById('input1'));
+            var input2 = checkInput(document.getElementById('input2'));
+
+            if (select1 && select2 && input1 && input2) {
+                //提交表单代码
+                alert("验证通过可以提交表单");
+            } else {
+                alert("验证不通过不能提交");
+            }
+        }
+    </script>
+</head>
+<body>
+<form id="myform" name="myform" method="post" action=''>
+    <p>select1：
+        <select id="select1" name="select1" class="bor" onfocus="clearerr(this);">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="4">4</option>
+        </select>
+    </p>
+    <p>select2：
+        <select id="select2" name="select2" class="bor" onfocus="clearerr(this);">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="4">4</option>
+        </select>
+    </p>
+    <p>input1：<input type="text" id="input1" name="input1" value="" class="bor" onfocus="clearerr(this);"></p>
+    <p>input2：<input type="text" id="input2" name="input2" value="" class="bor" onfocus="clearerr(this);"></p>
+    <input type="button" onclick="dosubmit();" value="提交"/>
+</form>
+</body>
+</html>
