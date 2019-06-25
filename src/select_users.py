@@ -1,12 +1,12 @@
 # encoding=utf-8
 # Note:查询最新注册的10个用户
-import MySQLdb
+import pymysql
 
-from src.user_register import host_mysql, user_mysql, passwd_mysql
+from src import host_mysql, user_mysql, passwd_mysql
 
 
 def select_users(db, count):
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
+	conn = pymysql.connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=db)
 	cur = conn.cursor ()
 	sql = "select * from user order by id desc limit %d" % count
 	s = cur.execute (sql)

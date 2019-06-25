@@ -16,7 +16,7 @@ class LoginForm (FlaskForm):
 
 class RegisterationForm (FlaskForm):
 	username = StringField ('用户名', validators=[DataRequired (message='请输入注册用户名')])
-	email = StringField ('邮箱', validators=[DataRequired (message='请输入注册邮箱地址'), Email ()])
+	# email = StringField ('邮箱', validators=[DataRequired (message='请输入注册邮箱地址'), Email ()])
 	password = PasswordField ('密码', validators=[DataRequired (message='请输入注册密码')])
 	password2 = PasswordField ('重复密码', validators=[DataRequired (message='请再次输入注册密码'), EqualTo ('password')])
 	submit = SubmitField ('注册')
@@ -28,10 +28,10 @@ class RegisterationForm (FlaskForm):
 			raise ValidationError ('用户名重复了，请您重新输入!')
 
 	# 校验邮箱是否重复
-	def validate_email(self, email):
-		user = User.query.filter_by (email=email.data).first ()
-		if user is not None:
-			raise ValidationError ('邮箱重复了，请您重新输入!')
+	# def validate_email(self, email):
+	# 	user = User.query.filter_by (email=email.data).first ()
+	# 	if user is not None:
+	# 		raise ValidationError ('邮箱重复了，请您重新输入!')
 
 
 class EditProfileForm (FlaskForm):

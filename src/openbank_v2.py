@@ -6,8 +6,6 @@ import time
 import requests
 from selenium import webdriver
 
-web_url = "http://test5.www.xs.sit/xweb"
-
 session = requests.Session ()
 
 
@@ -116,12 +114,14 @@ def bank_account(card_num, mobile_number):
 	driver.find_element_by_id ('SubmitButton').click ()
 	time.sleep (10)
 
-	driver.close ()  #
-#
-# if __name__ == '__main__':
-# 	mobile = '18631889152'
-# 	passwd = '96e79218965eb72c92a549dd5a330112'
-# 	banknum = '6225882688804802'
-# 	login_web (mobile_number=mobile, password=passwd, web_url=web_url)
-# 	open_bank_depository (web_url=web_url)
-# 	bank_account (card_num=banknum, mobile_number=mobile)
+	driver.close ()
+
+
+if __name__ == '__main__':
+	web_url = "http://test5.www.xs.sit/xweb"
+	mobile = '15020571302'
+	passwd = '96e79218965eb72c92a549dd5a330112'
+	banknum = '6225886340144038'
+	login_web (mobile_number=mobile, password=passwd, web_url=web_url)
+	open_bank_depository (web_url=web_url)
+	bank_account (card_num=banknum, mobile_number=mobile)
