@@ -11,7 +11,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/user_register">
                     <p>
-                        <input type="text" name="register" placeholder="此项选填">
+                        <input type="text" name="register" placeholder="请输入注册的手机号(选填)" style="width: 200px;">
                         <button class="btn btn-large btn-primary" type="submit">一键注册/开户</button>
                         <strong style="color:red;">{{ register_info }}</strong>
                     </p>
@@ -20,8 +20,9 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/openbank">
                     <p>
-                        <input type="text" name="openbank" placeholder="此项必填">
-                        <button class="btn btn-large btn-primary" type="submit">一键开户</button>（备用功能）
+                        <input type="text" name="openbank" placeholder="请输入已注册的手机号(必填)" style="width: 200px;">
+                        <button class="btn btn-large btn-primary" type="submit">一键开户</button>
+                        （备用功能）
                         <strong style="color: red">{{ msg }}</strong>
                     </p>
                 </form>
@@ -30,7 +31,7 @@
                 <form method="post" action="/user/bankcard">
                     <p>
                         <input type="text" name="bankcard" value="{{ bankcard }}" placeholder="默认招商银行"
-                               style="color: red">
+                               style="color: red;width: 200px;">
                         <button class="btn btn-large btn-primary" type="submit">生成银行卡号</button>
                     </p>
                 </form>
@@ -38,7 +39,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/transter_account">
                     <p>
-                        <input type="text" name="user_id" placeholder="此项必填">
+                        <input type="text" name="user_id" placeholder="请输入用户ID(必填)" style="width: 200px;">
                         <button class="btn btn-large btn-primary" type="submit">一键转账</button>
                         <strong style="color: red">{{ errmsg }}</strong>
                     </p>
@@ -47,7 +48,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/select_users">
                     <p>
-                        <input type="text" name="count" placeholder="此项选填">
+                        <input type="text" name="count" placeholder="请输入查询条数(选填)" style="width: 200px;">
                         <button class="btn btn-large btn-primary" type="submit">一键查询用户信息</button>
                         （默认只查询最新注册的10个用户）
                     </p>
@@ -56,7 +57,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/del_order">
                     <p>
-                        <input type="text" name="del_user_order" placeholder="此项必填">
+                        <input type="text" name="del_user_order" placeholder="请输入用户ID（必填）" style="width: 200px;">
                         <button class="btn btn-large btn-primary" type="submit">一键清空用户订单</button>
                         <strong style="color: red">{{ del_msg }}</strong>
                         （该功能会删除该用户的所有订单）
