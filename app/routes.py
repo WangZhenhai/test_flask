@@ -313,6 +313,23 @@ def traster_account():
 			return render_template ("lender.html", errmsg=msg)
 
 
+# 通过用户id查询该用户的相关信息
+@login_required
+@app.route ('/user/user_info', methods=['POST'])
+def user_info():
+	from src.select_users import select_all
+	db = current_user.xs
+	legal_db = current_user.xs_legal
+	user_id = request.values.get ('user_info')
+	if user_id == "" or user_id.isdigit () is False:
+		u_msg = "用户user_id输入有误！"
+		return render_template ("lender.html", u_msg=u_msg)
+	else:
+		user_id = str (user_id)
+		sa = select_all (xs_db=db, legal_db=legal_db, user_id=user_id)
+		return render_template ("user_info.html", sa=sa)
+
+
 # 用户查询（最新注册的10个用户）
 @login_required
 @app.route ('/user/select_users', methods=['POST'])
