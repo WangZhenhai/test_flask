@@ -1,3 +1,4 @@
+import logging
 import sys
 from datetime import datetime
 
@@ -257,9 +258,10 @@ def user_register():
 @app.route ('/user/openbank', methods=['POST'])
 def openbank():
 	from src.openbank_v2 import login_web, open_bank_depository, bank_account
-	from src.user_register import bank_user_id, bankCard
+	from src.user_register import bankCard
 	db = current_user.xs
 	web_url = "http://" + str (current_user.username) + ".www.xs.sit/xweb"
+	bankcard = bankCard ()
 	openbank_mobile = request.values.get ("openbank")
 	if openbank_mobile == "":
 		msg = "手机号码必填"
@@ -268,12 +270,11 @@ def openbank():
 		msg = "手机号格式错误"
 		return render_template ("lender.html", msg=msg)
 	else:
-		login_web (mobile_number=openbank_mobile, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
+		mobile = openbank_mobile
+		login_web (mobile_number=mobile, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
 		open_bank_depository (web_url=web_url)
-		bankcard = bankCard ()
-		bank_account (card_num=bankcard, mobile_number=openbank_mobile)
-		msg = bank_user_id (db=db, mobile=openbank_mobile)
-		return render_template ("lender.html", msg=msg)
+		bank_account (card_num=bankcard, mobile_number=mobile)
+		return render_template ("lender.html")
 
 
 # 生成银行卡

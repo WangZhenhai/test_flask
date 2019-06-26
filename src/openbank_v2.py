@@ -38,7 +38,7 @@ def open_bank_depository(web_url):
 	returnurl = bank_request_vo['returnurl']
 	NOTIFYURL = bank_request_vo['NOTIFYURL']
 	userType = bank_request_vo['userType']
-	f = open ('r.html', 'w')
+	f = open ('D:\\我的工作空间\\Flask_blog\\src\\r.html', 'w')
 	bank_service_url = '''<form id="PayForm" name="PayForm"
       action=''' + bankServiceUrl + ''' autocomplete="off" method="post">'''
 	f.write (bank_service_url)
@@ -116,12 +116,12 @@ def bank_account(card_num, mobile_number):
 
 	driver.close ()
 
-
-if __name__ == '__main__':
-	web_url = "http://test5.www.xs.sit/xweb"
-	mobile = '15020571302'
-	passwd = '96e79218965eb72c92a549dd5a330112'
-	banknum = '6225886340144038'
-	login_web (mobile_number=mobile, password=passwd, web_url=web_url)
-	open_bank_depository (web_url=web_url)
-	bank_account (card_num=banknum, mobile_number=mobile)
+#
+# if __name__ == '__main__':
+# 	web_url = "http://" + list[0] + ".www.xs.sit/xweb"
+# 	mobile = list[1]
+# 	passwd = '96e79218965eb72c92a549dd5a330112'
+# 	banknum = '6225886340144038'
+# 	login_web (mobile_number=mobile, password=passwd, web_url=web_url)
+# 	open_bank_depository (web_url=web_url)
+# 	bank_account (card_num=banknum, mobile_number=mobile)
