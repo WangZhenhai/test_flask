@@ -19,8 +19,6 @@
                     <li class="col-sm-10"><a href="{{ url_for('lender_info') }}" style="font-size: 15px;">理财人信息</a></li>
                     <li class="col-sm-10"><a href="{{ url_for('borrowers_info') }}" style="font-size: 15px;">借款人信息</a>
                     </li>
-                    <li class="col-sm-10"><a href="{{ url_for('lender') }}"
-                                             style="font-size: 15px;"><strong>理财人信息(新)</strong></a></li>
                     {% if user.last_seen %}<p class="col-sm-10">最近登录: {{ user.last_seen }}</p>{% endif %}
                     <p class="col-sm-10">当前登录IP：<strong>{{ user.last_ip }}</strong></p>
                 {% endif %}

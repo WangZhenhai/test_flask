@@ -233,6 +233,8 @@ def user_register():
 	m = mobile ()
 	name = realName ()
 	idcard = idCard ()
+	# name = "刘宪鹏"
+	# idcard = "130430199312290159"
 
 	# print (m)  # 输出生成手机号
 	send_message (url=url, mobile=m)  # 获取注册验证码
