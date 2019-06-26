@@ -253,6 +253,7 @@ def user_register():
 	return render_template ("lender.html", register_info=str (info_list))
 
 
+# 备用银行开户（一键开户）
 @login_required
 @app.route ('/user/openbank', methods=['POST'])
 def openbank():
@@ -288,11 +289,12 @@ def bankcard():
 @login_required
 @app.route ('/user/transter_account', methods=['POST'])
 def traster_account():
-	from src.transfer_account import update_user_account
-	from src.transfer_account import update_user_point
+	from src.transfer_account import update_user_account, update_user_point, recharge5425
+	from src.select_users import bank_user_id
 	db = current_user.xs
 	legal_db = current_user.xs_legal
 	user_id = request.values.get ('user_id')
+	backend_ip = current_user.backend_ip
 	if user_id == "" or user_id.isdigit () is False:
 		errmsg = "用户user_id输入有误！"
 		return render_template ("lender.html", errmsg=errmsg)
@@ -305,6 +307,8 @@ def traster_account():
 			errmsg = "user_id在user_point中不存在"
 			return render_template ("lender.html", errmsg=errmsg)
 		else:
+			bank_user_id = bank_user_id (legal_db=legal_db, user_id=user_id)
+			recharge5425 (backend_ip=backend_ip, bank_user_id=bank_user_id)
 			msg = ("转账完成！")
 			return render_template ("lender.html", errmsg=msg)
 
