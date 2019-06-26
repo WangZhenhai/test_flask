@@ -5,14 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/user_register.py" line="108" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9da09351-b3d9-4113-8142-4e133d932117" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/r.html" beforeDir="false" afterPath="$PROJECT_DIR$/r.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/r.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/r.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lender.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lender.html" afterDir="false" />
-    </list>
+    <list default="true" id="9da09351-b3d9-4113-8142-4e133d932117" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -147,8 +140,8 @@
       <file leaf-file-name="user.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="13" column="80" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="80" />
+            <state relative-caret-position="500">
+              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#li#0;n#td#0;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -187,8 +180,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4723">
-              <caret line="153" column="43" lean-forward="true" selection-start-line="153" selection-start-column="43" selection-end-line="153" selection-end-column="43" />
+            <state relative-caret-position="427">
+              <caret line="390" column="21" lean-forward="true" selection-start-line="390" selection-start-column="21" selection-end-line="390" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -249,7 +242,6 @@
         <option value="$PROJECT_DIR$/test/user_certification.py" />
         <option value="$PROJECT_DIR$/test/__init__.py" />
         <option value="$PROJECT_DIR$/src/user_certification.py" />
-        <option value="$PROJECT_DIR$/templates/user.html" />
         <option value="$PROJECT_DIR$/app/__init__.py" />
         <option value="$PROJECT_DIR$/templates/test_input.html" />
         <option value="$PROJECT_DIR$/templates/select_user.html" />
@@ -273,6 +265,7 @@
         <option value="$PROJECT_DIR$/templates/user_info.html" />
         <option value="$PROJECT_DIR$/app/routes.py" />
         <option value="$PROJECT_DIR$/templates/lender.html" />
+        <option value="$PROJECT_DIR$/templates/user.html" />
         <option value="$PROJECT_DIR$/templates/index.html" />
       </list>
     </option>
@@ -726,7 +719,21 @@
       <option name="project" value="LOCAL" />
       <updated>1561540498144</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="更改lender页面访问地址">
+      <created>1561549320526</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1561549320526</updated>
+    </task>
+    <task id="LOCAL-00034" summary="更改lender页面访问地址">
+      <created>1561549369410</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1561549369411</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TodoView">
@@ -802,7 +809,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update base.html" />
     <MESSAGE value="update index.html" />
     <MESSAGE value="删除注册邮箱" />
     <MESSAGE value="更改部署地址分类" />
@@ -827,7 +833,8 @@
     <MESSAGE value="添加一键转账调5425接口" />
     <MESSAGE value="添加通过用户id查询基本信息" />
     <MESSAGE value="调整lender页面" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整lender页面" />
+    <MESSAGE value="更改lender页面访问地址" />
+    <option name="LAST_COMMIT_MESSAGE" value="更改lender页面访问地址" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1194,8 +1201,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/user.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="80" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="80" />
+        <state relative-caret-position="500">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
           <folding>
             <element signature="n#style#0;n#a#0;n#li#0;n#td#0;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -1204,8 +1211,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4723">
-          <caret line="153" column="43" lean-forward="true" selection-start-line="153" selection-start-column="43" selection-end-line="153" selection-end-column="43" />
+        <state relative-caret-position="427">
+          <caret line="390" column="21" lean-forward="true" selection-start-line="390" selection-start-column="21" selection-end-line="390" selection-end-column="21" />
         </state>
       </provider>
     </entry>
