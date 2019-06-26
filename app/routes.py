@@ -225,9 +225,10 @@ def user_register():
 	# return decode (subprocess.check_output ([exec, file], stderr=subprocess.STDOUT, timeout=30))
 	from src.user_register import mobile, send_message, sub_reg_info, mysql_randomchar, insert_mobile, certification, \
 		realName, idCard, user_id, user_login, bankCard
+	from src.openbank_v2 import login_web, open_bank_depository, bank_account
 
 	url = "http://" + str (current_user.username) + ".app.xs.sit/app"
-
+	web_url = "http://" + str (current_user.username) + ".www.xs.sit/xweb"
 	db = current_user.xs
 	m = mobile ()
 	name = realName ()
@@ -241,16 +242,14 @@ def user_register():
 	bankcard = bankCard ()  # 打印银行卡号
 	user_login (url=url, mobile=m, password='96e79218965eb72c92a549dd5a330112')  # 登录
 	certification (url=url, name=name, id_card=idcard)  # 实名
-	# login_web (mobile_number=m, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
-	# open_bank_depository (web_url)
-	# bank_account (card_num=bankcard, mobile_number=m)
-	# bank_user_id = bank_user_id (db=db, mobile=m)
+	login_web (mobile_number=m, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
+	open_bank_depository (web_url)
+	bank_account (card_num=bankcard, mobile_number=m)
 	info_list = []  # 输出用户信息
 	info_list.append (user_id (mobile=m, db=db))
 	info_list.append (m)
 	info_list.append (name)
 	info_list.append (idcard)
-	# info_list.append (bank_user_id)
 	return render_template ("lender.html", register_info=str (info_list))
 
 
@@ -259,7 +258,6 @@ def user_register():
 def openbank():
 	from src.openbank_v2 import login_web, open_bank_depository, bank_account
 	from src.user_register import bankCard
-	db = current_user.xs
 	web_url = "http://" + str (current_user.username) + ".www.xs.sit/xweb"
 	bankcard = bankCard ()
 	openbank_mobile = request.values.get ("openbank")
