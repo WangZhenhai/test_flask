@@ -230,6 +230,9 @@ def user_register():
 	url = "http://" + str (current_user.username) + ".app.xs.sit/app"
 	web_url = "http://" + str (current_user.username) + ".www.xs.sit/xweb"
 	db = current_user.xs
+	host_mysql = current_user.db_ip
+	user_mysql = current_user.mysql_u
+	passwd_mysql = current_user.mysql_p
 	m = mobile ()
 	name = realName ()
 	idcard = idCard ()
@@ -238,8 +241,10 @@ def user_register():
 
 	# print (m)  # 输出生成手机号
 	send_message (url=url, mobile=m)  # 获取注册验证码
-	sub_reg_info (url=url, vilidata=mysql_randomchar (m, db=db), mobile=m)  # 注册
-	insert_mobile (mobile=m, db=db)  # 更新user表mobile字段
+	sub_reg_info (url=url, vilidata=mysql_randomchar (m, db=db, host_mysql=host_mysql, user_mysql=user_mysql,
+													  passwd_mysql=passwd_mysql), mobile=m)  # 注册
+	insert_mobile (mobile=m, db=db, host_mysql=host_mysql, user_mysql=user_mysql,
+				   passwd_mysql=passwd_mysql)  # 更新user表mobile字段
 	# print (user_id (mobile=m, db=db))  # 打印user_id
 	bankcard = bankCard ()  # 打印银行卡号
 	user_login (url=url, mobile=m, password='96e79218965eb72c92a549dd5a330112')  # 登录
@@ -295,6 +300,9 @@ def traster_account():
 	from src.select_users import bank_user_id
 	db = current_user.xs
 	legal_db = current_user.xs_legal
+	host_mysql = current_user.db_ip
+	user_mysql = current_user.mysql_u
+	passwd_mysql = current_user.mysql_p
 	user_id = request.values.get ('user_id')
 	backend_ip = current_user.backend_ip
 	if user_id == "" or user_id.isdigit () is False:
@@ -302,14 +310,17 @@ def traster_account():
 		return render_template ("lender.html", errmsg=errmsg)
 	else:
 		user_id = str (user_id)
-		if update_user_account (user_id=user_id, legal_db=legal_db) != "转账完成":
+		if update_user_account (user_id=user_id, legal_db=legal_db, host_mysql=host_mysql, user_mysql=user_mysql,
+								passwd_mysql=passwd_mysql) != "转账完成":
 			errmsg = "user_id在user_account中不存在或该用户未开通银行存管"
 			return render_template ("lender.html", errmsg=errmsg)
-		elif update_user_point (user_id=user_id, db=db) != "转账完成":
+		elif update_user_point (user_id=user_id, db=db, host_mysql=host_mysql, user_mysql=user_mysql,
+								passwd_mysql=passwd_mysql) != "转账完成":
 			errmsg = "user_id在user_point中不存在"
 			return render_template ("lender.html", errmsg=errmsg)
 		else:
-			bank_user_id = bank_user_id (legal_db=legal_db, user_id=user_id)
+			bank_user_id = bank_user_id (legal_db=legal_db, user_id=user_id, host_mysql=host_mysql,
+										 user_mysql=user_mysql, passwd_mysql=passwd_mysql)
 			recharge5425 (backend_ip=backend_ip, bank_user_id=bank_user_id)
 			msg = ("转账完成！")
 			return render_template ("lender.html", errmsg=msg)
@@ -322,13 +333,17 @@ def user_info():
 	from src.select_users import select_all
 	db = current_user.xs
 	legal_db = current_user.xs_legal
+	host_mysql = current_user.db_ip
+	user_mysql = current_user.mysql_u
+	passwd_mysql = current_user.mysql_p
 	user_id = request.values.get ('user_info')
 	if user_id == "" or user_id.isdigit () is False:
 		u_msg = "用户user_id输入有误！"
 		return render_template ("lender.html", u_msg=u_msg)
 	else:
 		user_id = str (user_id)
-		sa = select_all (xs_db=db, legal_db=legal_db, user_id=user_id)
+		sa = select_all (xs_db=db, legal_db=legal_db, user_id=user_id, host_mysql=host_mysql, user_mysql=user_mysql,
+						 passwd_mysql=passwd_mysql)
 		return render_template ("user_info.html", sa=sa)
 
 
@@ -337,14 +352,19 @@ def user_info():
 @app.route ('/user/select_users', methods=['POST'])
 def select_users():
 	from src.select_users import select_users
+	from src.decrypts import decrypts
 	db = current_user.xs
+	host_mysql = current_user.db_ip
+	user_mysql = current_user.mysql_u
+	passwd_mysql = current_user.mysql_p
 	count = request.values.get ("count")
 	if count == "" or count.isdigit () is False:
 		count = 10
 	else:
 		count = count
-	su = select_users (db=db, count=int (count))
-	return render_template ("select_users.html", su=su)
+	su = select_users (db=db, count=int (count), host_mysql=host_mysql, user_mysql=user_mysql,
+					   passwd_mysql=passwd_mysql)
+	return render_template ("select_users.html", su=su, decrypts_mobile="decrypts_mobile")
 
 
 # 删除用户订单（还原新用户）
@@ -354,13 +374,17 @@ def del_user_order():
 	from src.del_user_order import del_xs, del_legal
 	xs_db = current_user.xs
 	legal_db = current_user.xs_legal
+	host_mysql = current_user.db_ip
+	user_mysql = current_user.mysql_u
+	passwd_mysql = current_user.mysql_p
 	user_id = request.values.get ("del_user_order")
 	if user_id == "" or user_id.isdigit () is False:
 		del_msg = "user_id不能为空或输入格式错误"
 		return render_template ("lender.html", del_msg=del_msg)
 	else:
-		del_xs (user_id=user_id, xs_db=xs_db)
-		del_legal (user_id=user_id, legal_db=legal_db)
+		del_xs (user_id=user_id, xs_db=xs_db, host_mysql=host_mysql, user_mysql=user_mysql, passwd_mysql=passwd_mysql)
+		del_legal (user_id=user_id, legal_db=legal_db, host_mysql=host_mysql, user_mysql=user_mysql,
+				   passwd_mysql=passwd_mysql)
 		del_msg = "删除完成"
 		return render_template ("lender.html", del_msg=del_msg)
 

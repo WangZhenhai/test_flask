@@ -2,14 +2,12 @@
 # Note:查询最新注册的10个用户
 import pymysql
 
-from src import host_mysql, user_mysql, passwd_mysql
-
 
 # 查询用户信息
-def select_users(db, count):
+def select_users(db, count, host_mysql, user_mysql, passwd_mysql):
 	conn = pymysql.connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=db)
 	cur = conn.cursor ()
-	sql = "select * from user order by id desc limit %d" % count
+	sql = "select id,mobile,crypt_mobile,bank_user_id from user order by id desc limit %s" % count
 	s = cur.execute (sql)
 	results = cur.fetchall ()
 	return results
@@ -19,7 +17,7 @@ def select_users(db, count):
 
 
 # 查询bank_user_id
-def bank_user_id(legal_db, user_id):
+def bank_user_id(legal_db, user_id, host_mysql, user_mysql, passwd_mysql):
 	conn = pymysql.connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=legal_db)
 	cur = conn.cursor ()
 	sql = "select * from user_account where user_id= %s" % user_id
@@ -34,14 +32,14 @@ def bank_user_id(legal_db, user_id):
 	conn.close ()
 
 
-def select_all(xs_db, legal_db, user_id):
-	list = []
+def select_all(xs_db, legal_db, user_id, host_mysql, user_mysql, passwd_mysql):
 	conn_xs = pymysql.connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=xs_db)
 	cur_xs = conn_xs.cursor ()
-	sql_xs = "select user.id,user.mobile,user.bank_user_id,user_point.available_points from user,user_point where user.id=user_point.user_id and user.id = %s" % user_id
+	sql_xs = "select user.id,user.mobile,user.bank_user_id,user_point.available_points from user,user_point where user.id=user_point.user_id and user.id =%s" % user_id
 	cur_xs.execute (sql_xs)
 	conn_xs.commit ()
 	results_xs = cur_xs.fetchall ()
+	list = []
 	for i in results_xs:
 		list.append (i[0])
 		list.append (i[1])
@@ -60,10 +58,7 @@ def select_all(xs_db, legal_db, user_id):
 		list.append (i[0])
 	cur_legal.close ()
 	conn_legal.close ()
-
-	return list
-
-
-# if __name__ == '__main__':
-# 	s = select_all ("xiangshang_test5", "xiangshang_legal_test5", "6525781")
-# 	print (s)
+	return list  #
+if __name__ == '__main__':
+	s = select_users ("xiangshang_test11", "10","172.25.1.45","test_rw","test_rw")
+	print (s)

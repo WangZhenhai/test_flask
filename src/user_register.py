@@ -7,8 +7,6 @@ import requests
 from faker import Faker
 import random as r
 
-from src import host_mysql, user_mysql, passwd_mysql
-
 f = Faker (locale='zh_CN')
 
 auth = ('xiangshang', 'dx3vf~yDt6s57Dbfoo')
@@ -27,7 +25,7 @@ def send_message(url, mobile):
 # print (r.text)
 
 # 查询验证码
-def mysql_randomchar(mobile, db):
+def mysql_randomchar(mobile, db,host_mysql, user_mysql, passwd_mysql):
 	# conn= MySQLdb.connect('10.40.1.25','zhangmeijia','Q84mFosl5P','xiangshang_test7')
 	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
@@ -43,7 +41,7 @@ def mysql_randomchar(mobile, db):
 
 
 # 把生成的手机号更新到user表
-def insert_mobile(mobile, db):
+def insert_mobile(mobile, db,host_mysql, user_mysql, passwd_mysql):
 	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "update user set mobile='" + mobile + "' order by id desc limit 1"
@@ -53,7 +51,7 @@ def insert_mobile(mobile, db):
 	conn.close ()
 
 
-def user_id(mobile, db):
+def user_id(mobile, db,host_mysql, user_mysql, passwd_mysql):
 	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "select * from user where mobile='" + mobile + "'"

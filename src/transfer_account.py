@@ -5,7 +5,6 @@
 import MySQLdb
 import requests
 
-from src import host_mysql, user_mysql, passwd_mysql
 
 
 def recharge5425(backend_ip, bank_user_id):
@@ -29,7 +28,7 @@ def recharge5425(backend_ip, bank_user_id):
 	print (r.text)
 
 
-def update_user_point(user_id, db):
+def update_user_point(user_id, db,host_mysql, user_mysql, passwd_mysql):
 	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "select * from user_point where user_id='" + str (user_id) + "'"
@@ -51,7 +50,7 @@ def update_user_point(user_id, db):
 
 
 # 更新合规库
-def update_user_account(user_id, legal_db):
+def update_user_account(user_id, legal_db,host_mysql, user_mysql, passwd_mysql):
 	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, legal_db)
 	cur = conn.cursor ()
 	sql = "select * from user_account where user_id='" + str (user_id) + "'"
@@ -71,9 +70,9 @@ def update_user_account(user_id, legal_db):
 	cur.close ()
 	conn.close ()
 
-
-if __name__ == '__main__':
-	backend_ip = '10.40.1.150'
-	bank_user_id = '6034000000126627'
-	rc = recharge5425 (backend_ip, bank_user_id)
-	print (rc)
+#
+# if __name__ == '__main__':
+# 	backend_ip = '10.40.1.150'
+# 	bank_user_id = '6034000000126627'
+# 	rc = recharge5425 (backend_ip, bank_user_id)
+# 	print (rc)

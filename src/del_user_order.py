@@ -3,10 +3,9 @@
 # function：删除用户名下所有的订单
 import pymysql
 
-from src import host_mysql, port, user_mysql, passwd_mysql
 
 
-def del_xs(user_id, xs_db):
+def del_xs(user_id, xs_db,host_mysql, user_mysql, passwd_mysql):
 	conn = pymysql.Connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=xs_db)
 	cur = conn.cursor ()
 	t_list = ['aut_order_form', 'financeplan_subpoint_orderform ', 'dt_agreement', 'instalment_repayment_order_form',
@@ -23,8 +22,8 @@ def del_xs(user_id, xs_db):
 	cur.close ()
 
 
-def del_legal(user_id, legal_db):
-	conn = pymysql.Connect (host=host_mysql, port=port, user=user_mysql, passwd=passwd_mysql, db=legal_db)
+def del_legal(user_id, legal_db,host_mysql, user_mysql, passwd_mysql):
+	conn = pymysql.Connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=legal_db)
 	cur = conn.cursor ()
 	t_list = ['aut_order_match_apply', 'user_account_log']
 	for s in t_list:
