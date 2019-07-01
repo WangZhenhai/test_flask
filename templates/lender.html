@@ -21,18 +21,23 @@
                 <form method="post" action="/user/openbank">
                     <p>
                         <input type="text" name="openbank" placeholder="请输入已注册的手机号(必填)" style="width: 200px;">
-                        <button class="btn btn-large btn-primary" type="submit">一键开户</button>
+                        <button class="btn btn-large btn-primary" type="submit">补开银行存管</button>
                         （备用功能）
                         <strong style="color: red">{{ msg }}</strong>
                     </p>
                 </form>
             </li>
             <li class="col-sm-offset-0">
-                <form method="post" action="/user/bankcard">
+                <form method="post" action="/user/real_info">
                     <p>
-                        <input type="text" name="bankcard" value="{{ bankcard }}" placeholder="默认招商银行"
+                        <input type="text" name="bankcard" placeholder="默认招商银行"
                                style="color: red;width: 200px;">
-                        <button class="btn btn-large btn-primary" type="submit">生成银行卡号</button>
+                        <button class="btn btn-large btn-primary" type="submit">生成四要素</button>
+                        <strong style="color: red">
+                            {% for i in real_info %}
+                                {{ i }},
+                            {% endfor %}
+                        </strong>
                     </p>
                 </form>
             </li>
@@ -40,7 +45,8 @@
                 <form method="post" action="/user/transter_account">
                     <p>
                         <input type="text" name="user_id" placeholder="请输入用户ID(必填)" style="width: 200px;">
-                        <button class="btn btn-large btn-primary" type="submit">一键转账</button>（通过用户ID进行转账）
+                        <button class="btn btn-large btn-primary" type="submit">一键转账</button>
+                        （通过用户ID进行转账）
                         <strong style="color: red">{{ errmsg }}</strong>
                     </p>
                 </form>

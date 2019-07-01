@@ -236,12 +236,12 @@ def user_register():
 	m = mobile ()
 	name = realName ()
 	idcard = idCard ()
-	# name = "刘宪鹏"
-	# idcard = "130430199312290159"
+	# name = "刘顺利"
+	# idcard = "412725199510044615"
 
 	# print (m)  # 输出生成手机号
 	send_message (url=url, mobile=m)  # 获取注册验证码
-	sub_reg_info (url=url, vilidata=mysql_randomchar (m, db=db, host_mysql=host_mysql, user_mysql=user_mysql,
+	sub_reg_info (url=url, vilidata=mysql_randomchar (mobile=m, db=db, host_mysql=host_mysql, user_mysql=user_mysql,
 													  passwd_mysql=passwd_mysql), mobile=m)  # 注册
 	insert_mobile (mobile=m, db=db, host_mysql=host_mysql, user_mysql=user_mysql,
 				   passwd_mysql=passwd_mysql)  # 更新user表mobile字段
@@ -253,7 +253,8 @@ def user_register():
 	open_bank_depository (web_url)
 	bank_account (card_num=bankcard, mobile_number=m)
 	info_list = []  # 输出用户信息
-	info_list.append (user_id (mobile=m, db=db))
+	info_list.append (
+		user_id (mobile=m, db=db, host_mysql=host_mysql, user_mysql=user_mysql, passwd_mysql=passwd_mysql))
 	info_list.append (m)
 	info_list.append (name)
 	info_list.append (idcard)
@@ -285,11 +286,15 @@ def openbank():
 
 # 生成银行卡
 @login_required
-@app.route ('/user/bankcard', methods=['post'])
+@app.route ('/user/real_info', methods=['post'])
 def bankcard():
-	from src.user_register import bankCard
-	bankcard = bankCard ()
-	return render_template ("lender.html", bankcard=bankcard)
+	from src.user_register import mobile, realName, idCard, bankCard
+	info_list = []
+	info_list.append (mobile ())
+	info_list.append (realName ())
+	info_list.append (idCard ())
+	info_list.append (bankCard ())
+	return render_template ("lender.html", real_info=info_list)
 
 
 # 一键转账
