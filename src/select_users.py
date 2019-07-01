@@ -59,6 +59,6 @@ def select_all(xs_db, legal_db, user_id, host_mysql, user_mysql, passwd_mysql):
 	cur_legal.close ()
 	conn_legal.close ()
 	return list  #
-if __name__ == '__main__':
-	s = select_users ("xiangshang_test11", "10","172.25.1.45","test_rw","test_rw")
-	print (s)
+# if __name__ == '__main__':
+# 	s = select_users ("xiangshang_test11", "10","172.25.1.45","test_rw","test_rw")
+# 	print (s)

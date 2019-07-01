@@ -357,7 +357,6 @@ def user_info():
 @app.route ('/user/select_users', methods=['POST'])
 def select_users():
 	from src.select_users import select_users
-	from src.decrypts import decrypts
 	db = current_user.xs
 	host_mysql = current_user.db_ip
 	user_mysql = current_user.mysql_u
@@ -369,7 +368,17 @@ def select_users():
 		count = count
 	su = select_users (db=db, count=int (count), host_mysql=host_mysql, user_mysql=user_mysql,
 					   passwd_mysql=passwd_mysql)
-	return render_template ("select_users.html", su=su, decrypts_mobile="decrypts_mobile")
+	return render_template ("select_users.html", su=su)
+
+
+# 解密手机号
+@login_required
+@app.route ('/user/decrypts', methods=['POST'])
+def decrypts():
+	from src.decrypts import decrypts
+	encrypts_mobile = request.values.get ("encrypts_mobile")
+	decrypts_msg = decrypts (encrypts_mobile)
+	return decrypts_msg
 
 
 # 删除用户订单（还原新用户）

@@ -24,7 +24,15 @@
                 <th>{{ i[3] }}</th>
                 <th>{{ i[2] }}</th>
                 {% if i[1] ==None %}
-                    <th>{{ decrypts_mobile }}</th>
+                    <th>
+                        <form method="post" action="/user/decrypts">
+                            <p>
+                                <input type="text" name="encrypts_mobile" style="width: 200px;color: red"
+                                       value="{{ i[2] }}">
+                                <button class="btn btn-large btn-primary" type="submit">一键解密</button>
+                            </p>
+                        </form>
+                    </th>
                 {% endif %}
             </tr>
         {% endfor %}
