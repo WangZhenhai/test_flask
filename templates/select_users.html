@@ -29,9 +29,10 @@
                             <p>
                                 <input type="text" name="encrypts_mobile" style="width: 200px;color: red"
                                        value="{{ i[2] }}">
-                                <button class="btn btn-large btn-primary" type="submit">一键解密</button>
+                                <button class="btn btn-large btn-primary" type="submit" id="calculate">一键解密</button>
                             </p>
                         </form>
+                        {{ decrypts_msg }}
                     </th>
                 {% endif %}
             </tr>

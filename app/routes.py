@@ -378,7 +378,7 @@ def decrypts():
 	from src.decrypts import decrypts
 	encrypts_mobile = request.values.get ("encrypts_mobile")
 	decrypts_msg = decrypts (encrypts_mobile)
-	return decrypts_msg
+	return jsonify (decrypts_msg=decrypts_msg)
 
 
 # 删除用户订单（还原新用户）
