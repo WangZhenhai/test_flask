@@ -375,10 +375,16 @@ def select_users():
 @login_required
 @app.route ('/user/decrypts', methods=['POST'])
 def decrypts():
-	from src.decrypts import decrypts
+	from src.decrypts import decrypts, update_mobile
+	db = current_user.xs
+	host_mysql = current_user.db_ip
+	user_mysql = current_user.mysql_u
+	passwd_mysql = current_user.mysql_p
 	encrypts_mobile = request.values.get ("encrypts_mobile")
 	decrypts_msg = decrypts (encrypts_mobile)
-	return jsonify (decrypts_msg=decrypts_msg)
+	update_mobile (db=db, mobile=str (decrypts_msg), crypts_mobile=str (encrypts_mobile), host_mysql=host_mysql,
+				   user_mysql=user_mysql, passwd_mysql=passwd_mysql)
+	return jsonify (encrypts_mobile=encrypts_mobile, decrypts_msg=decrypts_msg)
 
 
 # 删除用户订单（还原新用户）
