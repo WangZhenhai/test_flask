@@ -35,7 +35,7 @@
                         <button class="btn btn-large btn-primary" type="submit">生成四要素</button>
                         <strong style="color: red">
                             {% for i in real_info %}
-                                {{ i }},
+                                {{ i }},招商银行
                             {% endfor %}
                         </strong>
                     </p>
@@ -56,8 +56,8 @@
                     <p>
                         <input type="text" name="user_info" placeholder="请输入用户ID(必填)" style="width: 200px;">
                         <button class="btn btn-large btn-primary" type="submit">查询单个用户信息</button>
-                        <strong style="color: red">{{ u_msg }}</strong>
                         （通过用户id查询该用户的具体信息）
+                        <strong style="color: red">{{ u_msg }}</strong>
                     </p>
                 </form>
             </li>
@@ -75,8 +75,8 @@
                     <p>
                         <input type="text" name="del_user_order" placeholder="请输入用户ID（必填）" style="width: 200px;">
                         <button class="btn btn-large btn-primary" type="submit">一键清空用户订单</button>
-                        <strong style="color: red">{{ del_msg }}</strong>
                         （该功能会删除该用户的所有订单）
+                        <strong style="color: red">{{ del_msg }}</strong>
                     </p>
                 </form>
             </li>
