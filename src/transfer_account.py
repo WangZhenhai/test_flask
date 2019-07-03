@@ -35,7 +35,7 @@ def update_user_point(user_id, db,host_mysql, user_mysql, passwd_mysql):
 	cur.execute (sql)
 	results = cur.fetchall ()
 	if results == ():
-		print ("user_point中user_id不存在")
+		return "user_point中user_id不存在"
 	else:
 		for row in results:
 			available_points = row[1]
@@ -57,7 +57,7 @@ def update_user_account(user_id, legal_db,host_mysql, user_mysql, passwd_mysql):
 	cur.execute (sql)
 	results = cur.fetchall ()
 	if results == ():
-		print ("user_account中user_id不存在")
+		return "user_account中user_id不存在"
 	else:
 		for row in results:
 			arrive_amount = row[7]
