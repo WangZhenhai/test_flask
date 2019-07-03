@@ -23,9 +23,9 @@ def recharge5425(backend_ip, bank_user_id):
 	param_json = param_json[:338] + bank_user_id + param_json[354:]
 	payload['paramJson'] = param_json
 	payload['InCustAcctId'] = bank_user_id
-	print (payload)
+	# print (payload)
 	r = requests.post (url, data=payload, auth=auth, headers=headers)
-	print (r.text)
+	# print (r.text)
 
 
 def update_user_point(user_id, db,host_mysql, user_mysql, passwd_mysql):

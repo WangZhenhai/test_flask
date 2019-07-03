@@ -21,7 +21,7 @@ def update_mobile(db, mobile, crypts_mobile, host_mysql, user_mysql, passwd_mysq
 	conn = pymysql.connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=db)
 	cur = conn.cursor ()
 	sql = "update user set mobile='" + mobile + "' where crypt_mobile='" + crypts_mobile + "';"
-	# print (sql)
+	print (sql)
 	cur.execute (sql)
 	conn.commit ()
 	cur.close ()
@@ -30,7 +30,7 @@ def update_mobile(db, mobile, crypts_mobile, host_mysql, user_mysql, passwd_mysq
 
 
 # if __name__ == '__main__':
-# 	# mobile = decrypts ('a178d08ekQXDbh3JKR2vCTBvQr1x/Q==')
-# 	# 	 print (mobile)
-# 	update_mobile (db="xiangshang_test7", mobile="15199600413", crypts_mobile="e77ef94fB6e0/hOMQ9LSgsDn1uuhVg==",
-# 				   host_mysql="10.40.0.106", user_mysql="test_rw9", passwd_mysql="test_rw9")
+# 	mobile = decrypts ('df198591FVc03LYMAhCJ2LlEXPOFzA')
+# 	print (mobile)
+# 	update_mobile (db="xiangshang_test11", mobile="13550043155", crypts_mobile="df198591FVc03LYMAhCJ2LlEXPOFzA",
+# 				   host_mysql="172.25.1.45", user_mysql="test_rw", passwd_mysql="test_rw")
