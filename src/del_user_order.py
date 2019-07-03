@@ -17,7 +17,7 @@ def del_xs(user_id, xs_db,host_mysql, user_mysql, passwd_mysql):
 		sql = "DELETE FROM " + s + " WHERE user_id = " + str (user_id) + ";"
 		cur.execute (sql)
 		conn.commit ()
-		print ('共删除了', cur.rowcount, '条数据');
+		# print ('共删除了', cur.rowcount, '条数据');
 
 	cur.close ()
 
@@ -31,7 +31,7 @@ def del_legal(user_id, legal_db,host_mysql, user_mysql, passwd_mysql):
 		# print (sql)
 		cur.execute (sql)
 		conn.commit ()
-		print ('共删除了', cur.rowcount, '条数据');
+		# print ('共删除了', cur.rowcount, '条数据');
 
 	cur.close ()
 

@@ -21,7 +21,7 @@ def update_mobile(db, mobile, crypts_mobile, host_mysql, user_mysql, passwd_mysq
 	conn = pymysql.connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=db)
 	cur = conn.cursor ()
 	sql = "update user set mobile='" + mobile + "' where crypt_mobile='" + crypts_mobile + "';"
-	print (sql)
+	# print (sql)
 	cur.execute (sql)
 	conn.commit ()
 	cur.close ()

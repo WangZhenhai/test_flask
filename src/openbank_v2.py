@@ -16,7 +16,7 @@ def login_web(mobile_number, password, web_url):
 	headers = {'Content-Type': 'application/x-www-form-urlencoded',
 			   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:66.0) Gecko/20100101 Firefox/66.0'}
 	r = session.post (url, data=payload, headers=headers)
-	print (r.text)
+	# print (r.text)
 
 
 def open_bank_depository(web_url):
@@ -24,13 +24,13 @@ def open_bank_depository(web_url):
 	payload = {}
 	payload['url'] = web_url + '/OpenBankDepository/bankReturnBack'
 	headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:66.0) Gecko/20100101 Firefox/66.0'}
-	print (url)
-	print (payload)
+	# print (url)
+	# print (payload)
 	r = session.get (url, params=payload, headers=headers)
 	# print(r.url)
 	# print(r.text)
 	data = r.json ()['data']
-	print (data)
+	# print (data)
 	bankServiceUrl = data['bankServiceUrl']
 	bank_request_vo = data['bankRequestVo']
 	orig = bank_request_vo['orig']
@@ -71,7 +71,7 @@ def bank_account(card_num, mobile_number):
 	path_dir = str (os.path.abspath (os.path.join (os.path.dirname (__file__), os.pardir)))
 	# print(path_dir)
 	url = 'file://' + path_dir + '/src/r.html'
-	print (url)
+	# print (url)
 	driver.get (url)
 	# 点击下一步
 	driver.find_element_by_xpath ("//input[@type='submit']").click ()
@@ -109,7 +109,7 @@ def bank_account(card_num, mobile_number):
 
 	url = driver.current_url
 	# https://my-st1.orangebank.com.cn/corporbank/netLoanIn.do
-	print (url)
+	# print (url)
 
 	driver.find_element_by_id ('SubmitButton').click ()
 	time.sleep (10)
