@@ -93,7 +93,7 @@ def bank_account(card_num, mobile_number):
 				break
 
 		driver.find_element_by_id ('queryButton').click ()
-		print (driver.find_element_by_id ('showError').text)
+		# print (driver.find_element_by_id ('showError').text)
 		time.sleep (1)
 		# print(driver.find_element_by_id('msgId').text)
 		if driver.find_element_by_id ('showError').text == u'请输入正确的图形验证码':
