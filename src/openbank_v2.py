@@ -5,7 +5,9 @@ import time
 
 import requests
 from selenium import webdriver
+from selenium.webdriver import DesiredCapabilities
 
+basepath = os.path.dirname (__file__)
 session = requests.Session ()
 
 
@@ -16,7 +18,9 @@ def login_web(mobile_number, password, web_url):
 	headers = {'Content-Type': 'application/x-www-form-urlencoded',
 			   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:66.0) Gecko/20100101 Firefox/66.0'}
 	r = session.post (url, data=payload, headers=headers)
-	# print (r.text)
+
+
+# print (r.text)
 
 
 def open_bank_depository(web_url):
@@ -38,7 +42,20 @@ def open_bank_depository(web_url):
 	returnurl = bank_request_vo['returnurl']
 	NOTIFYURL = bank_request_vo['NOTIFYURL']
 	userType = bank_request_vo['userType']
-	f = open ('D:\\我的工作空间\\Flask_blog\\src\\r.html', 'w')
+	# f = open ('D:\\我的工作空间\\Flask_blog\\src\\r.html', 'w')
+	filepath = os.path.join (basepath, '..\\templates\\')
+	f = open (filepath + "r.html", 'w')
+	f.write ('<!doctype html>')
+	f.write ('\n')
+	f.write ('<html>')
+	f.write ('\n')
+	f.write ('<head>')
+	f.write ('\n')
+	f.write ('<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>')
+	f.write ('\n')
+	f.write ('</head>')
+	f.write ('\n')
+	f.write ('<body>')
 	bank_service_url = '''<form id="PayForm" name="PayForm"
       action=''' + bankServiceUrl + ''' autocomplete="off" method="post">'''
 	f.write (bank_service_url)
@@ -59,18 +76,25 @@ def open_bank_depository(web_url):
 
 	f.write ('''    <input type="hidden" name= "userType" value="0">''')
 	f.write ('\n')
-	f.write (''' <input type="submit" value="提交" style="position:absolute;top:20%;left:20%">''')
+	f.write (''' <input type="submit" value="submit" style="position:absolute;top:20%;left:20%">''')
 	f.write ('\n')
 	f.write ('''</form>''')
+	f.write ('\n')
+	f.write ('</body>')
+	f.write ('\n')
+	f.write ('</html>')
 
 
 # 银行开户
-def bank_account(card_num, mobile_number):
-	driver = webdriver.Chrome ()
+def bank_account(card_num, mobile_number, local_ip):
+	# driver = webdriver.Chrome ()
+	driver = webdriver.Remote (command_executor=local_ip + ':4444/wd/hub',
+							   desired_capabilities=DesiredCapabilities.CHROME)
 	driver.maximize_window ()
-	path_dir = str (os.path.abspath (os.path.join (os.path.dirname (__file__), os.pardir)))
+	# path_dir = str (os.path.abspath (os.path.join (os.path.dirname (__file__), os.pardir)))
 	# print(path_dir)
-	url = 'file://' + path_dir + '/src/r.html'
+	# url = 'file://' + path_dir + '/src/r.html'
+	url = 'http://10.200.1.59/r'
 	# print (url)
 	driver.get (url)
 	# 点击下一步
@@ -116,12 +140,14 @@ def bank_account(card_num, mobile_number):
 
 	driver.close ()
 
-#
 # if __name__ == '__main__':
+# 	print (getcwd)
+# 	print(getabspath)
+# 	list = ['test5', '13586693795']
 # 	web_url = "http://" + list[0] + ".www.xs.sit/xweb"
 # 	mobile = list[1]
 # 	passwd = '96e79218965eb72c92a549dd5a330112'
-# 	banknum = '6225886340144038'
+# 	banknum = '6225888809585750'
 # 	login_web (mobile_number=mobile, password=passwd, web_url=web_url)
 # 	open_bank_depository (web_url=web_url)
 # 	bank_account (card_num=banknum, mobile_number=mobile)

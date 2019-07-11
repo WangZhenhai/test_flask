@@ -232,6 +232,7 @@ def user_register():
 	host_mysql = current_user.db_ip
 	user_mysql = current_user.mysql_u
 	passwd_mysql = current_user.mysql_p
+	local_ip = request.remote_addr
 	m = mobile ()
 	name = realName ()
 	idcard = idCard ()
@@ -250,7 +251,7 @@ def user_register():
 	certification (url=url, name=name, id_card=idcard)  # 实名
 	login_web (mobile_number=m, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
 	open_bank_depository (web_url)
-	bank_account (card_num=bankcard, mobile_number=m)
+	bank_account (card_num=bankcard, mobile_number=m, local_ip=local_ip)
 	info_list = []  # 输出用户信息
 	info_list.append (
 		user_id (mobile=m, db=db, host_mysql=host_mysql, user_mysql=user_mysql, passwd_mysql=passwd_mysql))
@@ -277,9 +278,10 @@ def openbank():
 		return render_template ("lender.html", msg=msg)
 	else:
 		mobile = openbank_mobile
+		local_ip = request.remote_addr
 		login_web (mobile_number=mobile, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
 		open_bank_depository (web_url=web_url)
-		bank_account (card_num=bankcard, mobile_number=mobile)
+		bank_account (card_num=bankcard, mobile_number=mobile, local_ip=local_ip)
 		return render_template ("lender.html")
 
 
@@ -433,3 +435,10 @@ def page_not_found(error):
 @app.errorhandler (500)
 def page_not_found(error):
 	return render_template ('500.html'), 500
+
+
+# 打开开户文件
+@login_required
+@app.route ('/r')
+def r():
+	return render_template ('r.html')

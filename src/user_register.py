@@ -25,7 +25,7 @@ def send_message(url, mobile):
 # print (r.text)
 
 # 查询验证码
-def mysql_randomchar(mobile, db,host_mysql, user_mysql, passwd_mysql):
+def mysql_randomchar(mobile, db, host_mysql, user_mysql, passwd_mysql):
 	# conn= MySQLdb.connect('10.40.1.25','zhangmeijia','Q84mFosl5P','xiangshang_test7')
 	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
@@ -34,14 +34,14 @@ def mysql_randomchar(mobile, db,host_mysql, user_mysql, passwd_mysql):
 	results = cur.fetchall ()
 	for row in results:
 		vilidata = row[5]
-	cur.close ()
 	conn.commit ()
+	cur.close ()
 	conn.close ()
 	return vilidata
 
 
 # 把生成的手机号更新到user表
-def insert_mobile(mobile, db,host_mysql, user_mysql, passwd_mysql):
+def insert_mobile(mobile, db, host_mysql, user_mysql, passwd_mysql):
 	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "update user set mobile='" + mobile + "' order by id desc limit 1"
@@ -51,7 +51,7 @@ def insert_mobile(mobile, db,host_mysql, user_mysql, passwd_mysql):
 	conn.close ()
 
 
-def user_id(mobile, db,host_mysql, user_mysql, passwd_mysql):
+def user_id(mobile, db, host_mysql, user_mysql, passwd_mysql):
 	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "select * from user where mobile='" + mobile + "'"
@@ -130,3 +130,12 @@ def certification(url, name, id_card):
 	url_cert = url + '/user/setting//authIdCard'
 	params = {'realName': name, 'idCard': id_card}
 	r = session.post (url_cert, data=json.dumps (params), auth=auth, headers=headers)
+
+#
+# if __name__ == '__main__':
+# 	url = "http://test11.app.xs.sit/app"
+# 	send_message (url=url, mobile="15616026688")
+# 	r = requests.get (url + "/user/register/sendCode/15616026688", auth=auth)
+# 	print (r.text)
+# 	vilidata = mysql_randomchar ("15616026688", "xiangshang_test11", "172.25.1.45", "test_rw", "test_rw")
+# 	print (vilidata)
