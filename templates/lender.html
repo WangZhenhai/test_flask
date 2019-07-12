@@ -8,9 +8,10 @@
 {% block content %}
     <div class="col">
         <div style="color: red"><p>
-            温馨提示：“一键注册开户”和“补开银行存管”功能需在本地运行selenium-server！！！<br>（<a href="/static/userfiles/selenium-server-standalone-3.14.0.jar" style="color: red;text-decoration:underline;">点击下载selenium-server-standalone-3.14.0.jar</a>，在下载路径下运行cmd：“java
+            温馨提示：“一键注册开户”和“补开银行存管”功能需在本地配置selenium支持环境！！！<br>[1.]<a href="/static/userfiles/chromedriver.exe" style="text-decoration:underline;">点击下载Chromedriver.exe</a>并把该文件放到Chrome安装目录下的指定目录（如：本地C:\Program Files (x86)\Google\Chrome\Application
+）<br>[2.]<a href="/static/userfiles/selenium-server-standalone-3.14.0.jar" style="text-decoration:underline;">点击下载selenium-server-standalone-3.14.0.jar</a>，在下载路径下运行cmd：“java
             -jar
-            selenium-server-standalone-3.14.0.jar”，运行完成后注意不要关闭）</p></div>
+            selenium-server-standalone-3.14.0.jar”（运行完成后注意不要关闭）</p></div>
         <ul class="main-container">
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/user_register">

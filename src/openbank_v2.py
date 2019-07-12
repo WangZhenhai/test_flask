@@ -95,6 +95,7 @@ def bank_account(card_num, mobile_number, local_ip):
 	# print(path_dir)
 	# url = 'file://' + path_dir + '/src/r.html'
 	url = 'http://10.200.1.59/r'
+	#url = 'http://172.25.1.111/r'
 	# print (url)
 	driver.get (url)
 	# 点击下一步
