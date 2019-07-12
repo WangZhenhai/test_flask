@@ -7,7 +7,7 @@ import pymysql
 def select_users(db, count, host_mysql, user_mysql, passwd_mysql):
 	conn = pymysql.connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=db)
 	cur = conn.cursor ()
-	sql = "select id,mobile,crypt_mobile,bank_user_id from user order by id desc limit %s" % count
+	sql = "select id,mobile,crypt_mobile,bank_user_id from user where crypt_mobile !=' ' order by id desc limit %s" % count
 	s = cur.execute (sql)
 	results = cur.fetchall ()
 	return results
