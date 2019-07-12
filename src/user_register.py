@@ -2,7 +2,7 @@
 # 用户注册
 import json
 
-import MySQLdb
+import pymysql
 import requests
 from faker import Faker
 import random as r
@@ -26,8 +26,8 @@ def send_message(url, mobile):
 
 # 查询验证码
 def mysql_randomchar(mobile, db, host_mysql, user_mysql, passwd_mysql):
-	# conn= MySQLdb.connect('10.40.1.25','zhangmeijia','Q84mFosl5P','xiangshang_test7')
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
+	# conn= pymysql.connect('10.40.1.25','zhangmeijia','Q84mFosl5P','xiangshang_test7')
+	conn = pymysql.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "select * from mobile_validate where mobile='" + mobile + "' order by create_time desc limit 1"
 	s = cur.execute (sql)
@@ -42,7 +42,7 @@ def mysql_randomchar(mobile, db, host_mysql, user_mysql, passwd_mysql):
 
 # 把生成的手机号更新到user表
 def insert_mobile(mobile, db, host_mysql, user_mysql, passwd_mysql):
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
+	conn = pymysql.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "update user set mobile='" + mobile + "' order by id desc limit 1"
 	s = cur.execute (sql)
@@ -52,7 +52,7 @@ def insert_mobile(mobile, db, host_mysql, user_mysql, passwd_mysql):
 
 
 def user_id(mobile, db, host_mysql, user_mysql, passwd_mysql):
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
+	conn = pymysql.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "select * from user where mobile='" + mobile + "'"
 	s = cur.execute (sql)

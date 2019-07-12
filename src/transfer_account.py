@@ -2,7 +2,7 @@
 # 对开户的账户进行转账，单笔最大默认1万
 
 # 更新向上库user_point
-import MySQLdb
+import pymysql
 import requests
 
 
@@ -29,7 +29,7 @@ def recharge5425(backend_ip, bank_user_id):
 
 
 def update_user_point(user_id, db,host_mysql, user_mysql, passwd_mysql):
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
+	conn = pymysql.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "select * from user_point where user_id='" + str (user_id) + "'"
 	cur.execute (sql)
@@ -51,7 +51,7 @@ def update_user_point(user_id, db,host_mysql, user_mysql, passwd_mysql):
 
 # 更新合规库
 def update_user_account(user_id, legal_db,host_mysql, user_mysql, passwd_mysql):
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, legal_db)
+	conn = pymysql.connect (host_mysql, user_mysql, passwd_mysql, legal_db)
 	cur = conn.cursor ()
 	sql = "select * from user_account where user_id='" + str (user_id) + "'"
 	cur.execute (sql)
