@@ -65,7 +65,7 @@ def select_all(xs_db, legal_db, user_id, host_mysql, user_mysql, passwd_mysql):
 def select_all_for_mobile(xs_db, legal_db, crypt_mobile, host_mysql, user_mysql, passwd_mysql):
 	conn_xs = pymysql.connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=xs_db)
 	cur_xs = conn_xs.cursor ()
-	sql_xs = "select user.id,user.mobile,user.bank_user_id,user_point.available_points from user,user_point where user.id=user_point.user_id and user.crypt_mobile ='" + str(crypt_mobile)+"';"
+	sql_xs = "select user.id,user.crypt_mobile,user.bank_user_id,user_point.available_points from user,user_point where user.id=user_point.user_id and user.crypt_mobile ='" + str(crypt_mobile)+"';"
 	# print(sql_xs)
 	cur_xs.execute (sql_xs)
 	conn_xs.commit ()
