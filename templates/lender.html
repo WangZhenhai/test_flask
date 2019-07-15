@@ -8,8 +8,11 @@
 {% block content %}
     <div class="col">
         <div style="color: red"><p>
-            温馨提示：“一键注册开户”和“补开银行存管”功能需在本地配置selenium支持环境！！！<br>[1.]<a href="/static/userfiles/chromedriver.exe" style="text-decoration:underline;">点击下载Chromedriver.exe</a>并把该文件放到Chrome安装目录（chrome需是32位）下的指定目录（如：本地C:\Program Files (x86)\Google\Chrome\Application
-）<br>[2.]<a href="/static/userfiles/selenium-server-standalone-3.14.0.jar" style="text-decoration:underline;">点击下载selenium-server-standalone-3.14.0.jar</a>，在下载路径下运行cmd：“java
+            温馨提示：“一键注册开户”和“补开银行存管”功能需在本地配置selenium支持环境！！！<br>[1.]<a href="/static/userfiles/chromedriver.exe"
+                                                                    style="text-decoration:underline;">点击下载Chromedriver.exe</a>并把该文件放到Chrome安装目录（chrome需是32位）下的指定目录（如：本地C:\Program
+            Files (x86)\Google\Chrome\Application
+            ）<br>[2.]<a href="/static/userfiles/selenium-server-standalone-3.14.0.jar"
+                        style="text-decoration:underline;">点击下载selenium-server-standalone-3.14.0.jar</a>，在下载路径下运行cmd：“java
             -jar
             selenium-server-standalone-3.14.0.jar”（运行完成后注意不要关闭）</p></div>
         <ul class="main-container">
@@ -60,9 +63,19 @@
                 <form method="post" action="/user/user_info">
                     <p>
                         <input type="text" name="user_info" placeholder="请输入用户ID(必填)" style="width: 200px;">
-                        <button class="btn btn-large btn-primary" type="submit">查询单个用户信息</button>
-                        （通过用户id查询该用户的具体信息）
+                        <button class="btn btn-large btn-primary" type="submit">查询用户信息[1]</button>
+                        （通过用户id查询该用户的信息）
                         <strong style="color: red">{{ u_msg }}</strong>
+                    </p>
+                </form>
+            </li>
+            <li>
+                <form method="post" action="/user/user_info_m">
+                    <p>
+                        <input type="text" name="user_info_m" placeholder="请输入用户手机号(必填)" style="width: 200px;">
+                        <button class="btn btn-large btn-primary" type="submit">查询用户信息[2]</button>
+                        （通过用户手机号查询该用户的信息）
+                        <strong style="color: red">{{ m_msg }}</strong>
                     </p>
                 </form>
             </li>

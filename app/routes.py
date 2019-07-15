@@ -353,6 +353,28 @@ def user_info():
 		return render_template ("user_info.html", sa=sa)
 
 
+# 通过用户手机号查询
+@login_required
+@app.route ('/user/user_info_m', methods=['POST'])
+def user_info_m():
+	from src.select_users import select_all_for_mobile
+	from src.decrypts import encrypts
+	db = current_user.xs
+	legal_db = current_user.xs_legal
+	host_mysql = current_user.db_ip
+	user_mysql = current_user.mysql_u
+	passwd_mysql = current_user.mysql_p
+	mobile = request.values.get ('user_info_m')
+	if mobile == "" or mobile.isdigit () is False:
+		m_msg = "用户手机号输入有误！"
+		return render_template ("lender.html", m_msg=m_msg)
+	else:
+		mobile = mobile
+		sa = select_all_for_mobile (xs_db=db, legal_db=legal_db, crypt_mobile=encrypts (mobile), host_mysql=host_mysql,
+									user_mysql=user_mysql, passwd_mysql=passwd_mysql)
+		return render_template ("user_info.html", sa=sa)
+
+
 # 用户查询（最新注册的10个用户）
 @login_required
 @app.route ('/user/select_users', methods=['POST'])

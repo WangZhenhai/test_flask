@@ -14,7 +14,21 @@ def decrypts(encrypts):
 	r = requests.post (url, data=payload, headers=headers)
 	# print(r.text)
 	d = r.json ()['data'][0]
-	return d[payload['encryptDataList']]
+	return d[payload['plainDataList']]
+
+
+# 加密
+def encrypts(decrypts_mobile):
+	url = "http://10.200.0.108:18090/decrypt/encrypts"
+	headers = {"Content-Type": "application/x-www-form-urlencoded",
+			   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36"}
+	payload = {}
+	payload['plainDataList'] = decrypts_mobile
+	# print(payload)
+	r = requests.post (url, data=payload, headers=headers)
+	# print(r.text)
+	d = r.json ()['data'][0]
+	return d[payload['plainDataList']]
 
 
 def update_mobile(db, mobile, crypts_mobile, host_mysql, user_mysql, passwd_mysql):
@@ -29,8 +43,6 @@ def update_mobile(db, mobile, crypts_mobile, host_mysql, user_mysql, passwd_mysq
 	return sql
 
 
-# if __name__ == '__main__':
-# 	mobile = decrypts ('df198591FVc03LYMAhCJ2LlEXPOFzA')
-# 	print (mobile)
-# 	update_mobile (db="xiangshang_test11", mobile="13550043155", crypts_mobile="df198591FVc03LYMAhCJ2LlEXPOFzA",
-# 				   host_mysql="172.25.1.45", user_mysql="test_rw", passwd_mysql="test_rw")
+if __name__ == '__main__':
+	mobile = encrypts ('15026509966')
+	print (mobile)

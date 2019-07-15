@@ -58,7 +58,40 @@ def select_all(xs_db, legal_db, user_id, host_mysql, user_mysql, passwd_mysql):
 		list.append (i[0])
 	cur_legal.close ()
 	conn_legal.close ()
-	return list  #
+	return list
+
+
+# 通过手机号查询
+def select_all_for_mobile(xs_db, legal_db, crypt_mobile, host_mysql, user_mysql, passwd_mysql):
+	conn_xs = pymysql.connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=xs_db)
+	cur_xs = conn_xs.cursor ()
+	sql_xs = "select user.id,user.crypt_mobile,user.bank_user_id,user_point.available_points from user,user_point where user.id=user_point.user_id and user.crypt_mobile ='" + str(crypt_mobile)+"';"
+	# print(sql_xs)
+	cur_xs.execute (sql_xs)
+	conn_xs.commit ()
+	results_xs = cur_xs.fetchall ()
+	list = []
+	for i in results_xs:
+		list.append (i[0])
+		list.append (i[1])
+		list.append (i[2])
+		list.append (i[3])
+	cur_xs.close ()
+	conn_xs.close ()
+	#
+	conn_legal = pymysql.connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=legal_db)
+	cur_legal = conn_legal.cursor ()
+	sql_legal = "select arrive_amount from user_account where user_id = %s" % list[0]
+	cur_legal.execute (sql_legal)
+	conn_legal.commit ()
+	results_legal = cur_legal.fetchall ()
+	for i in results_legal:
+		list.append (i[0])
+	cur_legal.close ()
+	conn_legal.close ()
+	return list
+
+#
 # if __name__ == '__main__':
-# 	s = select_users ("xiangshang_test11", "10","172.25.1.45","test_rw","test_rw")
-# 	print (s)
+# 	result = select_all_for_mobile ('xiangshang_test5', 'xiangshang_legal_test5', '066f9500gp+1E0o0IU75N9/GvUKlXg==','10.40.0.106', 'test_rw9', 'test_rw9')
+# 	print (result)
