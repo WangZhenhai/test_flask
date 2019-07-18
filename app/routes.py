@@ -345,7 +345,7 @@ def user_info():
 	user_id = request.values.get ('user_info')
 	if user_id == "" or user_id.isdigit () is False:
 		u_msg = "用户user_id输入有误！"
-		return render_template ("lender.html", user_id=user_id,u_msg=u_msg)
+		return render_template ("lender.html", user_id=user_id, u_msg=u_msg)
 	else:
 		user_id = str (user_id)
 		sa = select_all (xs_db=db, legal_db=legal_db, user_id=user_id, host_mysql=host_mysql, user_mysql=user_mysql,
@@ -436,11 +436,11 @@ def del_user_order():
 @login_required
 @app.route ('/user/buy_order', methods=['POST'])
 def buyOrder():
-	# xs_db = current_user.xs
-	# legal_db = current_user.xs_legal
-	# host_mysql = current_user.db_ip
-	# user_mysql = current_user.mysql_u
-	# passwd_mysql = current_user.mysql_p
+	xs_db = current_user.xs
+	legal_db = current_user.xs_legal
+	host_mysql = current_user.db_ip
+	user_mysql = current_user.mysql_u
+	passwd_mysql = current_user.mysql_p
 	b_mobile = request.values.get ("b_mobile")
 	b_goodsid = request.values.get ("b_goodsid")
 	b_account = request.values.get ("b_account")
@@ -450,10 +450,8 @@ def buyOrder():
 	elif b_goodsid == "" or b_goodsid.isdigit () is False:
 		buy_msg = "产品ID不能为空或输入格式错误"
 		return render_template ("lender.html", b_mobile=b_mobile, buy_msg=buy_msg)
-	elif b_account.isdigit () is False:
-		b_account = 1000
-		return render_template ("lender.html", b_mobile=b_mobile, b_goodsid=b_goodsid, b_account=b_account,
-								buy_msg=(b_mobile, b_goodsid, b_account))
+	elif b_account == "" or b_account.isdigit () is False:
+		return render_template ("lender.html", b_mobile=b_mobile, b_goodsid=b_goodsid, buy_msg="订单金额不能为空或输入格式错误")
 	else:
 		mobile = b_mobile
 		goodsid = b_goodsid
