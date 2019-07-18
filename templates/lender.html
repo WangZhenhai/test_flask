@@ -9,10 +9,9 @@
     <div class="col">
         <div style="color: red"><p>
             温馨提示：“一键注册开户”和“补开银行存管”功能需在本地配置selenium支持环境！！！<br>[1.]<a href="/static/userfiles/chromedriver.exe"
-                                                                    style="text-decoration:underline;">点击下载Chromedriver.exe</a>并把该文件放到Chrome安装目录（chrome需是32位）下的指定目录（如：本地C:\Program
-            Files (x86)\Google\Chrome\Application
-            ）<br>[2.]<a href="/static/userfiles/selenium-server-standalone-3.14.0.jar"
-                        style="text-decoration:underline;">点击下载selenium-server-standalone-3.14.0.jar</a>，在下载路径下运行cmd：“java
+                                                                    style="text-decoration:underline;">点击下载Chromedriver.exe</a>
+            <br>[2.]<a href="/static/userfiles/selenium-server-standalone-3.14.0.jar"
+                       style="text-decoration:underline;">点击下载selenium-server-standalone-3.14.0.jar</a>，把两个文件放到同一个目录下，然后在cmd：运行“java
             -jar
             selenium-server-standalone-3.14.0.jar”（运行完成后注意不要关闭）</p></div>
         <ul class="main-container">
@@ -28,7 +27,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/openbank">
                     <p>
-                        <input type="text" name="openbank" placeholder="请输入已注册的手机号(必填)" style="width: 200px;">
+                        <input type="text" name="openbank" placeholder="请输入已注册的手机号(必填)" style="width: 200px;" value="{{ openbank }}">
                         <button class="btn btn-large btn-primary" type="submit">补开银行存管</button>
                         （备用功能）
                         <strong style="color: red">{{ msg }}</strong>
@@ -52,10 +51,23 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/transter_account">
                     <p>
-                        <input type="text" name="user_id" placeholder="请输入用户ID(必填)" style="width: 200px;">
+                        <input type="text" name="user_id" placeholder="请输入用户ID(必填)" style="width: 200px;" value="{{ user_id }}">
                         <button class="btn btn-large btn-primary" type="submit">一键转账</button>
                         （通过用户ID进行转账）
                         <strong style="color: red">{{ errmsg }}</strong>
+                    </p>
+                </form>
+            </li>
+            <li class="col-sm-offset-0">
+                <form method="post" action="/user/buy_order">
+                    <p>
+                        <input type="text" name="b_mobile" placeholder="用户手机号(必填)" style="width: 110px;"
+                               value="{{ b_mobile }}">
+                        <input type="text" name="b_goodsid" placeholder="产品编号(必填)" style="width: 100px;" value="{{ b_goodsid }}">
+                        <input type="text" name="b_account" placeholder="金额(选填)，默认1000" style="width: 150px;" value="{{ b_account }}">
+                        <button class="btn btn-large btn-primary" type="submit" onclick="history.go(-1)">一键购买</button>
+                        （通过用户手机号进行订单购买）
+                        <strong style="color: red">{{ buy_msg }}</strong>
                     </p>
                 </form>
             </li>

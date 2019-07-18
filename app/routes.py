@@ -282,7 +282,7 @@ def openbank():
 		login_web (mobile_number=mobile, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
 		open_bank_depository (web_url=web_url)
 		bank_account (card_num=bankcard, mobile_number=mobile, local_ip=local_ip)
-		return render_template ("lender.html")
+		return render_template ("lender.html", openbank=mobile)
 
 
 # 生成银行卡
@@ -329,7 +329,7 @@ def traster_account():
 										 user_mysql=user_mysql, passwd_mysql=passwd_mysql)
 			recharge5425 (backend_ip=backend_ip, bank_user_id=bank_user_id)
 			msg = ("转账完成！")
-			return render_template ("lender.html", errmsg=msg)
+			return render_template ("lender.html", user_id=user_id, errmsg=msg)
 
 
 # 通过用户id查询该用户的相关信息
@@ -345,7 +345,7 @@ def user_info():
 	user_id = request.values.get ('user_info')
 	if user_id == "" or user_id.isdigit () is False:
 		u_msg = "用户user_id输入有误！"
-		return render_template ("lender.html", u_msg=u_msg)
+		return render_template ("lender.html", user_id=user_id,u_msg=u_msg)
 	else:
 		user_id = str (user_id)
 		sa = select_all (xs_db=db, legal_db=legal_db, user_id=user_id, host_mysql=host_mysql, user_mysql=user_mysql,
@@ -353,7 +353,7 @@ def user_info():
 		return render_template ("user_info.html", sa=sa)
 
 
-# 通过用户手机号查询
+# 通过用户手机号
 @login_required
 @app.route ('/user/user_info_m', methods=['POST'])
 def user_info_m():
@@ -430,6 +430,37 @@ def del_user_order():
 				   passwd_mysql=passwd_mysql)
 		del_msg = "删除完成"
 		return render_template ("lender.html", del_msg=del_msg)
+
+
+# 用户一键购买
+@login_required
+@app.route ('/user/buy_order', methods=['POST'])
+def buyOrder():
+	# xs_db = current_user.xs
+	# legal_db = current_user.xs_legal
+	# host_mysql = current_user.db_ip
+	# user_mysql = current_user.mysql_u
+	# passwd_mysql = current_user.mysql_p
+	b_mobile = request.values.get ("b_mobile")
+	b_goodsid = request.values.get ("b_goodsid")
+	b_account = request.values.get ("b_account")
+	if b_mobile == "" or b_mobile.isdigit () is False:
+		buy_msg = "手机号不能为空或输入格式错误"
+		return render_template ("lender.html", buy_msg=buy_msg)
+	elif b_goodsid == "" or b_goodsid.isdigit () is False:
+		buy_msg = "产品ID不能为空或输入格式错误"
+		return render_template ("lender.html", b_mobile=b_mobile, buy_msg=buy_msg)
+	elif b_account != 1000 or b_account.isdigit () is False:
+		b_account = 1000
+		return render_template ("lender.html", b_mobile=b_mobile, b_goodsid=b_goodsid, b_account=b_account,
+								buy_msg=(b_mobile, b_goodsid, b_account))
+	else:
+		mobile = b_mobile
+		goodsid = b_goodsid
+		account = b_account
+
+		return render_template ("lender.html", b_mobile=mobile, b_goodsid=goodsid, b_account=account,
+								buy_msg=(mobile, goodsid, account))
 
 
 # uploads File
