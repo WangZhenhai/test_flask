@@ -450,7 +450,7 @@ def buyOrder():
 	elif b_goodsid == "" or b_goodsid.isdigit () is False:
 		buy_msg = "产品ID不能为空或输入格式错误"
 		return render_template ("lender.html", b_mobile=b_mobile, buy_msg=buy_msg)
-	elif b_account != 1000 or b_account.isdigit () is False:
+	elif b_account.isdigit () is False:
 		b_account = 1000
 		return render_template ("lender.html", b_mobile=b_mobile, b_goodsid=b_goodsid, b_account=b_account,
 								buy_msg=(b_mobile, b_goodsid, b_account))
