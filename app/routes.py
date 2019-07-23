@@ -359,6 +359,7 @@ def user_info():
 def user_info_m():
 	from src.select_users import select_all_for_mobile
 	from src.decrypts import encrypts
+	from src.select_user_id import select_user_id
 	db = current_user.xs
 	legal_db = current_user.xs_legal
 	host_mysql = current_user.db_ip
@@ -370,9 +371,15 @@ def user_info_m():
 		return render_template ("lender.html", m_msg=m_msg)
 	else:
 		mobile = mobile
-		sa = select_all_for_mobile (xs_db=db, legal_db=legal_db, crypt_mobile=encrypts (mobile), host_mysql=host_mysql,
-									user_mysql=user_mysql, passwd_mysql=passwd_mysql)
-		return render_template ("user_info.html", sa=sa)
+		user_id = select_user_id (db=db, crypt_mobile=encrypts (mobile), host_mysql=host_mysql, user_mysql=user_mysql,
+								  passwd_mysql=passwd_mysql)
+		if user_id == None:
+			m_msg = "用户手机号不存在！"
+			return render_template ("lender.html", m_msg=m_msg)
+		else:
+			sa = select_all_for_mobile (xs_db=db, legal_db=legal_db, crypt_mobile=encrypts (mobile),
+										host_mysql=host_mysql, user_mysql=user_mysql, passwd_mysql=passwd_mysql)
+			return render_template ("user_info.html", sa=sa)
 
 
 # 用户查询（最新注册的10个用户）
