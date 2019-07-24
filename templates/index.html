@@ -153,6 +153,10 @@
                 background: url('/static/images/huangjing.jpg') no-repeat;
                 background-size: 100% 100%;
             }
+            .nav-item:nth-child(7) .icon_1::after {
+                background: url('/static/images/weifu.jpg') no-repeat;
+                background-size: 100% 100%;
+            }
 
             /*.nav-item:nth-child(2) .icon_1::after{background: url(men1.png)no-repeat;}*/
             /*.icon_2::after{content: "\e669";}*/
@@ -348,14 +352,21 @@
                     </li>
                     <li><a href="http://admin:admin@{{ current_user.backend_ip }}:19700/"
                            target="_blank"><span>资产端-定时</span></a></li>
-                    <li>
-                        <a href="http://{{ current_user.backend_ip }}:12300/swagger-ui.html#!/start-loan-controller/startLoanTaskUsingPOST"
-                           target="_blank"><span>放款微服务</span></a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;">
+                    <i class="my-icon nav-icon icon_1"></i><span>微服务管理</span>
+                    <i class="my-icon nav-more"></i>
+                </a>
+                <ul>
+                    <a href="http://{{ current_user.backend_ip }}:12300/swagger-ui.html#!/start-loan-controller/startLoanTaskUsingPOST"
+                       target="_blank"><span>放款微服务</span></a></li>
                     <li><a href="http://{{ current_user.backend_ip }}:13050/swagger-ui.html"
                            target="_blank"><span>还款(资产)微服务</span></a></li>
                     <li>
                         <a href="http://{{ current_user.username }}.micro.agreement.xs.sit/swagger-ui.html#/agreement-task-controller"
-                           target="_blank"><span>合同管理定时</span></a></li>
+                           target="_blank"><span>合同管理微服务</span></a></li>
                 </ul>
             </li>
             <li class="nav-item">
