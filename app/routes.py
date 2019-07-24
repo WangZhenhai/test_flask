@@ -443,6 +443,9 @@ def del_user_order():
 @login_required
 @app.route ('/user/buy_order', methods=['POST'])
 def buyOrder():
+	from src.select_user_id import select_user_id
+	from src.decrypts import encrypts
+	from src.select_goods import select_goods_id
 	xs_db = current_user.xs
 	legal_db = current_user.xs_legal
 	host_mysql = current_user.db_ip
@@ -463,9 +466,18 @@ def buyOrder():
 		mobile = b_mobile
 		goodsid = b_goodsid
 		account = b_account
-
-		return render_template ("lender.html", b_mobile=mobile, b_goodsid=goodsid, b_account=account,
-								buy_msg=(mobile, goodsid, account))
+		# 通过用户user_id判断用户是否存在
+		sui = select_user_id (db=xs_db, crypt_mobile=encrypts (mobile), host_mysql=host_mysql, user_mysql=user_mysql,
+							  passwd_mysql=passwd_mysql)
+		sg = select_goods_id (db=xs_db, goods_id=goodsid, host_mysql=host_mysql, user_mysql=user_mysql,
+							  passwd_mysql=passwd_mysql)
+		if sui == None:
+			return render_template ("lender.html", buy_msg="用户手机号不存在", b_goodsid=goodsid, b_account=account)
+		elif sg == None:
+			return render_template ("lender.html", buy_msg="产品编号不存在！", b_mobile=mobile, b_account=account)
+		else:
+			return render_template ("lender.html", b_mobile=mobile, b_goodsid=goodsid, b_account=account,
+									buy_msg=(mobile, goodsid, account))
 
 
 # uploads File
