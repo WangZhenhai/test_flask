@@ -18,9 +18,7 @@ def login_web(mobile_number, password, web_url):
 	headers = {'Content-Type': 'application/x-www-form-urlencoded',
 			   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:66.0) Gecko/20100101 Firefox/66.0'}
 	r = session.post (url, data=payload, headers=headers)
-
-
-# print (r.text)
+	# return r.text
 
 
 def open_bank_depository(web_url):
@@ -95,7 +93,7 @@ def bank_account(card_num, mobile_number, local_ip):
 	# print(path_dir)
 	# url = 'file://' + path_dir + '/src/r.html'
 	url = 'http://10.200.1.59/r'
-	#url = 'http://172.25.1.111/r'
+	# url = 'http://172.25.1.111/r'
 	# print (url)
 	driver.get (url)
 	# 点击下一步

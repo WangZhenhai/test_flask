@@ -42,9 +42,9 @@ def update_mobile(db, mobile, crypts_mobile, host_mysql, user_mysql, passwd_mysq
 	conn.close ()
 	return sql
 
-
-if __name__ == '__main__':
-	crypt_mobile = decrypts ('75211219GnQpbUGHN/Hjcc1/mCeEcg==')
-	print (crypt_mobile)
-	mobile = encrypts ('15026509966')
-	print (mobile)
+#
+# if __name__ == '__main__':
+# 	crypt_mobile = decrypts ('75211219GnQpbUGHN/Hjcc1/mCeEcg==')
+# 	print (crypt_mobile)
+# 	mobile = encrypts ('15026509966')
+# 	print (mobile)
