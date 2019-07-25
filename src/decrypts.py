@@ -14,7 +14,7 @@ def decrypts(encrypts):
 	r = requests.post (url, data=payload, headers=headers)
 	# print(r.text)
 	d = r.json ()['data'][0]
-	return d[payload['plainDataList']]
+	return d[payload['encryptDataList']]
 
 
 # 加密
@@ -44,5 +44,7 @@ def update_mobile(db, mobile, crypts_mobile, host_mysql, user_mysql, passwd_mysq
 
 
 if __name__ == '__main__':
+	crypt_mobile = decrypts ('75211219GnQpbUGHN/Hjcc1/mCeEcg==')
+	print (crypt_mobile)
 	mobile = encrypts ('15026509966')
 	print (mobile)
