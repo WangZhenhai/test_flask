@@ -92,7 +92,7 @@ def bank_account(card_num, mobile_number, local_ip):
 	# path_dir = str (os.path.abspath (os.path.join (os.path.dirname (__file__), os.pardir)))
 	# print(path_dir)
 	# url = 'file://' + path_dir + '/src/r.html'
-	url = 'http://10.200.1.59/r'
+	url = 'http://10.200.1.59:81/r'
 	# url = 'http://172.25.1.111/r'
 	# print (url)
 	driver.get (url)

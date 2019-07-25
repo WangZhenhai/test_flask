@@ -19,5 +19,5 @@ def bank_card_by_userid(db, user_id, host_mysql, user_mysql, passwd_mysql):
 
 #
 # if __name__ == '__main__':
-# 	bank_card = bank_card_by_userid ('xiangshang_test5', '6525806', '10.40.0.106', 'test_rw9', 'test_rw9')
+# 	bank_card = bank_card_by_userid ('xiangshang_test5', '6525805', '10.40.0.106', 'test_rw9', 'test_rw9')
 # 	print (bank_card)
