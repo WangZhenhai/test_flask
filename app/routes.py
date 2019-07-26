@@ -453,10 +453,10 @@ def buyOrder():
 	from src.buy_order import authindex
 	from src.buy_order import buy
 	from src.select_period import select_period
+	session= requests.session()
 	web_url = "http://" + str (current_user.username) + ".www.xs.sit/xweb"
 	local_ip = request.remote_addr
 	xs_db = current_user.xs
-	legal_db = current_user.xs_legal
 	host_mysql = current_user.db_ip
 	user_mysql = current_user.mysql_u
 	passwd_mysql = current_user.mysql_p
@@ -485,14 +485,13 @@ def buyOrder():
 		elif sg == None:
 			return render_template ("lender.html", buy_msg="产品编号不存在！", b_mobile=mobile, b_account=account)
 		else:
-			login_web (mobile, '96e79218965eb72c92a549dd5a330112', web_url)
-			cardno = bank_card_by_userid (db=xs_db, user_id=sui, host_mysql=host_mysql, user_mysql=user_mysql,
-										  passwd_mysql=passwd_mysql)
-			token = ordermoney (web_url=web_url, goodsId=str (goodsid), amount=str (account))
+			login_web (mobile, '96e79218965eb72c92a549dd5a330112', web_url=web_url)
+			token = ordermoney (web_url=web_url, goodsId=goodsid, amount=account)
 			period = select_period (db=xs_db, goods_id=goodsid, host_mysql=host_mysql, user_mysql=user_mysql,
 									passwd_mysql=passwd_mysql)
-			bus_order_no = authBalancepay (web_url=web_url, amount=account, goodsId=str (goodsid), cardno=cardno,
-										   token=token)
+			cardno = bank_card_by_userid (db=xs_db, user_id=str (sui), host_mysql=host_mysql, user_mysql=user_mysql,
+										  passwd_mysql=passwd_mysql)
+			bus_order_no = authBalancepay (web_url=web_url, amount=account, goodsId=goodsid, cardno=cardno, token=token)
 			authindex (web_url=web_url, bus_order_no=bus_order_no, period=period, amount=account)
 			buy (local_ip=local_ip)
 			return render_template ("lender.html", b_mobile=mobile, b_goodsid=goodsid, b_account=account,

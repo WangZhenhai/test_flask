@@ -47,7 +47,6 @@ def authBalancepay(web_url, amount, goodsId, cardNumber, token):
 	r = s.get (url, params=payload, headers=headers)
 	# print (r.text)
 	bus_order_no = r.json ()['data']['busOrderNo']
-	print (bus_order_no)
 	return bus_order_no
 
 
@@ -127,18 +126,18 @@ def buy(local_ip):
 	time.sleep (10)
 	driver.quit ()
 
-#
-# if __name__ == '__main__':
-# 	web_url = 'http://test5.www.xs.sit/xweb/'
-# 	amount = '1000'
-# 	goodsId = '3680'
-# 	cardno = '622588****3358'
-# 	login = login_web ('15316563887', '96e79218965eb72c92a549dd5a330112', web_url)
-# 	token = ordermoney (web_url, '3680', '1000')
-# 	period = select_period ('xiangshang_test5', goodsId, '10.40.0.106', 'test_rw9', 'test_rw9')
-# 	bus_order_no = authBalancepay (web_url, amount, goodsId, cardno, token)
-# 	authindex = authindex (web_url, bus_order_no, period, amount)
-# 	time.sleep (5)
-# 	b = buy ('10.200.1.59')
-# 	print (token)
-# 	print (bus_order_no)
+
+if __name__ == '__main__':
+	web_url = 'http://test5.www.xs.sit/xweb/'
+	amount = '1000'
+	goodsId = '3680'
+	cardno = '622588****3358'
+	login = login_web ('15316563887', '96e79218965eb72c92a549dd5a330112', web_url)
+	token = ordermoney (web_url, '3680', '1000')
+	period = select_period ('xiangshang_test5', goodsId, '10.40.0.106', 'test_rw9', 'test_rw9')
+	bus_order_no = authBalancepay (web_url, amount, goodsId, cardno, token)
+	authindex = authindex (web_url, bus_order_no, period, amount)
+	time.sleep (5)
+	# b = buy ('10.200.1.59')
+	print (token)
+	print (bus_order_no)
