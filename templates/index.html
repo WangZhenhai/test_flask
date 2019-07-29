@@ -153,6 +153,7 @@
                 background: url('/static/images/huangjing.jpg') no-repeat;
                 background-size: 100% 100%;
             }
+
             .nav-item:nth-child(7) .icon_1::after {
                 background: url('/static/images/weifu.jpg') no-repeat;
                 background-size: 100% 100%;
@@ -321,7 +322,7 @@
                         <a href="{{ url_for('lender') }}"><span>理财人信息(新)</span></a>
                     </li>
                     <li>
-                        <a href="http://10.200.0.72:11987/generateData/generateRandomPeopleInfo" target="_blank"><span>生成四要素</span></a>
+                        <a href="http://10.200.0.72:11987/generateData/generateRandomPeopleInfo" target="_blank"><span>生成四要素（网页）</span></a>
                     </li>
                 </ul>
             </li>
@@ -337,7 +338,8 @@
                     </li>
                     <li><a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/node/netl17_1"
                            target="_blank"><span>借款信息授权</span></a></li>
-                    <li><a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/index" target="_blank"><span>捷越授权主页</span></a></li>
+                    <li><a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/index" target="_blank"><span>捷越授权主页</span></a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item">
