@@ -312,24 +312,20 @@ def traster_account():
 	user_id = request.values.get ('user_id')
 	backend_ip = current_user.backend_ip
 	if user_id == "" or user_id.isdigit () is False:
-		errmsg = "用户user_id输入有误！"
-		return render_template ("lender.html", errmsg=errmsg)
+		return render_template ("lender.html", errmsg="用户user_id输入有误！")
 	else:
 		user_id = str (user_id)
 		if update_user_account (user_id=user_id, legal_db=legal_db, host_mysql=host_mysql, user_mysql=user_mysql,
 								passwd_mysql=passwd_mysql) != "转账完成":
-			errmsg = "user_id在user_account中不存在或该用户未开通银行存管"
-			return render_template ("lender.html", errmsg=errmsg)
+			return render_template ("lender.html", errmsg="user_id在user_account中不存在或该用户未开通银行存管")
 		elif update_user_point (user_id=user_id, db=db, host_mysql=host_mysql, user_mysql=user_mysql,
 								passwd_mysql=passwd_mysql) != "转账完成":
-			errmsg = "user_id在user_point中不存在"
-			return render_template ("lender.html", errmsg=errmsg)
+			return render_template ("lender.html", errmsg="user_id在user_point中不存在")
 		else:
 			bank_user_id = bank_user_id (legal_db=legal_db, user_id=user_id, host_mysql=host_mysql,
 										 user_mysql=user_mysql, passwd_mysql=passwd_mysql)
 			recharge5425 (backend_ip=backend_ip, bank_user_id=bank_user_id)
-			msg = ("转账完成！")
-			return render_template ("lender.html", user_id=user_id, errmsg=msg)
+			return render_template ("lender.html", user_id=user_id, errmsg="转账完成！")
 
 
 # 通过用户id查询该用户的相关信息
@@ -344,8 +340,7 @@ def user_info():
 	passwd_mysql = current_user.mysql_p
 	user_id = request.values.get ('user_info')
 	if user_id == "" or user_id.isdigit () is False:
-		u_msg = "用户user_id输入有误！"
-		return render_template ("lender.html", user_id=user_id, u_msg=u_msg)
+		return render_template ("lender.html", user_id=user_id, u_msg="用户user_id输入有误！")
 	else:
 		user_id = str (user_id)
 		sa = select_all (xs_db=db, legal_db=legal_db, user_id=user_id, host_mysql=host_mysql, user_mysql=user_mysql,
@@ -429,14 +424,12 @@ def del_user_order():
 	passwd_mysql = current_user.mysql_p
 	user_id = request.values.get ("del_user_order")
 	if user_id == "" or user_id.isdigit () is False:
-		del_msg = "user_id不能为空或输入格式错误"
-		return render_template ("lender.html", del_msg=del_msg)
+		return render_template ("lender.html", del_msg="user_id不能为空或输入格式错误")
 	else:
 		del_xs (user_id=user_id, xs_db=xs_db, host_mysql=host_mysql, user_mysql=user_mysql, passwd_mysql=passwd_mysql)
 		del_legal (user_id=user_id, legal_db=legal_db, host_mysql=host_mysql, user_mysql=user_mysql,
 				   passwd_mysql=passwd_mysql)
-		del_msg = "删除完成"
-		return render_template ("lender.html", del_msg=del_msg)
+		return render_template ("lender.html", del_msg="删除完成")
 
 
 # 用户一键购买
@@ -453,7 +446,6 @@ def buyOrder():
 	from src.buy_order import authindex
 	from src.buy_order import buy
 	from src.select_period import select_period
-	session= requests.session()
 	web_url = "http://" + str (current_user.username) + ".www.xs.sit/xweb"
 	local_ip = request.remote_addr
 	xs_db = current_user.xs
@@ -464,11 +456,9 @@ def buyOrder():
 	b_goodsid = request.values.get ("b_goodsid")
 	b_account = request.values.get ("b_account")
 	if b_mobile == "" or b_mobile.isdigit () is False:
-		buy_msg = "手机号不能为空或输入格式错误"
-		return render_template ("lender.html", buy_msg=buy_msg)
+		return render_template ("lender.html", buy_msg="手机号不能为空或输入格式错误")
 	elif b_goodsid == "" or b_goodsid.isdigit () is False:
-		buy_msg = "产品ID不能为空或输入格式错误"
-		return render_template ("lender.html", b_mobile=b_mobile, buy_msg=buy_msg)
+		return render_template ("lender.html", b_mobile=b_mobile, buy_msg="产品ID不能为空或输入格式错误")
 	elif b_account == "" or b_account.isdigit () is False:
 		return render_template ("lender.html", b_mobile=b_mobile, b_goodsid=b_goodsid, buy_msg="订单金额不能为空或输入格式错误")
 	else:
