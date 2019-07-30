@@ -7,13 +7,22 @@
 <body>
 {% block content %}
     <div class="col">
-        <div style="color: red"><p>
-            使用说明：“一键注册开户”和“补开银行存管”功能需在本地配置selenium支持环境！！！<br>[1.]<a href="/static/userfiles/chromedriver.exe"
-                                                                    style="text-decoration:underline;">点击下载Chromedriver.exe</a>
-            <br>[2.]<a href="/static/userfiles/selenium-server-standalone-3.14.0.jar"
-                       style="text-decoration:underline;">点击下载selenium-server-standalone-3.14.0.jar</a>，把两个文件放到同一个目录下，然后在cmd：运行“java
-            -jar
-            selenium-server-standalone-3.14.0.jar”（运行完成后注意不要关闭）</p></div>
+        <div style="color: red">
+            <p>
+                使用说明：“
+                <button>一键注册开户</button>
+                ”、“
+                <button>补开银行存管</button>
+                ”和“
+                <button>一键购买</button>
+                ”功能需在本地配置selenium支持环境！！！<br>[1.]<a href="/static/userfiles/chromedriver.exe"
+                                                   style="text-decoration:underline;">点击下载Chromedriver.exe</a>
+                <br>[2.]<a href="/static/userfiles/selenium-server-standalone-3.14.0.jar"
+                           style="text-decoration:underline;">点击下载selenium-server-standalone-3.14.0.jar</a>，把两个文件放到同一个目录下，然后在cmd：运行“java
+                -jar
+                selenium-server-standalone-3.14.0.jar”（运行完成后注意不要关闭）
+            </p>
+        </div>
         <ul class="main-container">
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/user_register">
@@ -27,7 +36,8 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/openbank">
                     <p>
-                        <input type="text" name="openbank" placeholder="请输入已注册的手机号(必填)" style="width: 200px;" value="{{ openbank }}">
+                        <input type="text" name="openbank" placeholder="请输入已注册的手机号(必填)" style="width: 200px;"
+                               value="{{ openbank }}">
                         <button class="btn btn-large btn-primary" type="submit">补开银行存管</button>
                         （备用功能）
                         <strong style="color: red">{{ msg }}</strong>
@@ -51,7 +61,8 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/transter_account">
                     <p>
-                        <input type="text" name="user_id" placeholder="请输入用户ID(必填)" style="width: 200px;" value="{{ user_id }}">
+                        <input type="text" name="user_id" placeholder="请输入用户ID(必填)" style="width: 200px;"
+                               value="{{ user_id }}">
                         <button class="btn btn-large btn-primary" type="submit">一键转账</button>
                         （通过用户ID进行转账）
                         <strong style="color: red">{{ errmsg }}</strong>
@@ -61,10 +72,12 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/buy_order">
                     <p>
-                        <input type="text" name="b_mobile" placeholder="用户手机号(必填)" style="width: 110px;"
+                        <input type="text" name="b_mobile" placeholder="用户手机号(必填)" style="width: 150px;"
                                value="{{ b_mobile }}">
-                        <input type="text" name="b_goodsid" placeholder="产品编号(必填)" style="width: 100px;" value="{{ b_goodsid }}">
-                        <input type="text" name="b_account" placeholder="订单金额(必填)" style="width: 150px;" value="{{ b_account }}">
+                        <input type="text" name="b_goodsid" placeholder="产品编号(必填)" style="width: 150px;"
+                               value="{{ b_goodsid }}">
+                        <input type="text" name="b_account" placeholder="订单金额(必填)" style="width: 150px;"
+                               value="{{ b_account }}">
                         <button class="btn btn-large btn-primary" type="submit" onclick="history.go(-1)">一键购买</button>
                         （通过用户手机号进行订单购买）
                         <strong style="color: red">{{ buy_msg }}</strong>
