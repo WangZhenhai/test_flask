@@ -475,13 +475,15 @@ def buyOrder():
 		elif sg == None:
 			return render_template ("lender.html", buy_msg="产品编号不存在！", b_mobile=mobile, b_account=account)
 		else:
-			login_web (mobile, '96e79218965eb72c92a549dd5a330112', web_url=web_url)
-			token = ordermoney (web_url=web_url, goodsId=goodsid, amount=account)
+			# login_web (mobile, '96e79218965eb72c92a549dd5a330112', web_url=web_url)
+			password = '96e79218965eb72c92a549dd5a330112'
+			token = ordermoney (web_url=web_url, goodsId=goodsid, amount=account, mobile_number=mobile,
+								password=password)
 			period = select_period (db=xs_db, goods_id=goodsid, host_mysql=host_mysql, user_mysql=user_mysql,
 									passwd_mysql=passwd_mysql)
 			cardno = bank_card_by_userid (db=xs_db, user_id=str (sui), host_mysql=host_mysql, user_mysql=user_mysql,
 										  passwd_mysql=passwd_mysql)
-			bus_order_no = authBalancepay (web_url=web_url, amount=account, goodsId=goodsid, cardno=cardno, token=token)
+			bus_order_no = authBalancepay (web_url=web_url, amount=account, goodsId=goodsid, cardNumber=cardno, token=token)
 			authindex (web_url=web_url, bus_order_no=bus_order_no, period=period, amount=account)
 			buy (local_ip=local_ip)
 			return render_template ("lender.html", b_mobile=mobile, b_goodsid=goodsid, b_account=account,

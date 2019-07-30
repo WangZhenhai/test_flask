@@ -18,7 +18,9 @@ def login_web(mobile_number, password, web_url):
 	headers = {'Content-Type': 'application/x-www-form-urlencoded',
 			   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:66.0) Gecko/20100101 Firefox/66.0'}
 	r = session.post (url, data=payload, headers=headers)
-	# return r.text
+
+
+# return r.text
 
 
 def open_bank_depository(web_url):
@@ -42,6 +44,8 @@ def open_bank_depository(web_url):
 	userType = bank_request_vo['userType']
 	# f = open ('D:\\我的工作空间\\Flask_blog\\src\\r.html', 'w')
 	filepath = os.path.join (basepath, '..\\templates\\')
+	with open (filepath + "r.html", 'r+') as f:
+		f.truncate ()
 	f = open (filepath + "r.html", 'w')
 	f.write ('<!doctype html>')
 	f.write ('\n')
