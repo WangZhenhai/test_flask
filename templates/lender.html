@@ -36,7 +36,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/openbank">
                     <p>
-                        <input type="text" name="openbank" placeholder="请输入已注册的手机号(必填)" style="width: 200px;"
+                        <input type="text" name="openbank" placeholder="请输入已注册的手机号(必填)" style="width: 200px;color: red"
                                value="{{ openbank }}">
                         <button class="btn btn-large btn-primary" type="submit">补开银行存管</button>
                         （备用功能）
@@ -61,7 +61,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/transter_account">
                     <p>
-                        <input type="text" name="user_id" placeholder="请输入用户ID(必填)" style="width: 200px;"
+                        <input type="text" name="user_id" placeholder="请输入用户ID(必填)" style="width: 200px;color: red"
                                value="{{ user_id }}">
                         <button class="btn btn-large btn-primary" type="submit">一键转账</button>
                         （通过用户ID进行转账）
@@ -69,14 +69,24 @@
                     </p>
                 </form>
             </li>
+        <li class="col-sm-offset-0">
+                <form method="post" action="/user/product_id">
+                    <p>
+                        <input type="text" name="product_name" placeholder="请输入产品名称(必填)" style="width: 200px;color: red"
+                               value="{{ product_name }}">
+                        <button class="btn btn-large btn-primary" type="submit">查询产品信息</button>
+                        <strong style="color: red">{{ product_msg }}</strong>
+                    </p>
+                </form>
+            </li>
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/buy_order">
                     <p>
-                        <input type="text" name="b_mobile" placeholder="用户手机号(必填)" style="width: 150px;"
+                        <input type="text" name="b_mobile" placeholder="用户手机号(必填)" style="width: 150px;color: red"
                                value="{{ b_mobile }}">
-                        <input type="text" name="b_goodsid" placeholder="产品编号(必填)" style="width: 150px;"
+                        <input type="text" name="b_goodsid" placeholder="产品编号(必填)" style="width: 150px;color: red"
                                value="{{ b_goodsid }}">
-                        <input type="text" name="b_account" placeholder="订单金额(必填)" style="width: 150px;"
+                        <input type="text" name="b_account" placeholder="订单金额(必填)" style="width: 150px;color: red"
                                value="{{ b_account }}">
                         <button class="btn btn-large btn-primary" type="submit" onclick="history.go(-1)">一键购买</button>
                         （通过用户手机号进行订单购买）
@@ -87,7 +97,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/user_info">
                     <p>
-                        <input type="text" name="user_info" placeholder="请输入用户ID(必填)" style="width: 200px;">
+                        <input type="text" name="user_info" placeholder="请输入用户ID(必填)" style="width: 200px;color: red">
                         <button class="btn btn-large btn-primary" type="submit">查询用户信息[1]</button>
                         （通过用户id查询该用户的信息）
                         <strong style="color: red">{{ u_msg }}</strong>
@@ -97,7 +107,7 @@
             <li>
                 <form method="post" action="/user/user_info_m">
                     <p>
-                        <input type="text" name="user_info_m" placeholder="请输入用户手机号(必填)" style="width: 200px;">
+                        <input type="text" name="user_info_m" placeholder="请输入用户手机号(必填)" style="width: 200px;color: red">
                         <button class="btn btn-large btn-primary" type="submit">查询用户信息[2]</button>
                         （通过用户手机号查询该用户的信息）
                         <strong style="color: red">{{ m_msg }}</strong>
@@ -107,7 +117,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/select_users">
                     <p>
-                        <input type="text" name="count" placeholder="请输入查询条数(选填)" style="width: 200px;">
+                        <input type="text" name="count" placeholder="请输入查询条数(选填)" style="width: 200px;color: red">
                         <button class="btn btn-large btn-primary" type="submit">批量查询用户信息</button>
                         （默认只查询最新注册的10个用户）
                     </p>
@@ -116,7 +126,7 @@
             <li class="col-sm-offset-0">
                 <form method="post" action="/user/del_order">
                     <p>
-                        <input type="text" name="del_user_order" placeholder="请输入用户ID（必填）" style="width: 200px;">
+                        <input type="text" name="del_user_order" placeholder="请输入用户ID（必填）" style="width: 200px;color: red">
                         <button class="btn btn-large btn-primary" type="submit">一键清空用户订单</button>
                         （该功能会删除该用户的所有订单）
                         <strong style="color: red">{{ del_msg }}</strong>

@@ -432,6 +432,26 @@ def del_user_order():
 		return render_template ("lender.html", del_msg="删除完成")
 
 
+# 通过产品名称查询产品id
+
+@login_required
+@app.route ('/user/product_id', methods=['POST'])
+def product_id():
+	from src.select_product_info import select_product_info
+	xs_db = current_user.xs
+	host_mysql = current_user.db_ip
+	user_mysql = current_user.mysql_u
+	passwd_mysql = current_user.mysql_p
+	product_name = request.values.get ("product_name")
+	if product_name == "":
+		return render_template ("lender.html", product_msg="产品名称不能为空！")
+	else:
+		product_name = product_name
+		spi = select_product_info (db=xs_db, product_name=product_name, host_mysql=host_mysql, user_mysql=user_mysql,
+								   passwd_mysql=passwd_mysql)
+		return render_template ("lender.html", product_name=product_name, product_msg=spi)
+
+
 # 用户一键购买
 @login_required
 @app.route ('/user/buy_order', methods=['POST'])
@@ -483,7 +503,8 @@ def buyOrder():
 									passwd_mysql=passwd_mysql)
 			cardno = bank_card_by_userid (db=xs_db, user_id=str (sui), host_mysql=host_mysql, user_mysql=user_mysql,
 										  passwd_mysql=passwd_mysql)
-			bus_order_no = authBalancepay (web_url=web_url, amount=account, goodsId=goodsid, cardNumber=cardno, token=token)
+			bus_order_no = authBalancepay (web_url=web_url, amount=account, goodsId=goodsid, cardNumber=cardno,
+										   token=token)
 			authindex (web_url=web_url, bus_order_no=bus_order_no, period=period, amount=account)
 			buy (local_ip=local_ip)
 			return render_template ("lender.html", b_mobile=mobile, b_goodsid=goodsid, b_account=account,
