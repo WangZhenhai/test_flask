@@ -345,7 +345,8 @@ def user_info():
 		user_id = str (user_id)
 		sa = select_all (xs_db=db, legal_db=legal_db, user_id=user_id, host_mysql=host_mysql, user_mysql=user_mysql,
 						 passwd_mysql=passwd_mysql)
-		return render_template ("user_info.html", sa=sa)
+		# return render_template ("user_info.html", sa=sa)
+		return render_template ("lender.html", u_msg=sa, user_info=user_id)
 
 
 # 通过用户手机号
@@ -374,7 +375,8 @@ def user_info_m():
 		else:
 			sa = select_all_for_mobile (xs_db=db, legal_db=legal_db, crypt_mobile=encrypts (mobile),
 										host_mysql=host_mysql, user_mysql=user_mysql, passwd_mysql=passwd_mysql)
-			return render_template ("user_info.html", sa=sa)
+			# return render_template ("user_info.html", sa=sa)
+			return render_template ("lender.html", m_msg=sa, user_info_m=mobile)
 
 
 # 用户查询（最新注册的10个用户）
@@ -449,7 +451,10 @@ def product_id():
 		product_name = product_name
 		spi = select_product_info (db=xs_db, product_name=product_name, host_mysql=host_mysql, user_mysql=user_mysql,
 								   passwd_mysql=passwd_mysql)
-		return render_template ("lender.html", product_name=product_name, product_msg=spi)
+		if len (spi):
+			return render_template ("lender.html", product_name=product_name, product_msg=spi)
+		else:
+			return render_template ("lender.html", product_msg="没有符合条件的数据！")
 
 
 # 用户一键购买
