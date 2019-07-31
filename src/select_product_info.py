@@ -7,7 +7,7 @@ import pymysql
 def select_product_info(db, product_name, host_mysql, user_mysql, passwd_mysql):
 	conn = pymysql.connect (host=host_mysql, port=3306, user=user_mysql, passwd=passwd_mysql, db=db, charset='utf8')
 	cur = conn.cursor ()
-	sql = "select id,period,lower_limit from aut_product where name = \'" + str (product_name) + "\' and status=2 and joined_total_amount < raise_amount;"
+	sql = "select id,period,lower_limit,allow_auto_exit,expire_withdrawal_way from aut_product where name = \'" + str (product_name) + "\' and status=2 and joined_total_amount < raise_amount;"
 	# print (sql)
 	s = cur.execute (sql)
 	results = cur.fetchall ()
@@ -16,6 +16,8 @@ def select_product_info(db, product_name, host_mysql, user_mysql, passwd_mysql):
 		list.append (i[0])
 		list.append (i[1])
 		list.append (i[2])
+		list.append(i[3])
+		list.append (i[4])
 	return list
 	conn.commit ()
 	cur.close ()
