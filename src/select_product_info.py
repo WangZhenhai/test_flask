@@ -22,8 +22,8 @@ def select_product_info(db, product_name, host_mysql, user_mysql, passwd_mysql):
 	conn.commit ()
 	cur.close ()
 	conn.close ()
-
-
-if __name__ == '__main__':
-	spi = select_product_info ('xiangshang_test5', '再加息测试', '10.40.0.106', 'test_rw9', 'test_rw9')
-	print (spi)
+#
+#
+# if __name__ == '__main__':
+# 	spi = select_product_info ('xiangshang_test5', '再加息测试', '10.40.0.106', 'test_rw9', 'test_rw9')
+# 	print (spi)
