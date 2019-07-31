@@ -1,3 +1,4 @@
+import logging
 import sys
 from datetime import datetime
 
@@ -465,7 +466,7 @@ def buyOrder():
 	from src.decrypts import encrypts
 	from src.select_bank_card import bank_card_by_userid
 	from src.select_goods import select_goods_id
-	from src.openbank_v2 import login_web
+	# from src.openbank_v2 import login_web
 	from src.buy_order import ordermoney
 	from src.buy_order import authBalancepay
 	from src.buy_order import authindex
@@ -514,6 +515,27 @@ def buyOrder():
 			buy (local_ip=local_ip)
 			return render_template ("lender.html", b_mobile=mobile, b_goodsid=goodsid, b_account=account,
 									buy_msg=(mobile, goodsid, account, bus_order_no))
+
+
+# 批量生成四要素个人信息
+@login_required
+@app.route ('/person_info', methods=['GET', 'POST'])
+def personinfo():
+	from src.user_register import bankCard
+	from faker import Faker
+	f = Faker (locale='zh_CN')
+	sum_tuple = ()
+	for i in range (10):
+		mobile = f.phone_number ()
+		name = f.name ()
+		idcard = f.ssn ()
+		bankcard = bankCard ()
+		bankname = "招商银行"
+		list = [mobile, name, idcard, bankcard, bankname]
+		tuple1 = tuple (list)
+		# print (tuple1)
+		sum_tuple += ((tuple1,))
+	return render_template ("person_info.html", sum_tuple=sum_tuple)
 
 
 # uploads File

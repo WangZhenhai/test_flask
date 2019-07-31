@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+{% block content %}
+    <table class="table table-bordered">
+        <tr>
+            <th>手机号</th>
+            <th>姓名</th>
+            <th>身份证号</th>
+            <th>银行卡号</th>
+            <th>银行名称</th>
+        </tr>
+        {% for i in sum_tuple %}
+            <tr>
+                <th>{{ i[0] }}</th>
+                <th>{{ i[1] }}</th>
+                <th>{{ i[2] }}</th>
+                <th>{{ i[3] }}</th>
+                <th>{{ i[4] }}</th>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+</body>
+</html>
