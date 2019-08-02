@@ -269,6 +269,7 @@ def user_register():
 def openbank():
 	from src.openbank_v2 import login_web, open_bank_depository, bank_account
 	from src.user_register import bankCard
+	from src.truncate_file import truncate_openbank
 	web_url = "http://" + str (current_user.username) + ".www.xs.sit/xweb"
 	bankcard = bankCard ()
 	openbank_mobile = request.values.get ("openbank")
@@ -281,6 +282,7 @@ def openbank():
 	else:
 		mobile = openbank_mobile
 		local_ip = request.remote_addr
+		truncate_openbank ()
 		login_web (mobile_number=mobile, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
 		open_bank_depository (web_url=web_url)
 		bank_account (card_num=bankcard, mobile_number=mobile, local_ip=local_ip)
@@ -473,6 +475,7 @@ def buyOrder():
 	from src.buy_order import authindex
 	from src.buy_order import buy
 	from src.select_period import select_period
+	from src.truncate_file import truncate_buy
 	web_url = "http://" + str (current_user.username) + ".www.xs.sit/xweb"
 	local_ip = request.remote_addr
 	xs_db = current_user.xs
@@ -503,6 +506,7 @@ def buyOrder():
 			return render_template ("lender.html", buy_msg="产品编号不存在！", b_mobile=mobile, b_account=account)
 		else:
 			# login_web (mobile, '96e79218965eb72c92a549dd5a330112', web_url=web_url)
+			truncate_buy ()
 			password = '96e79218965eb72c92a549dd5a330112'
 			token = ordermoney (web_url=web_url, goodsId=goodsid, amount=account, mobile_number=mobile,
 								password=password)
@@ -568,9 +572,9 @@ def page_not_found(error):
 
 # 打开开户文件
 @login_required
-@app.route ('/r')
+@app.route ('/openbank')
 def r():
-	return render_template ('r.html')
+	return render_template ('openbank.html')
 
 
 # 打开购买文件

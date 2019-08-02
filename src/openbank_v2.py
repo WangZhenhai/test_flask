@@ -44,9 +44,7 @@ def open_bank_depository(web_url):
 	userType = bank_request_vo['userType']
 	# f = open ('D:\\我的工作空间\\Flask_blog\\src\\r.html', 'w')
 	filepath = os.path.join (basepath, '..\\templates\\')
-	with open (filepath + "r.html", 'r+') as f:
-		f.truncate ()
-	f = open (filepath + "r.html", 'w')
+	f = open (filepath + "openbank.html", 'w')
 	f.write ('<!doctype html>')
 	f.write ('\n')
 	f.write ('<html>')
@@ -96,7 +94,7 @@ def bank_account(card_num, mobile_number, local_ip):
 	# path_dir = str (os.path.abspath (os.path.join (os.path.dirname (__file__), os.pardir)))
 	# print(path_dir)
 	# url = 'file://' + path_dir + '/src/r.html'
-	url = 'http://10.200.1.59:81/r'
+	url = 'http://10.200.1.59:81/openbank'
 	# url = 'http://172.25.1.111/r'
 	# print (url)
 	driver.get (url)
@@ -144,13 +142,11 @@ def bank_account(card_num, mobile_number, local_ip):
 	driver.close ()
 
 # if __name__ == '__main__':
-# 	print (getcwd)
-# 	print(getabspath)
-# 	list = ['test5', '13586693795']
+# 	list = ['test5', '13706182418']
 # 	web_url = "http://" + list[0] + ".www.xs.sit/xweb"
 # 	mobile = list[1]
 # 	passwd = '96e79218965eb72c92a549dd5a330112'
-# 	banknum = '6225888809585750'
+# 	banknum = '6225882257942963'
 # 	login_web (mobile_number=mobile, password=passwd, web_url=web_url)
 # 	open_bank_depository (web_url=web_url)
-# 	bank_account (card_num=banknum, mobile_number=mobile)
+# 	bank_account (card_num=banknum, mobile_number=mobile, local_ip='10.200.1.59')
