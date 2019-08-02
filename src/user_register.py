@@ -29,11 +29,11 @@ def mysql_randomchar(mobile, db, host_mysql, user_mysql, passwd_mysql):
 	# conn= pymysql.connect('10.40.1.25','zhangmeijia','Q84mFosl5P','xiangshang_test7')
 	conn = pymysql.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
-	sql = "select * from mobile_validate where mobile='" + mobile + "' order by create_time desc limit 1"
+	sql = "select random_char from mobile_validate where mobile='" + mobile + "' order by id desc limit 1"
 	s = cur.execute (sql)
 	results = cur.fetchall ()
-	for row in results:
-		vilidata = row[5]
+	for random_char in results:
+		return random_char[0]
 	conn.commit ()
 	cur.close ()
 	conn.close ()
@@ -71,6 +71,7 @@ def sub_reg_info(url, mobile, vilidata):
 	params = {'mobile': mobile, 'mcode': vilidata, 'password': '96e79218965eb72c92a549dd5a330112',
 			  'utmSource': 'XIANGSHANG_ANDROID_REGISTER_USER'}
 	r = requests.post (url_r, data=json.dumps (params), auth=auth, headers=headers)
+	return r.text
 
 
 # print (r.status_code)
@@ -131,11 +132,13 @@ def certification(url, name, id_card):
 	params = {'realName': name, 'idCard': id_card}
 	r = session.post (url_cert, data=json.dumps (params), auth=auth, headers=headers)
 
-#
-# if __name__ == '__main__':
-# 	url = "http://test11.app.xs.sit/app"
-# 	send_message (url=url, mobile="15616026688")
-# 	r = requests.get (url + "/user/register/sendCode/15616026688", auth=auth)
-# 	print (r.text)
-# 	vilidata = mysql_randomchar ("15616026688", "xiangshang_test11", "172.25.1.45", "test_rw", "test_rw")
-# 	print (vilidata)
+
+if __name__ == '__main__':
+	url = "http://test7.app.xs.sit/app"
+	send_message (url=url, mobile="15188500576")
+	r = requests.get (url + "/user/register/sendCode/15188500576", auth=auth)
+	print (r.text)
+	vilidata = mysql_randomchar ("15188500576", "xiangshang_test7", "10.40.0.106", "test_rw9", "test_rw9")
+	print (vilidata)
+	reg = sub_reg_info (url, "15188500576", vilidata)
+	print (reg)

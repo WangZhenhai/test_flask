@@ -242,8 +242,9 @@ def user_register():
 
 	# print (m)  # 输出生成手机号
 	send_message (url=url, mobile=m)  # 获取注册验证码
-	sub_reg_info (url=url, vilidata=mysql_randomchar (mobile=m, db=db, host_mysql=host_mysql, user_mysql=user_mysql,
-													  passwd_mysql=passwd_mysql), mobile=m)  # 注册
+	vilidata = mysql_randomchar (mobile=m, db=db, host_mysql=host_mysql, user_mysql=user_mysql,
+								 passwd_mysql=passwd_mysql)
+	sub_reg_info (url=url, vilidata=vilidata, mobile=m)  # 注册
 	insert_mobile (mobile=m, db=db, host_mysql=host_mysql, user_mysql=user_mysql,
 				   passwd_mysql=passwd_mysql)  # 更新user表mobile字段
 	# print (user_id (mobile=m, db=db))  # 打印user_id
