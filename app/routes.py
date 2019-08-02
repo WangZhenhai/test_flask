@@ -98,6 +98,7 @@ def before_request():
 @app.route ('/user/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
+	last_ip = request.remote_addr
 	form = EditProfileForm ()
 	if form.validate_on_submit ():
 		current_user.backend_ip = form.backend_ip.data
@@ -112,7 +113,7 @@ def edit_profile():
 		form.db_ip.data = current_user.db_ip
 		form.xs.data = current_user.xs
 		form.xs_legal.data = current_user.xs_legal
-	return render_template ('edit_profile.html', title='编辑用户IP配置', form=form)
+	return render_template ('edit_profile.html', title='编辑用户IP配置', form=form, last_ip=last_ip)
 
 
 # testAjax
