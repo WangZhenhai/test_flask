@@ -217,6 +217,7 @@ def borrowers_info():
 def lender():
 	return render_template ("lender.html")
 
+
 # 新的借款人信息页面
 @login_required
 @app.route ('/user/borrow')
@@ -260,7 +261,7 @@ def user_register():
 	user_login (url=url, mobile=m, password='96e79218965eb72c92a549dd5a330112')  # 登录
 	certification (url=url, name=name, id_card=idcard)  # 实名
 	login_web (mobile_number=m, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
-	open_bank_depository (web_url)
+	open_bank_depository (web_url=web_url)
 	bank_account (card_num=bankcard, mobile_number=m, local_ip=local_ip)
 	info_list = []  # 输出用户信息
 	info_list.append (

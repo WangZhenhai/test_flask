@@ -33,7 +33,7 @@ def mysql_randomchar(mobile, db, host_mysql, user_mysql, passwd_mysql):
 	s = cur.execute (sql)
 	results = cur.fetchall ()
 	for random_char in results:
-		return random_char[0]
+		vilidata = random_char[0]
 	conn.commit ()
 	cur.close ()
 	conn.close ()
@@ -132,13 +132,12 @@ def certification(url, name, id_card):
 	params = {'realName': name, 'idCard': id_card}
 	r = session.post (url_cert, data=json.dumps (params), auth=auth, headers=headers)
 
-
-if __name__ == '__main__':
-	url = "http://test7.app.xs.sit/app"
-	send_message (url=url, mobile="15188500576")
-	r = requests.get (url + "/user/register/sendCode/15188500576", auth=auth)
-	print (r.text)
-	vilidata = mysql_randomchar ("15188500576", "xiangshang_test7", "10.40.0.106", "test_rw9", "test_rw9")
-	print (vilidata)
-	reg = sub_reg_info (url, "15188500576", vilidata)
-	print (reg)
+# if __name__ == '__main__':
+# 	url = "http://test7.app.xs.sit/app"
+# 	send_message (url=url, mobile="15188500576")
+# 	r = requests.get (url + "/user/register/sendCode/15188500576", auth=auth)
+# 	print (r.text)
+# 	vilidata = mysql_randomchar ("15188500576", "xiangshang_test7", "10.40.0.106", "test_rw9", "test_rw9")
+# 	print (vilidata)
+# 	reg = sub_reg_info (url, "15188500576", vilidata)
+# 	print (reg)
