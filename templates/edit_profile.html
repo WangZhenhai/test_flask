@@ -29,6 +29,13 @@
             {% endfor %}
         </p>
         <p>
+            {{ form.db_user.label }}<br>
+            {{ form.db_user(size=20) }}<br>
+            {% for error in form.db_user.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
             {{ form.xs.label }}<br>
             {{ form.xs(size=20) }}<br>
             {% for error in form.xs.errors %}

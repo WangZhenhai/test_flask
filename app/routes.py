@@ -111,6 +111,7 @@ def edit_profile():
 		form.backend_ip.data = current_user.backend_ip
 		form.front_ip.data = current_user.front_ip
 		form.db_ip.data = current_user.db_ip
+		form.db_user.data = current_user.mysql_u
 		form.xs.data = current_user.xs
 		form.xs_legal.data = current_user.xs_legal
 	return render_template ('edit_profile.html', title='编辑用户IP配置', form=form, last_ip=last_ip)
@@ -215,6 +216,12 @@ def borrowers_info():
 @app.route ('/user/lender')
 def lender():
 	return render_template ("lender.html")
+
+# 新的借款人信息页面
+@login_required
+@app.route ('/user/borrow')
+def borrow():
+	return render_template ("borrow.html")
 
 
 # 用户一键注册
