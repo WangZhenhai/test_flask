@@ -38,7 +38,7 @@ class EditProfileForm (FlaskForm):
 	backend_ip = StringField ('后端IP地址', validators=[DataRequired (message='请输入后端IP地址!')])
 	front_ip = StringField ('前端IP地址', validators=[DataRequired (message='请输入前端IP地址!')])
 	db_ip = StringField ('数据库连接地址', validators=[DataRequired (message='请输入数据库连接地址!')])
-	db_user = StringField ('数据库连接用户名', validators=[DataRequired (message='请输入数据库用户名!')])
+	db_user = StringField ('数据库连接用户名/密码', validators=[DataRequired (message='请输入数据库用户名!')])
 	xs = StringField ('向上库test连接名称(不可更改)')
 	xs_legal = StringField ('数据库合规legal名称(不可更改)')
 	submit = SubmitField ('提交')
