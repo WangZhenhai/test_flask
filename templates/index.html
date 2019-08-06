@@ -347,7 +347,7 @@
                         <a href="{{ url_for('lender') }}"><span>理财人信息(新)</span></a>
                     </li>
                     <li>
-                        <a href="{{ url_for('personinfo') }}" target="_blank"><span>生成四要素（网页）</span></a>
+                        <a href="{{ url_for('personinfo') }}" target="_blank"><span>生成四要素（批量）</span></a>
                     </li>
                 </ul>
             </li>
@@ -357,6 +357,9 @@
                     <i class="my-icon nav-more"></i>
                 </a>
                 <ul>
+                    <li>
+                        <a href="{{ url_for('borrow') }}"><span>借款人信息（新）</span></a>
+                    </li>
                     <li>
                         <a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/node/netl01"
                            target="_blank"><span>借款人开户</span></a>

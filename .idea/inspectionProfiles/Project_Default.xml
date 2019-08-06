@@ -16,6 +16,8 @@
         <list>
           <option value="src.select_users.username" />
           <option value="src.openbank_v2.s" />
+          <option value="test.test_remoteWebdriver.*" />
+          <option value="src.buy_order.*" />
         </list>
       </option>
     </inspection_tool>

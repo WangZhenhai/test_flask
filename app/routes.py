@@ -294,6 +294,7 @@ def openbank():
 		truncate_openbank ()
 		login_web (mobile_number=mobile, password='96e79218965eb72c92a549dd5a330112', web_url=web_url)
 		open_bank_depository (web_url=web_url)
+		os.wait (2)
 		bank_account (card_num=bankcard, mobile_number=mobile, local_ip=local_ip)
 		return render_template ("lender.html", openbank=mobile)
 
@@ -526,6 +527,7 @@ def buyOrder():
 			bus_order_no = authBalancepay (web_url=web_url, amount=account, goodsId=goodsid, cardNumber=cardno,
 										   token=token)
 			authindex (web_url=web_url, bus_order_no=bus_order_no, period=period, amount=account)
+			os.wait(2)
 			buy (local_ip=local_ip)
 			return render_template ("lender.html", b_mobile=mobile, b_goodsid=goodsid, b_account=account,
 									buy_msg=(mobile, goodsid, account, bus_order_no))

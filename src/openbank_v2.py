@@ -57,7 +57,7 @@ def open_bank_depository(web_url):
 	f.write ('\n')
 	f.write ('<body>')
 	bank_service_url = '''<form id="PayForm" name="PayForm"
-      action=''' + bankServiceUrl + ''' autocomplete="off" method="post">'''
+      action=''' + bankServiceUrl + ''' autocomplete="on" method="post">'''
 	f.write (bank_service_url)
 	f.write ('\n')
 	f.write ('\n')

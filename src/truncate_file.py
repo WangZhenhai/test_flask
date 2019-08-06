@@ -15,3 +15,8 @@ def truncate_buy():
 	filepath = os.path.join (basepath, '..\\templates\\')
 	f = open (filepath + "buy.html", 'r+')
 	f.truncate ()
+
+
+# if __name__ == '__main__':
+# 	truncate_openbank ()
+# 	truncate_buy ()
