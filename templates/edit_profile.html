@@ -4,7 +4,8 @@
 </head>
 <body style="padding: 30px;">
 {% block content %}
-    <form action="" method="post">
+    <span class="col-sm-10">当前登录IP：<strong style="color: red">{{ last_ip }}</strong></span><br>
+    <form action="" method="post" style="text-align: left">
         {{ form.hidden_tag() }}
         <p>
             {{ form.backend_ip.label }}<br>
@@ -28,6 +29,13 @@
             {% endfor %}
         </p>
         <p>
+            {{ form.db_user.label }}<br>
+            {{ form.db_user(size=20) }}<br>
+            {% for error in form.db_user.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
             {{ form.xs.label }}<br>
             {{ form.xs(size=20) }}<br>
             {% for error in form.xs.errors %}
@@ -41,7 +49,7 @@
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        {#        <p>{{ form.submit() }}</p>#}
+        <p>{{ form.submit() }}</p>
     </form>
     <p><input class="btn btn-primary btn-large" type="button" name="Submit" onclick="javascript:history.back(-1);"
               value="返回上一页"></p>

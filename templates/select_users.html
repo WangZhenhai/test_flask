@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+{% block content %}
+    <p style="text-align: right">
+        <button class="btn btn-large btn-primary" type="submit" onclick="location.href='lender'">返回上一页</button>
+    </p>
+    <table class="table table-bordered">
+        <tr>
+            <th>用户ID</th>
+            <th>手机号</th>
+            <th>银行存管ID</th>
+            <th>已加密的手机号</th>
+            <th>解密手机号</th>
+        </tr>
+        {% for i in su %}
+            <tr>
+                <th>{{ i[0] }}</th>
+                <th>{{ i[1] }}</th>
+                <th>{{ i[3] }}</th>
+                <th>{{ i[2] }}</th>
+                {% if i[1] ==None %}
+                    <th>
+                        <form method="post" action="/user/decrypts">
+                            <p>
+                                <input type="text" name="encrypts_mobile" style="width: 200px;color: red"
+                                       value="{{ i[2] }}">
+                                <button class="btn btn-large btn-primary" type="submit" id="calculate">一键解密</button>
+                            </p>
+                        </form>
+                        {{ decrypts_msg }}
+                    </th>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+</body>
+</html>

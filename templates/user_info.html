@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+{% block content %}
+    <p style="text-align: right">
+        <button class="btn btn-large btn-primary" type="submit" onclick="location.href='lender'">返回上一页</button>
+    </p>
+    <table class="table table-bordered">
+        <tr>
+            <th>用户ID</th>
+            <th>手机号</th>
+            <th>银行存管ID</th>
+            <th>向上可用金额</th>
+            <th>银行到账金额</th>
+        </tr>
+            <tr>
+                <th>{{ sa[0] }}</th>
+                <th>{{ sa[1] }}</th>
+                <th>{{ sa[2] }}</th>
+                <th>{{ sa[3] }}</th>
+                <th>{{ sa[4] }}</th>
+            </tr>
+    </table>
+{% endblock %}
+</body>
+</html>

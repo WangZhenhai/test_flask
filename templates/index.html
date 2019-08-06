@@ -149,6 +149,16 @@
                 background-size: 100% 100%;
             }
 
+            .nav-item:nth-child(6) .icon_1::after {
+                background: url('/static/images/huangjing.jpg') no-repeat;
+                background-size: 100% 100%;
+            }
+
+            .nav-item:nth-child(7) .icon_1::after {
+                background: url('/static/images/weifu.jpg') no-repeat;
+                background-size: 100% 100%;
+            }
+
             /*.nav-item:nth-child(2) .icon_1::after{background: url(men1.png)no-repeat;}*/
             /*.icon_2::after{content: "\e669";}*/
             /*.icon_3::after{content: "\e61d";}*/
@@ -240,7 +250,6 @@
             }
         </style>
         <link rel="stylesheet" type="text/css" href="/static/bootstrap-3.3.7/css/bootstrap.min.css">
-
         <script type="text/javascript" src="/static/jquery-3.2.1.min.js"></script>
         <script>
             $(function () {
@@ -280,8 +289,8 @@
                 });
             });
         </script>
-
     </head>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <body style="padding:30px;">
 
@@ -400,8 +409,9 @@
 {% endblock %}
 =======
 
+=======
+>>>>>>> dev_0425
     <body>
-
     <div class="nav">
         <div class="nav-top">
             <div id="mini" class="nav-toptxt">≡</div>
@@ -413,29 +423,72 @@
                     <i class="my-icon nav-more"></i>
                 </a>
                 <ul>
+                    <li><a href="http://{{ current_user.username }}.www.xs.sit/xweb/index"
+                           target="_blank"><span>PC端地址</span></a></li>
                     <li>
                         <a href="http://xiangshang:xiangshang@{{ current_user.username }}.opm.xs.sit/opm/a/login"
                            target="_blank"><span>OPM地址</span></a>
                     </li>
-                    <li><a href="http://{{ current_user.username }}.www.xs.sit/xweb/index"
-                           target="_blank"><span>PC端地址</span></a></li>
                     <li><a href="http://{{ current_user.username }}.m.xs.sit/html/newwap/login.html"
                            target="_blank"><span>M站(H5)地址</span></a></li>
                 </ul>
             </li>
             <li class="nav-item">
                 <a href="javascript:;">
-                    <i class="my-icon nav-icon icon_1"></i><span>借款信息类</span>
+                    <i class="my-icon nav-icon icon_1"></i><span>环境部署地址</span>
                     <i class="my-icon nav-more"></i>
                 </a>
                 <ul>
+                    <li>
+                        <a href="http://{{ current_user.username }}.jenkins.xs.sit/login?from=%2F"
+                           target="_blank"><span>Jenkins地址</span></a>
+                    </li>
+                    <li>
+                        <a href="http://172.25.1.5:30880/" target="_blank">
+                            <span>K8S部署地址</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://tool.lu/index.html" target="_blank">
+                            <span>在线工具</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Webdriver://www.baidu.com">Test Start Webdriver</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;">
+                    <i class="my-icon nav-icon icon_1"></i><span>理财人信息</span>
+                    <i class="my-icon nav-more"></i>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ url_for('lender') }}"><span>理财人信息(新)</span></a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('personinfo') }}" target="_blank"><span>生成四要素（批量）</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;">
+                    <i class="my-icon nav-icon icon_1"></i><span>借款人信息</span>
+                    <i class="my-icon nav-more"></i>
+                </a>
+                <ul>
+                    <li>
+                        <a href="{{ url_for('borrow') }}"><span>借款人信息（新）</span></a>
+                    </li>
                     <li>
                         <a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/node/netl01"
                            target="_blank"><span>借款人开户</span></a>
                     </li>
                     <li><a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/node/netl17_1"
                            target="_blank"><span>借款信息授权</span></a></li>
-                    <li><a href="/xweb/my/moneyRecord" target="_blank"><span>借款信息导入</span></a></li>
+                    <li><a href="http://{{ current_user.front_ip }}:19200/las//jytest/api/index" target="_blank"><span>捷越授权主页</span></a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item">
@@ -449,20 +502,29 @@
                            target="_blank"><span>向上task任务</span></a>
                     </li>
                     <li><a href="http://admin:admin@{{ current_user.backend_ip }}:19700/"
-                           target="_blank"><span>资产端-定时</span></a></li>
-                    <li>
-                        <a href="http://{{ current_user.backend_ip }}:12300/swagger-ui.html#!/start-loan-controller/startLoanTaskUsingPOST"
-                           target="_blank"><span>放款微服务</span></a></li>
-                    <li><a href="http://{{ current_user.backend_ip }}:13050/swagger-ui.html"
-                           target="_blank"><span>还款(资产)微服务</span></a></li>
-                    <li>
-                        <a href="http://{{ current_user.username }}.micro.agreement.xs.sit/swagger-ui.html#/agreement-task-controller"
-                           target="_blank"><span>合同管理定时</span></a></li>
+                           target="_blank"><span>资产端-定时任务</span></a></li>
+                    <li><a href="http://{{ current_user.username }}.micro.mock.xs.sit/"
+                           target="_blank"><span>时间转换工具</span></a></li>
                 </ul>
             </li>
             <li class="nav-item">
                 <a href="javascript:;">
-                    <i class="my-icon nav-icon icon_1"></i><span>环境查询类</span>
+                    <i class="my-icon nav-icon icon_1"></i><span>微服务管理</span>
+                    <i class="my-icon nav-more"></i>
+                </a>
+                <ul>
+                    <a href="http://{{ current_user.backend_ip }}:12300/swagger-ui.html#!/start-loan-controller/startLoanTaskUsingPOST"
+                       target="_blank"><span>放款微服务</span></a></li>
+                    <li><a href="http://{{ current_user.backend_ip }}:13050/swagger-ui.html"
+                           target="_blank"><span>还款(资产)微服务</span></a></li>
+                    <li>
+                        <a href="http://{{ current_user.username }}.micro.agreement.xs.sit/swagger-ui.html#/agreement-task-controller"
+                           target="_blank"><span>合同管理微服务</span></a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="javascript:;">
+                    <i class="my-icon nav-icon icon_1"></i><span>常用接口查询</span>
                     <i class="my-icon nav-more"></i>
                 </a>
                 <ul>
@@ -475,58 +537,9 @@
                            target="_blank"><span>手机号加密/解密</span></a></li>
                 </ul>
             </li>
-            <li class="nav-item">
-                <a href="javascript:;">
-                    <i class="my-icon nav-icon icon_1"></i><span>其他分类</span>
-                    <i class="my-icon nav-more"></i>
-                </a>
-                <ul>
-                    <li>
-                        <a href="http://{{ current_user.username }}.jenkins.xs.sit/login?from=%2F"
-                           target="_blank"><span>Jenkins地址</span></a>
-                    </li>
-                    <li>
-                        <a href="http://10.200.0.72:11987/generateData/generateRandomPeopleInfo" target="_blank"><span>生成四要素</span></a>
-                    </li>
-                </ul>
-            </li>
+
         </ul>
     </div>
-    {#    <script>#}
-    {#        $(function () {#}
-    {#            var navList = [#}
-    {#                {#}
-    {#                    "p": "平台访问地址",#}
-    {#                    "c": ["兴庆区", "金凤区"]#}
-    {#                },#}
-    {#                {#}
-    {#                    "p": "借款信息类",#}
-    {#                    "c": ["大武口区", "惠农区"]#}
-    {#                },#}
-    {#                {#}
-    {#                    "p": "定时任务类",#}
-    {#                    "c": []#}
-    {#                }, {#}
-    {#                    "p": "环境查询类",#}
-    {#                    "c": []#}
-    {#                }#}
-    {#                , {#}
-    {#                    "p": "其他分类",#}
-    {#                    "c": []#}
-    {#                }#}
-    {#            ]#}
-    {#            var navData = '';#}
-    {#            for (let i = 0; i < navList.length; i++) {#}
-    {#                navData += "<li class='nav-item'><a href='javascript:;'><i class='my-icon nav-icon icon_1'></i><span>" + navList[i].p + "</span><i class='my-icon nav-more'></i></a><ul>"#}
-    {#                for (let w = 0; w < navList[i].c.length; w++) {#}
-    {#                    navData += "<li><a href='javascript:;'><span>" + navList[i].c[w] + "</span></a></li>"#}
-    {#                }#}
-    {#                navData += "</ul></li>"#}
-    {#            }#}
-    {#            console.log(navData)#}
-    {#            $('#aat').html(navData)#}
-    {#        })#}
-    {#    </script>#}
 {% endblock %}
 </body>
 </html>

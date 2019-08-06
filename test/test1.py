@@ -1,15 +1,31 @@
 # encoding = utf-8
 
-import requests
-import json
+# !/usr/bin/env python3
 
-url = "http://test.server.com/users"
+def find_str_repeat(s):
+	d = {}
+	for i in range (len (s)):
+		if d.get (s[i]):
+			return s[i]
+		else:
+			d[s[i]] = i
+	return False
 
-parms = {'user': 'abc', 'pwd': '123'}
-headers = { 'Content-Type': 'application/json;charset=utf-8'}
 
-res = requests.post (url, data=parms, headers=headers)
+def find_str_repeat1(s):
+	list1 = []
+	list2 = []
+	for i in range (len (s)):
+		list1.append (s[i])
+	print (list1)
 
-text = res.text
+	for i in range (len (list1)):
+		if list1[i] not in list2:
+			list2.append (list1[i])
+	print (list2)
 
-print (json.loads (text))
+
+if __name__ == "__main__":
+	s = "qweweert22333aadd"
+	print (find_str_repeat (s))
+	find_str_repeat1 (s)

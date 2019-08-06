@@ -2,26 +2,20 @@
 # 用户注册
 import json
 
-import MySQLdb
+import pymysql
 import requests
 from faker import Faker
 import random as r
 
 f = Faker (locale='zh_CN')
 
-# env = '4'
-
-host_mysql = '10.40.0.106'
-user_mysql = 'test_rw9'
-passwd_mysql = 'test_rw9'
-
 auth = ('xiangshang', 'dx3vf~yDt6s57Dbfoo')
-headers = {'Content-Type': 'application/json', 'AppVersionCode': '73', 'deviceBrand': 'Xiaomi',
+headers = {'Content-Type': 'application/json', 'AppVersionCode': '105', 'deviceBrand': 'Xiaomi',
 		   'device': '02093A41-181E-40A3-A006-9E2D1AFD5664', 'appchannel': '1', 'platform_type': '2'}
 
 
 # 发送短信验证码接口
-def send_message(url,mobile):
+def send_message(url, mobile):
 	# print mobile_number
 	url_reg = url + "/user/register/sendCode/" + mobile
 	r = requests.get (url_reg, auth=auth)
@@ -31,24 +25,24 @@ def send_message(url,mobile):
 # print (r.text)
 
 # 查询验证码
-def mysql_randomchar(mobile,db):
-	# conn= MySQLdb.connect('10.40.1.25','zhangmeijia','Q84mFosl5P','xiangshang_test7')
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
+def mysql_randomchar(mobile, db, host_mysql, user_mysql, passwd_mysql):
+	# conn= pymysql.connect('10.40.1.25','zhangmeijia','Q84mFosl5P','xiangshang_test7')
+	conn = pymysql.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
-	sql = "select * from mobile_validate where mobile='" + mobile + "' order by create_time desc limit 1"
+	sql = "select random_char from mobile_validate where mobile='" + mobile + "' order by id desc limit 1"
 	s = cur.execute (sql)
 	results = cur.fetchall ()
-	for row in results:
-		vilidata = row[5]
-	cur.close ()
+	for random_char in results:
+		vilidata = random_char[0]
 	conn.commit ()
+	cur.close ()
 	conn.close ()
 	return vilidata
 
 
 # 把生成的手机号更新到user表
-def insert_mobile(mobile,db):
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
+def insert_mobile(mobile, db, host_mysql, user_mysql, passwd_mysql):
+	conn = pymysql.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "update user set mobile='" + mobile + "' order by id desc limit 1"
 	s = cur.execute (sql)
@@ -57,8 +51,8 @@ def insert_mobile(mobile,db):
 	conn.close ()
 
 
-def user_id(mobile,db):
-	conn = MySQLdb.connect (host_mysql, user_mysql, passwd_mysql, db)
+def user_id(mobile, db, host_mysql, user_mysql, passwd_mysql):
+	conn = pymysql.connect (host_mysql, user_mysql, passwd_mysql, db)
 	cur = conn.cursor ()
 	sql = "select * from user where mobile='" + mobile + "'"
 	s = cur.execute (sql)
@@ -72,11 +66,12 @@ def user_id(mobile,db):
 
 
 # 提交注册信息接口
-def sub_reg_info(url,mobile, vilidata):
+def sub_reg_info(url, mobile, vilidata):
 	url_r = url + "/user/register/submit"
 	params = {'mobile': mobile, 'mcode': vilidata, 'password': '96e79218965eb72c92a549dd5a330112',
 			  'utmSource': 'XIANGSHANG_ANDROID_REGISTER_USER'}
 	r = requests.post (url_r, data=json.dumps (params), auth=auth, headers=headers)
+	return r.text
 
 
 # print (r.status_code)
@@ -114,7 +109,7 @@ def bankCard():
 session = requests.Session ()
 
 
-def user_login(url,mobile, password):
+def user_login(url, mobile, password):
 	url_login = url + '/user/login'
 	params = {'userName': mobile, 'password': password}
 
@@ -130,40 +125,19 @@ def user_login(url,mobile, password):
 
 
 # 实名认证
-def certification(url,name, id_card):
+def certification(url, name, id_card):
 	# print real_name
 	# print id_card
 	url_cert = url + '/user/setting//authIdCard'
 	params = {'realName': name, 'idCard': id_card}
 	r = session.post (url_cert, data=json.dumps (params), auth=auth, headers=headers)
 
-
-# develop开存管获取短信
-def openBankDepositorySendSMS(mobile, card, real_name, id_card):
-	url_bs = url + '/openBankDepository/openBankDepositorySendSMS'
-	params = {'mobilePhone': mobile, 'cardNumber': card, 'acctName': real_name, 'idCard': id_card}
-	r = session.post (url_bs, data=json.dumps (params), auth=auth, headers=headers)
-	return r.json ()['data']
-
-
-# develop开存管
-def openBankDepositorySubmit(serialNo, mobile, card_num, real_name, id_card):
-	url_r = url + '/openBankDepository/openBankDepositorySubmit'
-	params = {'mobilePhone': mobile, 'cardNumber': card_num, 'acctName': real_name, 'idCard': id_card,
-			  'msgCode': '111111', 'serialNo': serialNo}
-	r = session.post (url_r, data=json.dumps (params), auth=auth, headers=headers)
-	print (r.text)
-
-
 # if __name__ == '__main__':
-# 	m = mobile ()
-# 	print (m)  # 输出生成手机号
-# 	send_message (mobile=m)  # 获取注册验证码
-# 	sub_reg_info (vilidata=mysql_randomchar (m), mobile=m)  # 注册
-# 	insert_mobile (mobile=m)  # 更新user表mobile字段
-# 	print (user_id (mobile=m)) # 打印user_id
-# 	print(bankCard())   #打印银行卡号
-# 	login (mobile=m, password='96e79218965eb72c92a549dd5a330112')  # 登录
-# 	certification (name=realName (), id_card=idCard ())  # 实名
-# 	#openBankDepositorySendSMS (mobile=mobile (), card=bankCard (), real_name=realName (),id_card=idCard ())  # 获取银行开户验证码
-# 	#openBankDepositorySubmit(serialNo='111111',mobile=m,card_num=bankCard(),real_name=realName(),id_card=idCard())  #提交开户信息
+# 	url = "http://test7.app.xs.sit/app"
+# 	send_message (url=url, mobile="15188500576")
+# 	r = requests.get (url + "/user/register/sendCode/15188500576", auth=auth)
+# 	print (r.text)
+# 	vilidata = mysql_randomchar ("15188500576", "xiangshang_test7", "10.40.0.106", "test_rw9", "test_rw9")
+# 	print (vilidata)
+# 	reg = sub_reg_info (url, "15188500576", vilidata)
+# 	print (reg)
